@@ -4,5 +4,6 @@ from django.conf.urls.defaults import *
 urlpatterns = patterns('',
         (r'^$', 'rxtxmanager.views.index'),
         (r'^telecommande/', include('telecommande.urls')),
-        (r'^automations/', include('automations.urls'), {'output': 'json'}),
+        (r'^automationsws/', include('automations.urls'), {'output': 'json'}),
+        (r'^automations/', include('automations.urls')),
 )

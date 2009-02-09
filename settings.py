@@ -53,7 +53,7 @@ SECRET_KEY = '3=1gkvcqd+4v5xb)!m6b9%s*to%6dye%nk6*^-w5unj&^e3a+b'
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
+    #'django.template.loaders.app_directories.load_template_source',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -64,8 +64,9 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'webengine.urls'
 
+# Must be root directory and NOTHING ELSE
 TEMPLATE_DIRS = (
-    '/home/tmeson/src/rxtx/webengine/templates'
+    '/home/tmeson/src/rxtx/webengine'
 )
 
 INSTALLED_APPS = (
@@ -84,3 +85,5 @@ INSTALLED_APPS = (
 #  - ...
 # Default is html
 DEFAULT_OUTPUT_MODE = 'html'
+# The given output mode must be contained into ACCEPTABLE_OUTPUT_MODES
+ACCEPTABLE_OUTPUT_MODES = ['html', 'xml', 'json']
