@@ -51,7 +51,7 @@ class _CheckRenderMode(object):
         # Check forced output by decorator.
         if 'output' in self.decorator_opts.keys(): self.output = self.decorator_opts['output']
         # Check output validity, otherwise raise 500.
-        if self.output not in settings.ACCEPTABLE_OUTPUT_MODES: return HttpResponse(status = 500)
+        if self.output not in settings.ACCEPTABLE_OUTPUT_MODES.keys(): return HttpResponse(status = 500)
         # Lookup the right view.
         # Passed by the urldispatcher
         if 'view' in kwds_urldispatcher:
@@ -95,8 +95,9 @@ class _CheckRenderMode(object):
         try:
             template = loader.get_template(self.view)
             ctx = Context(self.view_ctx)
-            resp = HttpResponse(template.render(ctx))
-            resp.status = self.status
+            resp = HttpResponse(template.render(ctx),
+                                content_type = settings.ACCEPTABLE_OUTPUT_MODES[self.output],
+                                status = self.status)
             return resp
         except TemplateDoesNotExist, e:
             return HttpResponse('Template does not exist', status = 500)

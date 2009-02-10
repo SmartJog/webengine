@@ -86,4 +86,7 @@ INSTALLED_APPS = (
 # Default is html
 DEFAULT_OUTPUT_MODE = 'html'
 # The given output mode must be contained into ACCEPTABLE_OUTPUT_MODES
-ACCEPTABLE_OUTPUT_MODES = ['html', 'xml', 'json']
+ACCEPTABLE_OUTPUT_MODES = {
+        'html': 'text/html',
+        'xml': 'text/xml',
+        'json': 'application/json'}
