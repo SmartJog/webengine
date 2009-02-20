@@ -1,4 +1,4 @@
-from webengine.utils import *
+from webengine.utils.decorators import render
 
 @render(view='index', output='html')
 def index(request):
