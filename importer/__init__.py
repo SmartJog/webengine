@@ -40,7 +40,12 @@ class Module(object):
         path.append(curr.__name__)
         path.reverse()
         path = '.'.join(path)
-        print path
+        module, method = path.rsplit('.', 1)
+        # Let exception be raised? Raise a custom one ?
+        m = __import__(module, {}, {}, [''])
+        f = getattr(m, method)
+        ret = f(*args, **kw)
+        return ret
 
     def __repr__(self):
         """ Represent instance as a string. """
