@@ -74,6 +74,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'webengine.utils',
 )
 
 # Default Output mode.
