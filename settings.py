@@ -90,3 +90,7 @@ ACCEPTABLE_OUTPUT_MODES = {
         'html': 'text/html',
         'xml': 'text/xml',
         'json': 'application/json'}
+
+# Exportable modules.
+# Modules must be a valid python module, in the import path.
+EXPORT_MODULES = ('sys', 'os')
