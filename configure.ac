@@ -7,7 +7,7 @@ AC_PREREQ(2.52)
 AM_INIT_AUTOMAKE([foreign])
 AM_PATH_PYTHON
 
-AC_PROG_SJCONF
+#AC_PROG_SJCONF
 
 AC_SUBST([webenginesysconfdir], [\$\(sysconfdir\)/webengine])
 
