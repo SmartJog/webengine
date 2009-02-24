@@ -1,0 +1,45 @@
+Source: webengine
+Section: misc
+Priority: optional
+Maintainer: Thomas Meson <thomas.meson@smartjog.com>
+Build-Depends: debhelper (>= 5.0.38), cdbs, python-central (>= 0.5.6)
+XS-Python-Version: current
+Standards-Version: 3.8.0
+
+Package: webengine
+Architecture: all
+Depends: ${python:Depends}, python-django (>= 1.0.2)
+Recommends: webengine-plugin-import
+XB-Python-Version: ${python:Versions}
+Description: WebEngine
+
+Package: webengine-plugin-exporter
+Architecture: all
+Depends: ${python:Depends}, webengine (= ${binary:Version}), webengine-plugin-importer (= ${binary:Version})
+XB-Python-Version: ${python:Versions}
+Description: Export plugin for WebEngine.
+
+Package: webengine-plugin-importer
+Architecture: all
+Depends: ${python:Depends}, webengine (= ${binary:Version})
+XB-Python-Version: ${python:Versions}
+Description: Import plugin for WebEngine.
+
+Package: webengine-plugin-automations
+Architecture: all
+Depends: ${python:Depends}, webengine (= ${binary:Version})
+XB-Python-Version: ${python:Versions}
+Description: Automations plugin for WebEngine.
+
+Package: webengine-plugin-telecommande
+Architecture: all
+Depends: ${python:Depends}, webengine (= ${binary:Version})
+XB-Python-Version: ${python:Versions}
+Description: Telecommande plugin for WebEngine.
+
+Package: webengine-plugin-rxtx
+Architecture: all
+Depends: ${python:Depends}, webengine (= ${binary:Version})
+XB-Python-Version: ${python:Versions}
+Description: RxTx plugin for WebEngine.
+

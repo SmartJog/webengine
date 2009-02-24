@@ -1,0 +1,32 @@
+#!/bin/sh
+# PostRm script for WebEngine.
+
+set -e
+
+apache2_remove() {
+	wserver=$1
+	if [ -d /etc/$wserver/conf.d ] && [ -L /etc/$wserver/conf.d/webengine.conf ]; then
+		rm -f /etc/$wserver/conf.d/webengine.conf
+	fi
+}
+
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+	webserver="apache2"
+
+	# Remove the configuration.
+	apache2_remove $webserver
+
+	# Reload the webserver.
+	if [ -x /usr/sbin/invoke-rc.d ]; then
+		invoke-rc.d $webserver reload 3> /dev/null || true
+	else
+		/etc/init.d/$webserver reload 3> /dev/null || true
+	fi
+
+	# Purge configuration files.
+	if [ "$1" = "purge" ]; then
+		rm -rf /etc/webengine
+	fi
+fi
+
+exit 0

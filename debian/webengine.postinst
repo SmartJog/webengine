@@ -1,0 +1,27 @@
+#!/bin/sh
+# PostInstall script for WebEngine.
+
+set -e
+
+apache2_install() {
+	wserver=$1
+	if [ -d /etc/$wserver/conf.d ] && [ ! -e /etc/$wserver/conf.d/webengine.conf ]; then
+		ln -s ../../webengine/webengine.conf /etc/$wserver/conf.d/webengine.conf
+	fi
+}
+
+if [ "$1" = "configure" ]; then
+	webserver="apache2"
+
+	# Install the configuration.
+	apache2_install $webserver
+
+	# Reload the webserver.
+	if [ -x /usr/sbin/invoke-rc.d ]; then
+		invoke-rc.d $webserver reload 3> /dev/null || true
+	else
+		/etc/init.d/$webserver reload 3> /dev/null || true
+	fi
+fi
+
+exit 0
