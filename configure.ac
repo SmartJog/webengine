@@ -9,6 +9,8 @@ AM_PATH_PYTHON
 
 AC_PROG_SJCONF
 
+AC_SUBST([webenginesysconfdir], [\$\(sysconfdir\)/webengine])
+
 AC_SUBST([webenginedir], [\$\(pkgdatadir\)])
 AC_SUBST([automationsdir], [\$\(webenginedir\)/automations])
 AC_SUBST([exporterdir], [\$\(webenginedir\)/exporter])
@@ -23,6 +25,7 @@ AC_CONFIG_FILES([Makefile \
                  automations/templates/Makefile \
                  exporter/Makefile \
                  importer/Makefile \
+                 etc/Makefile \
                  rxtx/Makefile \
                  rxtx/templates/Makefile \
                  telecommande/Makefile \
