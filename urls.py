@@ -1,12 +1,15 @@
 from django.conf.urls.defaults import *
-from webengine.exporter import createPatterns
+from webengine.utils import get_valid_plugins
 
-# URLs here will define which RxtxManager plug-in are enable for this set up.
-urlpatterns = patterns('',
-        (r'^$', 'rxtxmanager.views.index'),
-        (r'^telecommande/', include('telecommande.urls')),
-        (r'^automations/', include('automations.urls')),
-)
+# List of patterns to apply, default view is webengine.index
+urlpatterns = patterns('', (r'^$', 'webengine.index'))
 
-# Add exporter module's urls.
-urlpatterns += createPatterns()
+plugs = get_valid_plugins()
+
+for name, mod in plugs:
+    # Append patterns of each plugins
+    # Let each plugin define their urlpatterns, just concat them here.
+    print name
+    # Special case for exporter.
+    if name == 'exporter': urlpatterns += mod.urls.urlpatterns
+    else: urlpatterns += patterns('', (r'^' + name + '/', include(name + '.urls')))
