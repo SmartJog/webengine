@@ -92,7 +92,3 @@ ACCEPTABLE_OUTPUT_MODES = {
         'xml'  : 'text/xml',
         'json' : 'application/json',
         'soap' : 'application/soap+xml'}
-
-# Exportable modules.
-# Modules must be a valid python module, in the import path.
-EXPORT_MODULES = ('sys', 'os')
