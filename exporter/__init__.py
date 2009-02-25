@@ -1,4 +1,3 @@
-from django.conf import settings
 import django.utils.simplejson as json
 from django.views.decorators.http import require_POST
 

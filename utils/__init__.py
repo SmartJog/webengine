@@ -18,5 +18,4 @@ def get_valid_plugins():
 
     wdir = webengine.__path__[0]
     # Map os.listdir(wdir) to isplugin, and then "filter" elements that are None
-    dirs = [dir for dir in map(__isplugin, [d for d in os.listdir(wdir) if os.path.isdir(os.path.join(wdir, d))]) if dir]
-    return dirs
+    return [dir for dir in map(__isplugin, [d for d in os.listdir(wdir) if os.path.isdir(os.path.join(wdir, d))]) if dir]

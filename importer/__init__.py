@@ -1,5 +1,3 @@
-from django.conf import settings
-
 """
     Intented to be use like this:
 
@@ -57,8 +55,6 @@ class Importer(object):
     def __init__(self):
         self.__modules__ = {}
         self.__request__ = None
-        for mod in settings.EXPORT_MODULES:
-            self.__modules__[mod] = Module(self, None, mod)
 
     def __getattr__(self, key):
         """ importer.key -> Returns a Module() instance. """
