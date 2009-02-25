@@ -24,22 +24,3 @@ Architecture: all
 Depends: ${python:Depends}, webengine (= ${binary:Version})
 XB-Python-Version: ${python:Versions}
 Description: Import plugin for WebEngine.
-
-Package: webengine-plugin-automations
-Architecture: all
-Depends: ${python:Depends}, webengine (= ${binary:Version})
-XB-Python-Version: ${python:Versions}
-Description: Automations plugin for WebEngine.
-
-Package: webengine-plugin-telecommande
-Architecture: all
-Depends: ${python:Depends}, webengine (= ${binary:Version})
-XB-Python-Version: ${python:Versions}
-Description: Telecommande plugin for WebEngine.
-
-Package: webengine-plugin-rxtx
-Architecture: all
-Depends: ${python:Depends}, webengine (= ${binary:Version})
-XB-Python-Version: ${python:Versions}
-Description: RxTx plugin for WebEngine.
-
