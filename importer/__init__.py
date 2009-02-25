@@ -42,7 +42,9 @@ class Module(object):
         # Let exception be raised? Raise a custom one ?
         m = __import__(module, {}, {}, [''])
         f = getattr(m, method)
-        ret = f(*args, **kw)
+        # If f is callable, it's a function, otherwise, a module attribute.
+        if callable(f): ret = f(*args, **kw)
+        else: ret = f
         return ret
 
     def __repr__(self):
