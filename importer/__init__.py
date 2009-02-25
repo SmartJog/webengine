@@ -57,9 +57,14 @@ class Importer(object):
         self.__request__ = None
 
     def __getattr__(self, key):
-        """ importer.key -> Returns a Module() instance. """
+        """
+            importer.key -> Returns a Module() instance.
+            This module is not linked with EXPORT_MODULES from exporter plugin.
+            There's no check if plugin exists (checked on __call__) or is in
+            EXPORT_MODULES tuple.
+        """
         if not (key in self.__modules__):
-            raise KeyError("Module %s does not exist" % key)
+            self.__modules__[key] = Module(self, None, key)
         return self.__modules__[key]
 
     def setRequest(self, req):
