@@ -53,6 +53,7 @@ SECRET_KEY = '3=1gkvcqd+4v5xb)!m6b9%s*to%6dye%nk6*^-w5unj&^e3a+b'
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
+    # DO NOT use the following loader, it does not make what we want.
     #'django.template.loaders.app_directories.load_template_source',
 )
 
@@ -64,9 +65,8 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'webengine.urls'
 
-# Must be root directory and NOTHING ELSE
 TEMPLATE_DIRS = (
-    '/home/tmeson/src/rxtx/webengine'
+    '/usr/share/webengine/templates',
 )
 
 INSTALLED_APPS = (
@@ -75,6 +75,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'webengine.utils',
+    # DO NOT put modules here, for one good reason:
+    # When looking for templates, django use this tuple and tries
+    # to get templates for the templates directory of each installed apps.
+    # But this is just stupid, cause if you try to get a 'index.html' template,
+    # the first matching template file will be use.
+    # Following this, EACH template must be unique, which is totally 
+    # impossible with a lot of modules having, for example an 'index.html'
+    # But, even if you try to put modules here, the TEMPLATE_LOADER app_directories has been disabled.
 )
 
 # Default Output mode.
@@ -83,7 +91,7 @@ INSTALLED_APPS = (
 #  - xml
 #  - html
 #  - json
-#  - ...
+#  - soap
 # Default is html
 DEFAULT_OUTPUT_MODE = 'html'
 # The given output mode must be contained into ACCEPTABLE_OUTPUT_MODES
