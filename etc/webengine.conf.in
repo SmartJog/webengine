@@ -1,13 +1,18 @@
 # Configuration file for WebEngine.
 # Made to be used along rxtxmanager, remove useless things when alone.
 
-Alias /wengine /usr/share/webengine
+Alias /wengine @webenginedir@
+Alias /media @webenginemediadir@
 
-<Directory /usr/share/webengine>
+<Directory @webenginedir@>
 	SetHandler python-program
 	PythonHandler django.core.handlers.modpython
 	SetEnv DJANGO_SETTINGS_MODULE webengine.settings
 	PythonOption django.root /wengine
 	PythonDebug On
-	PythonPath "['@webenginedir@', '@datadir@'] + sys.path"
+	PythonPath "['@webenginedir@', '@webengineappdir@'] + sys.path"
+</Directory>
+
+<Directory @webenginemediadir@>
+	SetHandler None
 </Directory>
