@@ -1,3 +1,2 @@
-debian/tmp/usr/share/webengine/app/webengine/*.py
-debian/tmp/usr/share/webengine/app/webengine/utils
+debian/tmp/usr/share/webengine/app/webengine/
 debian/tmp/etc/webengine
