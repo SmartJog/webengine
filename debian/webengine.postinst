@@ -13,6 +13,8 @@ apache2_install() {
 if [ "$1" = "configure" ]; then
 	webserver="apache2"
 
+	#FIXME: Utiliser debconf.
+
 	# Install the configuration.
 	apache2_install $webserver
 

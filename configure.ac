@@ -11,7 +11,7 @@ AM_PATH_PYTHON
 
 AC_SUBST([webenginesysconfdir], [\$\(sysconfdir\)/webengine])
 
-AC_SUBST([webenginedir], [\$\(pkgdatadir\)])
+AC_SUBST([webenginedir], [\$\(pkgdatadir\)/app/webengine])
 AC_SUBST([exporterdir], [\$\(webenginedir\)/exporter])
 AC_SUBST([importerdir], [\$\(webenginedir\)/importer])
 AC_SUBST([utilsdir], [\$\(webenginedir\)/utils])
