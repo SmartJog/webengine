@@ -19,6 +19,7 @@ class Module(object):
         self.__name__ = name
         self.__parent__ = parent
         self.__importer__ = imp
+        self.__islocal__ = True
 
     def __getattr__(self, key):
         if not (key in self.__dict__):
@@ -38,14 +39,17 @@ class Module(object):
         path.append(curr.__name__)
         path.reverse()
         path = '.'.join(path)
-        module, method = path.rsplit('.', 1)
-        # Let exception be raised? Raise a custom one ?
-        m = __import__(module, {}, {}, [''])
-        f = getattr(m, method)
-        # If f is callable, it's a function, otherwise, a module attribute.
-        if callable(f): ret = f(*args, **kw)
-        else: ret = f
-        return ret
+        if self.__islocal__:
+            module, method = path.rsplit('.', 1)
+            # Let exception be raised? Raise a custom one ?
+            m = __import__(module, {}, {}, [''])
+            f = getattr(m, method)
+            # If f is callable, it's a function, otherwise, a module attribute.
+            if callable(f): ret = f(*args, **kw)
+            else: ret = f
+            return ret
+        else:
+            return None
 
     def __repr__(self):
         """ Represent instance as a string. """
@@ -69,7 +73,7 @@ class Importer(object):
             self.__modules__[key] = Module(self, None, key)
         return self.__modules__[key]
 
-    def setRequest(self, req):
+    def set_request(self, req):
         """
             Set the "context" by giving the current request.
             Importer() will decide (based on the request), if data
