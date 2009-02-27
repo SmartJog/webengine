@@ -19,6 +19,7 @@ def dispatch(request, *args, **kw):
 
     #TODO: Perform all needed checks here.
     # Loads modules from importer.
+    importer.set_request(request)
     mod = importer.__getattr__(base)
     for path in modules.split('/'):
         mod = mod.__getattr__(path) 
@@ -39,5 +40,6 @@ def dispatch(request, *args, **kw):
         # Call the importer.
         ret = mod(*args, **kw)
     else: return HttpResponse('Method not supported', status = 405)
-
-    return HttpResponse(ret)
+    # Encode in JSON, and return
+    ret_json = json.JSONEncoder().encode(ret)
+    return HttpResponse(ret_json, content_type = 'application/json')
