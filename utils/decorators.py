@@ -5,8 +5,6 @@ from django.http import HttpResponse
 from django.conf import settings
 from django import http
 
-from pprint import pprint
-
 class _CheckRenderMode(object):
     """
         Callable object that will act like a decorator.
@@ -104,13 +102,9 @@ class _CheckRenderMode(object):
         except Exception, e:
             return HttpResponse(str(e), status = 500)
 
-"""
-    DECORATORS
-"""
+""" DECORATORS """
 def render(function=None, **kwds):
-    """
-        This decorator MUST wrap any controller methods.
-    """
+    """ This decorator MUST wrap any controller methods. """
     if function: return _CheckRenderMode(function, **kwds)
     def __nested__(func):
         return _CheckRenderMode(func, **kwds)
