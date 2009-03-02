@@ -40,6 +40,7 @@ class _CheckRenderMode(object):
             The __call__() is responsible of the outputed data.
             This method is called by the urldispatcher method from Django.
         """
+        self.request = request
         # Header (Change this, send by every browser)
         # if request.META['HTTP_ACCEPT']: mode = _extract_type(request.META['HTTP_ACCEPT'])
         # Check for keyword passed by the url dispatcher.
@@ -73,34 +74,41 @@ class _CheckRenderMode(object):
         if 'view' in self.view_ctx.keys():
             self.view = self.view_ctx['view']
             del self.view_ctx['view']
+        # Add the 'profile' to view_ctx
+        self.view_ctx['profile'] = settings.PROFILE
         return self._createResponse()
 
     def _createResponse(self):
-        from django.template import loader, Context, TemplateDoesNotExist
+        from django.template import loader, RequestContext, TemplateDoesNotExist
         import inspect
 
-        # View is None, no specific output needed ?
-        #FIXME: Create helper class that generates xml from a dict
-        if self.view is None and self.output == 'xml': return HttpResponse("Later, output xml without view", status = 500)
-        if self.view is None and self.output != 'xml': return HttpResponse(status = self.status) #FIXME: Another error? NO VIEW PRESENT
+        # View is None, check for a Factory for this output mode.
+        if self.view is None:
+            from webengine.utils.outputter import OutputterFactory
+            generator = OutputterFactory.get(self.output)
+            ret = generator.generate(self.view_ctx)
+            if ret is None:
+                # No generator for this output mode
+                return HttpResponse("Unable to render this view.", status = 500)
+            return ret
         # Append the output mode to the view.
         self.view += '.' + self.output
         # Extract module name, concat with templates dir and create final view name
         mod = inspect.getmodule(self.func).__name__
         i = mod.rfind('.')
         module, attr = mod[:i], mod[i+1:]
-        self.view = '/'.join([module, 'templates', self.view])
+        self.view = '/'.join([module, self.view])
         try:
             template = loader.get_template(self.view)
-            ctx = Context(self.view_ctx)
+            ctx = RequestContext(self.request, self.view_ctx)
             resp = HttpResponse(template.render(ctx),
                                 content_type = settings.ACCEPTABLE_OUTPUT_MODES[self.output],
                                 status = self.status)
             return resp
         except TemplateDoesNotExist, e:
-            return HttpResponse('Template does not exist', status = 500)
-        except Exception, e:
-            return HttpResponse(str(e), status = 500)
+            #TODO: Fallback to a "raw" output.
+            #return HttpResponse('Template does not exist', status = 500)
+            raise
 
 """ DECORATORS """
 def render(function=None, **kwds):
