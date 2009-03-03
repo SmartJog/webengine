@@ -4,6 +4,8 @@
     importer.(<module>.)+<function>(args)
 """
 
+import django.utils.simplejson as json
+
 # Transparent to module ?
 # Recuperation du module sur /module/get_module, creation de l'objet a partir du retour.
 class Module(object):
@@ -30,6 +32,13 @@ class Module(object):
         """ This Module instance will act like a method. """
         # Resolve
         #FIXME: Will be distant or local, only local by now.
+        req = importer.__request__
+        if req and req.method == 'POST':
+            #Merge POST data with kw
+            data = json.JSONDecoder().decode(req.raw_post_data)
+            #FIXME: json.loads returns unicode strings...
+            d = dict([(str(k), str(v)) for k,v in data.items()])
+            kw.update(d)
         # Construct module path.
         curr = self
         path = []
@@ -41,7 +50,6 @@ class Module(object):
         path = '.'.join(path)
         if self.__islocal__:
             module, method = path.rsplit('.', 1)
-            # Let exception be raised? Raise a custom one ?
             m = __import__(module, {}, {}, [''])
             f = getattr(m, method)
             # If f is callable, it's a function, otherwise, a module attribute.

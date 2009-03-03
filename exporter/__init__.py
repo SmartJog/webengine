@@ -1,10 +1,9 @@
-import django.utils.simplejson as json
 from django.http import HttpResponse
 
 from webengine.importer import importer
 from webengine.utils.decorators import render
 
-@render
+@render(output='json')
 def dispatch(request, *args, **kw):
     """
         Called when a URL created by exporter.urls.create_patterns() match.
@@ -14,32 +13,16 @@ def dispatch(request, *args, **kw):
         Arguments of the method MUST be passed as JSON in POST data.
     """
 
-    base = kw['base']
-    modules = kw['modules']
+    base = kw.pop('base')
+    modules = kw.pop('modules')
 
+    #TODO: Limit access to some parts of the API.
     #TODO: Perform all needed checks here.
     # Loads modules from importer.
     importer.set_request(request)
     mod = importer.__getattr__(base)
     for path in modules.split('/'):
-        mod = mod.__getattr__(path) 
-    # Clean dict.
-    del kw['base']
-    del kw['modules']
-    ret = None
-    if request.method == "GET":
-        # GET method, no args, return directly the result
-        ret = mod()
-    elif request.method == "POST":
-        #TODO: Move this into importer method
-        # Construct args from POST data serialized in JSON.
-        data = json.JSONDecoder().decode('{"p": "/etc/lol/mdr/kikoo"}')#request.raw_post_data)
-        #FIXME: json.loads returns unicode strings...
-        d = dict([(str(k), str(v)) for k,v in data.items()])
-        kw.update(d)
-        # Call the importer.
-        ret = mod(*args, **kw)
-    else: return HttpResponse('Method not supported', status = 405)
-    # Encode in JSON, and return
-    ret_json = json.JSONEncoder().encode(ret)
-    return HttpResponse(ret_json, content_type = 'application/json')
+        mod = mod.__getattr__(path)
+    # Call the importer, and return directly to let the render
+    # decorator decide how to render it.
+    return mod(*args, **kw)
