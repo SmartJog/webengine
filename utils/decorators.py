@@ -93,8 +93,10 @@ class _CheckRenderMode(object):
         module, attr = mod[:i], mod[i+1:]
         self.view = '/'.join([module, self.view])
         try:
+            from webengine.utils import webengine_template_processor
+
             template = loader.get_template(self.view)
-            ctx = RequestContext(self.request, self.view_ctx)
+            ctx = RequestContext(self.request, self.view_ctx, [webengine_template_processor])
             resp = HttpResponse(template.render(ctx),
                                 content_type = settings.ACCEPTABLE_OUTPUT_MODES[self.output],
                                 status = self.status)
