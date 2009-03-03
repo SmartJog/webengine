@@ -53,7 +53,7 @@ class _CheckRenderMode(object):
         if self.output not in settings.ACCEPTABLE_OUTPUT_MODES.keys(): return HttpResponse(status = 500)
         # Lookup the right view.
         # Passed by the urldispatcher
-        self.view = kwds_urldispatcher.pop('view', None)
+        self.view = kwds_urldispatcher.get('view', None)
         # The view method. FIXME: Catch exceptions ?
         ret = self.func(request, *args, **kwds_urldispatcher)
         # Check return type.
@@ -67,7 +67,7 @@ class _CheckRenderMode(object):
         # Got a HttpResponse ? Return.
         elif isinstance(ret, HttpResponse): return ret
         # Check for view into the decorator's dictionary.
-        self.view = self.decorator_opts.pop('view', self.view)
+        self.view = self.decorator_opts.get('view', self.view)
         # Check for view into the returned dictionary.
         if isinstance(ret, dict) and 'view' in self.view_ctx.keys():
             self.view = self.view_ctx.pop('view')
