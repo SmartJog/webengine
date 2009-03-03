@@ -19,3 +19,14 @@ def get_valid_plugins():
     wdir = webengine.__path__[0]
     # Map os.listdir(wdir) to isplugin, and then "filter" elements that are None
     return [dir for dir in map(__isplugin, [d for d in os.listdir(wdir) if os.path.isdir(os.path.join(wdir, d))]) if dir]
+
+def webengine_template_processor(request):
+    """
+        This method is called by the RequestContext() object.
+        It adds to the template variables the profile, etc..
+        Each key in the returned dict will be available as is
+        when processing the template.
+        Add everything you need in every template.
+    """
+    from django.conf import settings
+    return {'profile': settings.PROFILE}
