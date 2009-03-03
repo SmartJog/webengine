@@ -86,7 +86,7 @@ class _CheckRenderMode(object):
 
         # View is None, check for a Factory for this output mode.
         if self.view is None:
-            from webengine.utils.generator import GeneratorFactory
+            from webengine.utils.generators import GeneratorFactory
             generator = GeneratorFactory.get(self.output)
             ret = generator.generate(self.view_ctx)
             if ret is None: raise ImpossibleRenderingException("Unable to render.")
