@@ -5,6 +5,8 @@ from django.http import HttpResponse
 from django.conf import settings
 from django import http
 
+from webengine.utils.exceptions import *
+
 class _CheckRenderMode(object):
     """
         Callable object that will act like a decorator.
@@ -84,12 +86,10 @@ class _CheckRenderMode(object):
 
         # View is None, check for a Factory for this output mode.
         if self.view is None:
-            from webengine.utils.outputter import OutputterFactory
-            generator = OutputterFactory.get(self.output)
+            from webengine.utils.generator import GeneratorFactory
+            generator = GeneratorFactory.get(self.output)
             ret = generator.generate(self.view_ctx)
-            if ret is None:
-                # No generator for this output mode
-                return HttpResponse("Unable to render this view.", status = 500)
+            if ret is None: raise ImpossibleRenderingException("Unable to render.")
             return ret
         # Append the output mode to the view.
         self.view += '.' + self.output
