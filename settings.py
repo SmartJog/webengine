@@ -9,12 +9,12 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = ''           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = ''             # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_ENGINE     = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+DATABASE_NAME       = 'webengine'             # Or path to database file if using sqlite3.
+DATABASE_USER       = 'webengine'             # Not used with sqlite3.
+DATABASE_PASSWORD   = 'webengine'         # Not used with sqlite3.
+DATABASE_HOST       = ''             # Set to empty string for localhost. Not used with sqlite3.
+DATABASE_PORT       = ''             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -85,6 +85,11 @@ INSTALLED_APPS = (
     # But, even if you try to put modules here, the TEMPLATE_LOADER app_directories has been disabled.
 )
 
+# The login url.
+LOGIN_URL = '/auth/login/'
+# If 'next' isn't provided, always redirect to site root.
+LOGIN_REDIRECT_URL = '/'
+
 # Default Output mode.
 # Choose the default mode in which pages will be rendered.
 # Possible values are:
@@ -100,3 +105,9 @@ ACCEPTABLE_OUTPUT_MODES = {
         'xml'  : 'text/xml',
         'json' : 'application/json',
         'soap' : 'application/soap+xml'}
+
+# Default URL.
+DEFAULT_URL = '/extract/'
+
+# Webengine profile
+PROFILE = 'tvrbox'
