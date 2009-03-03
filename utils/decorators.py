@@ -46,18 +46,14 @@ class _CheckRenderMode(object):
         # Header (Change this, send by every browser)
         # if request.META['HTTP_ACCEPT']: mode = _extract_type(request.META['HTTP_ACCEPT'])
         # Check for keyword passed by the url dispatcher.
-        if 'output' in kwds_urldispatcher:
-            self.output = kwds_urldispatcher['output']
-            del kwds_urldispatcher['output']
+        self.output = kwds_urldispatcher.pop('output', None)
         # Check forced output by decorator.
         if 'output' in self.decorator_opts.keys(): self.output = self.decorator_opts['output']
         # Check output validity, otherwise raise 500.
         if self.output not in settings.ACCEPTABLE_OUTPUT_MODES.keys(): return HttpResponse(status = 500)
         # Lookup the right view.
         # Passed by the urldispatcher
-        if 'view' in kwds_urldispatcher:
-            self.view = kwds_urldispatcher['view']
-            del kwds_urldispatcher['view']
+        self.view = kwds_urldispatcher.pop('view', None)
         # The view method. FIXME: Catch exceptions ?
         ret = self.func(request, *args, **kwds_urldispatcher)
         # Check return type.
@@ -65,19 +61,16 @@ class _CheckRenderMode(object):
         if ret is None: return HttpResponse()
         self.view_ctx = ret
         # Got tuple? (status, {dict})
-        if type(ret).__name__ == 'tuple':
+        if isinstance(ret, tuple):
             self.status = ret[0]
             self.view_ctx = ret[1]
         # Got anything but a dict? Return, don't handle this request.
         elif type(ret).__name__ != 'dict': return ret # Not a dict
         # Check for view into the decorator's dictionary.
-        if 'view' in self.decorator_opts.keys(): self.view = self.decorator_opts['view']
+        self.view = self.decorator_opts.pop('view', self.view)
         # Check for view into the returned dictionary.
-        if 'view' in self.view_ctx.keys():
-            self.view = self.view_ctx['view']
-            del self.view_ctx['view']
-        # Add the 'profile' to view_ctx
-        self.view_ctx['profile'] = settings.PROFILE
+        if isinstance(ret, dict) and 'view' in self.view_ctx.keys():
+            self.view = self.view_ctx.pop('view')
         return self._createResponse()
 
     def _createResponse(self):
