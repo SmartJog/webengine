@@ -1,5 +1,3 @@
-from django.http import HttpResponse
-
 from webengine.importer import importer
 from webengine.utils.decorators import render
 
