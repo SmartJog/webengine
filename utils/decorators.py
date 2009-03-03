@@ -64,8 +64,8 @@ class _CheckRenderMode(object):
         if isinstance(ret, tuple):
             self.status = ret[0]
             self.view_ctx = ret[1]
-        # Got anything but a dict? Return, don't handle this request.
-        elif type(ret).__name__ != 'dict': return ret # Not a dict
+        # Got a HttpResponse ? Return.
+        elif isinstance(ret, HttpResponse): return ret
         # Check for view into the decorator's dictionary.
         self.view = self.decorator_opts.pop('view', self.view)
         # Check for view into the returned dictionary.
@@ -83,7 +83,8 @@ class _CheckRenderMode(object):
             generator = GeneratorFactory.get(self.output)
             ret = generator.generate(self.view_ctx)
             if ret is None: raise ImpossibleRenderingException("Unable to render.")
-            return ret
+            # Generators returns a string, wrap it within a HttpResponse.
+            return HttpResponse(ret)
         # Append the output mode to the view.
         self.view += '.' + self.output
         # Extract module name, concat with templates dir and create final view name
