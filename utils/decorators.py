@@ -46,7 +46,8 @@ class _CheckRenderMode(object):
         # Header (Change this, send by every browser)
         # if request.META['HTTP_ACCEPT']: mode = _extract_type(request.META['HTTP_ACCEPT'])
         # Check for keyword passed by the url dispatcher.
-        self.output = kwds_urldispatcher.pop('output', None)
+        self.output = settings.DEFAULT_OUTPUT_MODE
+        self.output = kwds_urldispatcher.pop('output', self.output)
         # Check forced output by decorator.
         if 'output' in self.decorator_opts.keys(): self.output = self.decorator_opts['output']
         # Check output validity, otherwise raise 500.
