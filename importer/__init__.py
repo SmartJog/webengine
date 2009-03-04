@@ -4,7 +4,7 @@
     importer.(<module>.)+<function>(args)
 """
 
-import django.utils.simplejson as json
+import simplejson as json
 
 # Transparent to module ?
 # Recuperation du module sur /module/get_module, creation de l'objet a partir du retour.
