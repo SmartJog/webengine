@@ -29,4 +29,15 @@ def webengine_template_processor(request):
         Add everything you need in every template.
     """
     from django.conf import settings
-    return {'profile': settings.PROFILE}
+    modules = get_valid_plugins()
+    menus = []
+    for mod in modules:
+        try:
+            m = mod[1].urls.menus
+            menus.append(m)
+        except AttributeError:
+            continue
+    return {
+        'profile': settings.PROFILE,
+        'menus': menus,
+    }
