@@ -111,3 +111,7 @@ DEFAULT_URL = '/extract/'
 
 # Webengine profile
 PROFILE = 'tvrbox'
+
+# Logging infos.
+LOG_FILENAME = '/tmp/webengine.log'
+LOG_FORMAT = "%(asctime)s:%(levelname)s: %(message)s"
