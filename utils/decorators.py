@@ -85,7 +85,9 @@ class _CheckRenderMode(object):
             ret = generator.generate(self.view_ctx)
             if ret is None: raise ImpossibleRenderingException("Unable to render.")
             # Generators returns a string, wrap it within a HttpResponse.
-            return HttpResponse(ret)
+            return HttpResponse(ret,
+                                content_type = settings.ACCEPTABLE_OUTPUT_MODES[self.output],
+                                status = self.status)
         # Append the output mode to the view.
         self.view += '.' + self.output
         # Extract module name, concat with templates dir and create final view name
