@@ -5,14 +5,18 @@
 """
 
 import simplejson as json
+from webengine.utils.log import logger
+import traceback
 
 class ImporterError(Exception):
     """ Raised when something happen in Importer."""
-    def __init__(self, msg):
-        self.__msg__ = msg
+    def __init__(self, msg, local=True, traceback=''):
+        self.msg = msg
+        self.local = local
+        self.traceback = traceback
 
     def __repr__(self):
-        return self.__msg__
+        return self.msg or 'Importer failed'
     __str__ = __repr__
 
 # Transparent to module ?
@@ -84,28 +88,42 @@ class Module(object):
             args += data['args']
 
         module, method = '.'.join(path[:-1]), path[-1]
-        m = __import__(module, {}, {}, [''])
-        f = getattr(m, method)
-        # If f is callable, it's a function, otherwise, a module attribute.
-        if callable(f): ret = f(*args, **kw)
-        else: ret = f
-        return ret
+        try:
+            m = __import__(module, {}, {}, [''])
+            f = getattr(m, method)
+            # If f is callable, it's a function, otherwise, a module attribute.
+            if callable(f): ret = f(*args, **kw)
+            else: ret = f
+            return ret
+        except Exception, e:
+            logger.debug('Importer: Raised: ' + '.'.join(path) + ' - ' + str(e))
+            raise ImporterError('.'.join(path) + ' - ' + str(e), local=True, traceback=traceback.format_exc()) # Re raise the exception as an ImporterError
 
     def __distant_call__(self, path, *args, **kw):
-        """ Method which performs a distant call to another exporter. """
+        """
+            Method which performs a distant call to another exporter.
+            It calls the distant 'exporter'.
+            Two possibilities:
+                - Success, 200 returned, datas returned as JSON. Nothing to do with this, just return after decode.
+                - Error, raise ImporterError.
+        """
         import urllib2
         # Perform the distant call.
-        data = json.JSONEncoder().encode({'args': args, 'kw': kw})
         try:
+            data = json.JSONEncoder().encode({'args': args, 'kw': kw})
             req = urllib2.Request(url='https://sj-dev-1.lab/' + path, data=data)
             f = urllib2.urlopen(req)
             #TODO: Call the right deserializer.
             datas = f.read()
             if datas == '': return None # Nothing to return
-            ret = json.JSONDecoder().decode(datas)
-            return ret
+            data_decoded = json.JSONDecoder().decode(datas)
+            return data_decoded
         except urllib2.HTTPError, e:
-            raise ImporterError("Method %s missing or not allowed." % path)
+            if e.code == 404:
+                raise ImporterError("Method %s missing." % path, local=False, traceback=traceback.format_exc())
+            elif e.code == 500:
+                data_decoded = json.JSONDecoder().decode(e.read()) # Read exception
+                raise ImporterError(data_decoded['msg'], local=False, traceback=data_decoded['traceback'])
 
 class Importer(object):
     """ Main class. Contains all modules. """

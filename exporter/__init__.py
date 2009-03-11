@@ -1,5 +1,8 @@
+import simplejson as json
 from webengine.importer import importer
+from webengine.importer import ImporterError
 from webengine.utils.decorators import render
+from webengine.utils.log import logger
 
 @render(output='json')
 def dispatch(request, *args, **kw):
@@ -9,6 +12,8 @@ def dispatch(request, *args, **kw):
         Method name can be passed as:
         /module/method/ or /module/module/module/method/
         Arguments of the method MUST be passed as JSON in POST data.
+
+        This method is not meant to be called directly with a web browser.
     """
 
     base = kw.pop('base')
@@ -23,4 +28,10 @@ def dispatch(request, *args, **kw):
         mod = mod.__getattr__(path)
     # Call the importer, and return directly to let the render
     # decorator decide how to render it.
-    return mod(*args, **kw)
+    try:
+        ret = mod(*args, **kw)
+        return (200, ret)
+    except ImporterError, e:
+        logger.debug("Exporter: Catched   : " + e.msg)
+        logger.debug("Exporter: Traceback : " + e.traceback)
+        return (500, {'msg': e.msg, 'traceback': e.traceback})
