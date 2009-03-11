@@ -42,6 +42,7 @@ class _CheckRenderMode(object):
             The __call__() is responsible of the outputed data.
             This method is called by the urldispatcher method from Django.
         """
+        self.status = 200
         self.request = request
         # Header (Change this, send by every browser)
         # if request.META['HTTP_ACCEPT']: mode = _extract_type(request.META['HTTP_ACCEPT'])
