@@ -15,12 +15,10 @@ def unlink(lid=-1, path=None):
 def list_files(path=None):
     if not path:
         path = sjfs.SJFS_BASEDIR
-    try:
-        sjfs.set_current_chroot(path)
-        links = sjfs.get_links()
-    finally:
-        sjfs.set_current_chroot('/')
-    return links
+    did = sjfs.get_did(path)
+    if not did:
+        return []
+    return sjfs.get_dir_links(did)
 
 def get_free_space(path=sjfs.SJFS_BASEDIR):
     import os
