@@ -24,20 +24,11 @@ def get_free_space(path=sjfs.SJFS_BASEDIR):
     import os
     fsinfo = os.statvfs(path)
     free = fsinfo.f_bfree * fsinfo.f_frsize
-    freeGB = (float(free) / 1024.0 / 1024.0 / 1024.0)
-    freeMB = (float(free) / 1024.0 / 1024.0)
-    if freeGB > 1:
-        return "%.2fG" % freeGB
-    return "%.2fM" % freeMB
+    return free
 
 def get_used_space(path=sjfs.SJFS_BASEDIR):
     import os
     fsinfo = os.statvfs(path)
     total = fsinfo.f_blocks * fsinfo.f_frsize
     free = fsinfo.f_bfree * fsinfo.f_frsize
-    used = total - free
-    usedGB = (float(used) / 1024.0 / 1024.0 / 1024.0)
-    usedMB = (float(used) / 1024.0 / 1024.0)
-    if usedGB > 1:
-        return "%.2fG" % usedGB
-    return "%.2fM" % usedMB
+    return total - free
