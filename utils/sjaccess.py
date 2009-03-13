@@ -14,11 +14,22 @@ def unlink(lid=-1, path=None):
 
 def list_files(path=None):
     if not path:
-        path = sjfs.SJFS_BASEDIR
-    did = sjfs.get_did(path)
-    if not did:
-        return []
-    return sjfs.get_dir_links(did)
+        path = '/'
+    try:
+        sjfs.set_current_chroot(sjfs.SJFS_BASEDIR)
+        did = sjfs.get_did(path)
+        if not did:
+            return []
+        values = sjfs.get_all_file_values_in_dir(did, False)
+        links = values['dir']['links']
+        final_links = []
+        for link in links:
+            updated_link = dict(link)
+            updated_link.update({'size': values['files'][link['fid']]['size']})
+            final_links.append(updated_link)
+    finally:
+        sjfs.set_current_chroot('/')
+    return final_links
 
 def get_free_space(path=sjfs.SJFS_BASEDIR):
     import os
