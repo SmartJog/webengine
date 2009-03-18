@@ -19,10 +19,19 @@ def dispatch(request, *args, **kw):
     base = kw.pop('base')
     modules = kw.pop('modules')
 
+    if request.method == 'POST':
+        #Merge POST data with kw
+        data = json.JSONDecoder().decode(request.raw_post_data)
+        #FIXME: json.loads returns unicode strings...
+        d = dict([(str(k), str(v)) for k,v in data['kw'].items()])
+        kw.update(d)
+        # Cause args is a tuple, create a list before.
+        args = list(args)
+        args += data['args']
+
     #TODO: Limit access to some parts of the API.
     #TODO: Perform all needed checks here.
     # Loads modules from importer.
-    importer.set_request(request)
     mod = importer.__getattr__(base)
     for path in modules.split('/'):
         mod = mod.__getattr__(path)

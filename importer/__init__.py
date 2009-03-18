@@ -76,16 +76,6 @@ class Module(object):
 
     def __local_call__(self, path, *args, **kw):
         """ We perform a local call, directly import and call the method. Return as is. """
-        req = importer.__request__
-        if req and req.method == 'POST':
-            #Merge POST data with kw
-            data = json.JSONDecoder().decode(req.raw_post_data)
-            #FIXME: json.loads returns unicode strings...
-            d = dict([(str(k), str(v)) for k,v in data['kw'].items()])
-            kw.update(d)
-            # Cause args is a tuple, create a list before.
-            args = list(args)
-            args += data['args']
 
         module, method = '.'.join(path[:-1]), path[-1]
         try:
@@ -129,7 +119,6 @@ class Importer(object):
     """ Main class. Contains all modules. """
     def __init__(self):
         self.__modules__ = {}
-        self.__request__ = None
 
     def __getattr__(self, key):
         """
@@ -141,15 +130,5 @@ class Importer(object):
         if not (key in self.__modules__):
             self.__modules__[key] = Module(self, None, key)
         return self.__modules__[key]
-
-    def set_request(self, req):
-        """
-            Set the "context" by giving the current request.
-            Importer() will decide (based on the request), if data
-            will be fetch locally or remotely.
-        """
-        self.__request__ = req
-        # Do what we need to do to decide where to get the data
-        # based on request.user, or other things.
 
 importer = Importer()
