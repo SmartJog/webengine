@@ -4,16 +4,21 @@ from django.template.context import Context
 register = Library()
 
 class RenderPartialNode(Node):
-    def __init__(self, name, params):
-        self.name = name
+    def __init__(self, params):
         self.params = params
+        self.controller = self.params.pop('controller')
+        self.view = self.params.pop('view')
+        self.name = self.controller + '/_' + self.view + '.html'
 
     def render(self, context):
+        print self.params
         for k,v in self.params.items():
-            self.params[k] = resolve_variable(v, context)
+            print 'Resolve ' + str(v)
+            #self.params[k] = resolve_variable(v, context)
+            self.params[k] = v
+        context.update(self.params)
         template = loader.get_template(self.name)
-        template_context = Context(self.params)
-        return template.render(template_context)
+        return template.render(context)
 
 @register.tag
 def render_partial(parser, token):
@@ -27,12 +32,11 @@ def render_partial(parser, token):
     """
     items = token.split_contents()
     if len(items) < 3: raise TemplateSyntaxError('Missing template tag parameters')
-    tpl_name = items[1]
     params = {}
-    for item in items[2:]:
+    for item in items[1:]:
         k,v = item.split(':')
         params[k] = v
     for k in ['controller', 'view']:
         if k not in params.keys():
             raise TemplateSyntaxError('Parameters "controller" and "view" are required.')
-    return RenderPartialNode(tpl_name, params)
+    return RenderPartialNode(params)
