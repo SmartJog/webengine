@@ -1,5 +1,5 @@
-webengine (0.1~dev-1) unstable; urgency=low
+webengine (0.1.0-1) unstable; urgency=low
 
   * Initial release.
 
- -- Thomas Meson <thomas.meson@smartjog.com>  Mon, 23 Feb 2009 18:26:53 +0100
+ -- Thomas Meson <thomas.meson@smartjog.com>  Mon, 23 Mar 2009 11:52:10 +0100
