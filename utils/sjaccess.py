@@ -12,7 +12,7 @@ def unlink(lid=-1, path=None):
         raise sjfs.IOError(sjfs.SJFS_NOTFOUND, 'File not found.')
     sjfs.unlink(lid)
 
-def list_files(path=None):
+def list_files(path=None, full_data=False):
     if not path:
         path = '/'
     try:
@@ -22,10 +22,17 @@ def list_files(path=None):
             return []
         values = sjfs.get_all_file_values_in_dir(did, False)
         links = values['dir']['links']
+        files = values['files']
         final_links = []
         for link in links:
             updated_link = dict(link)
             updated_link.update({'size': values['files'][link['fid']]['size']})
+            if full_data:
+                updated_link.update({
+                    'date'  : files[link['fid']]['categories']['common'].get('%d-creation_date' % link['fid'], 0),
+                    'type'  : files[link['fid']]['categories']['common'].get('type', 'No type defined.'),
+                    'md5'   : files[link['fid']]['categories']['common'].get('md5', 'No md5 defined'),
+                })
             final_links.append(updated_link)
     finally:
         sjfs.set_current_chroot('/')
