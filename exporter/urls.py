@@ -11,7 +11,7 @@ def create_patterns():
     # List of exportable modules.
     mods = settings.EXPORT_MODULES
     for mod in mods:
-        # Simple check if importable.
+        # Simply check if importable.
         try:
             __import__(mod, {}, {}, [''])
         except ImportError:
