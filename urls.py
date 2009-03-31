@@ -9,9 +9,7 @@ plugs = get_valid_plugins()
 for name, mod in plugs:
     # Append patterns of each plugins
     # Let each plugin define their urlpatterns, just concat them here.
-    # Special case for exporter.
-    if name == 'exporter': urlpatterns += mod.urls.urlpatterns
-    else: urlpatterns += patterns('', (r'^' + name + '/', include(name + '.urls')))
+    urlpatterns += patterns('', (r'^' + name + '/', include(name + '.urls')))
 
 # JUST FOR DEBUG PURPOSE, STATIC PAGES WILL BE SERVED BY APACHE.
 
