@@ -40,6 +40,21 @@ class JSONGenerator(Generator):
         import django.utils.simplejson as json
         return json.JSONEncoder().encode(obj)
 
+class PickleGenerator(Generator):
+    def __init__(self):
+        super(PickleGenerator, self).__init__()
+        self._output = 'pickle'
+
+    def generate(self, obj):
+        super(PickleGenerator, self).generate(obj)
+        import cPickle
+        try:
+            return cPickle.dumps(obj)
+        except cPickle.PickleError, e:
+            # cPickle failed, try pickle
+            import pickle
+            return pickle.dumps(obj)
+
 class DefaultGenerator(Generator):
     def __init__(self):
         super(DefaultGenerator, self).__init__()
@@ -52,9 +67,10 @@ class DefaultGenerator(Generator):
 class GeneratorFactory(object):
     """ GeneratorFactory handles Generator instances for the right output mode. """
     _output = {
-        'xml': XmlGenerator,
-        'soap': SoapGenerator,
-        'json': JSONGenerator,
+        'xml'    : XmlGenerator,
+        'soap'   : SoapGenerator,
+        'json'   : JSONGenerator,
+        'pickle' : PickleGenerator,
         'default': DefaultGenerator,
     }
 
