@@ -29,7 +29,7 @@ class SoapGenerator(Generator):
     def generate(self, obj):
         super(SoapGenerator, self).generate(obj)
         #TODO
- 
+
 class JSONGenerator(Generator):
     def __init__(self):
         super(JSONGenerator, self).__init__()
