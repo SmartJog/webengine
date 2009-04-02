@@ -36,16 +36,13 @@ def dispatch(request, *args, **kw):
         try:
             return (200, request.session['__importer__'].get(mod, met))
         except ImporterError, e:
-            logger.debug("Exporter: Catched   : " + e.msg)
-            logger.debug("Exporter: Traceback : " + e.traceback)
+            logger.debug("Exporter: Catched: " + e.traceback)
             return (500, {'msg': e.msg, 'traceback': e.traceback})
     # POST ?
     # Method call with args, instantiations
     elif request.method == 'POST':
         try:
             import cPickle
-            # Do not save in session during call() call.
-            request.session.modified = False
 
             data = cPickle.loads(request.raw_post_data)
             # Cause args is a tuple, create a list before.
@@ -63,6 +60,5 @@ def dispatch(request, *args, **kw):
             request.session.modified = True
             return (200, ret)
         except ImporterError, e:
-            logger.debug("Exporter: Catched   : " + e.msg)
-            logger.debug("Exporter: Traceback : " + e.traceback)
+            logger.debug("Exporter: Catched: " + e.traceback)
             return (500, {'msg': e.msg, 'traceback': e.traceback})

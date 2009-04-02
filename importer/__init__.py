@@ -11,12 +11,12 @@ import traceback
 class ImporterError(Exception):
     """ Raised when something happen in Importer."""
     def __init__(self, msg, local=True, traceback=''):
-        self.msg = msg
+        self.msg = msg.strip()
         self.local = local
-        self.traceback = traceback
+        self.traceback = traceback.strip()
 
     def __repr__(self):
-        return self.msg or 'Importer failed'
+        return self.traceback or self.msg or 'Importer failed'
     __str__ = __repr__
 #
 ## Transparent to module ?
