@@ -70,9 +70,11 @@ class _CheckRenderMode(object):
         elif isinstance(ret, HttpResponse): return ret
         # Check for view into the decorator's dictionary.
         self.view = self.decorator_opts.get('view', self.view)
-        # Check for view into the returned dictionary.
-        if isinstance(ret, dict) and 'view' in self.view_ctx.keys():
-            self.view = self.view_ctx.pop('view')
+        if isinstance(self.view_ctx, dict):
+            # Check for view into the returned dictionary.
+            if 'view' in self.view_ctx.keys(): self.view = self.view_ctx.pop('view')
+            # Output from returned dictionary.
+            if 'output' in self.view_ctx.keys(): self.output = self.view_ctx.pop('output')
         return self._createResponse()
 
     def _createResponse(self):
