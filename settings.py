@@ -101,10 +101,11 @@ LOGIN_REDIRECT_URL = '/'
 DEFAULT_OUTPUT_MODE = 'html'
 # The given output mode must be contained into ACCEPTABLE_OUTPUT_MODES
 ACCEPTABLE_OUTPUT_MODES = {
-        'html' : 'text/html',
-        'xml'  : 'text/xml',
-        'json' : 'application/json',
-        'soap' : 'application/soap+xml'}
+        'html'  : 'text/html',
+        'xml'   : 'text/xml',
+        'json'  : 'application/json',
+        'soap'  : 'application/soap+xml',
+        'pickle': 'application/octet-stream'}
 
 # Default URL.
 DEFAULT_URL = '/extract/'
