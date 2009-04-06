@@ -56,13 +56,6 @@ class ImporterBase(object):
         except AttributeError, e:
             raise ImporterError(str(e), traceback=traceback.format_exc())
 
-    def set(self, attr, value):
-        """ Set value for self.__objinst__.attr. """
-        try:
-            setattr(self.__objinst__, attr, value)
-        except AttributeError, e:
-            raise ImporterError(str(e), traceback=traceback.format_exc())
-
 class ImporterModule(ImporterBase):
     def __init__(self, conf, module):
         """ Takes configuration from Importer() instance. """
@@ -121,13 +114,6 @@ class Importer(ImporterBase):
         self.__scope__ = {}
         self.__bound__ = None
         self.__file__ = file
-        self.__cj__ = cookielib.LWPCookieJar(self.__file__)
-        if os.path.isfile(self.__file__):
-            self.__cj__.load(self.__file__)
-        self.__opener__ = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.__cj__))
-
-    def __del__(self):
-        self.__cj__.save()
 
     def call(self, module, method, *args, **kw):
         """
@@ -148,14 +134,6 @@ class Importer(ImporterBase):
             return self.__perform_distant__(mod, 'get')
         self.__load_module__(module)
         return self.__scope__[module].get(attr)
-
-    def set(self, module, attr, value):
-        """ Used to set module.attr to value. """
-        if 'distant_url' in self.__conf__.keys():
-            mod = '.'.join((module, attr))
-            return self.__perform_distant__(mod, 'set', value=value)
-        self.__load_module__(module)
-        return self.__scope__[module].set(attr, value)
 
     def instantiate(self, variable, module, klass, *args, **kw):
         """
@@ -191,15 +169,20 @@ class Importer(ImporterBase):
         """ Perform the distant call. """
         import cPickle
         try:
+            cj = cookielib.LWPCookieJar(self.__file__)
+            if os.path.isfile(self.__file__):
+                cj.load(self.__file__)
+            opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))
             path = module.replace('.', '/') + '/' #Force trailing slash
             # Should be able to select encoder
             # TODO: Create a wrapper for cPickle, pickle in fallback
             data = cPickle.dumps({'type': type, 'args': args, 'kw': kw}, cPickle.HIGHEST_PROTOCOL)
             req = urllib2.Request(url=self.__conf__['distant_url'] + path, data=data)
-            f = self.__opener__.open(req)
+            f = opener.open(req)
             data_read = f.read()
             if data_read == '': return None
             data_decoded = cPickle.loads(data_read)
+            cj.save()
             return data_decoded
         except urllib2.HTTPError, e:
             data_decoded = cPickle.loads(e.read()) # Read exception
