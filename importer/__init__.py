@@ -15,8 +15,6 @@ class ImporterError(Exception):
         return self.traceback or self.msg or 'Importer failed'
     __str__ = __repr__
 
-# New importer BEGINGS HERE
-
 class ImporterBase(object):
     """
         Base class for both ImporterModule and ImporterVariable.
