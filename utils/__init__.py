@@ -37,6 +37,17 @@ def webengine_template_processor(request):
             menus.append(m)
         except AttributeError:
             continue
+
+    #Sort menus by position and alphabetical order
+    def cmp_menu(x,y):
+        if x['position'] > y['position']:
+            return 1
+        elif x['position'] == y['position']:
+            return x['title'] > y['title']
+        else:
+            return -1
+    menus.sort(cmp_menu)
+
     return {
         'profile': settings.PROFILE,
         'menus': menus,
