@@ -1,4 +1,7 @@
 import os
+from django.http import HttpResponse, HttpResponseRedirect
+from django.conf import settings
+
 
 def get_valid_plugins():
     """
@@ -55,3 +58,9 @@ def webengine_template_processor(request):
         'profile': settings.PROFILE,
         'menus': menus,
     }
+
+def default_view(request):
+    """ Default index page. """
+    if settings.DEFAULT_URL != '':
+        return HttpResponseRedirect(settings.DEFAULT_URL)
+    return HttpResponse("<h1>It works!</h1>")

@@ -2,7 +2,7 @@ from django.conf.urls.defaults import *
 from webengine.utils import get_valid_plugins
 
 # List of patterns to apply, default view is webengine.index
-urlpatterns = patterns('', (r'^$', 'webengine.index'))
+urlpatterns = patterns('', (r'^$', 'webengine.utils.default_view'))
 
 plugs = get_valid_plugins()
 
