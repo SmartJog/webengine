@@ -5,7 +5,10 @@ def get_valid_plugins():
         Returns a list of valid webengine plugins.
         Returns:    [('name', <module 'webengine.name'>), ...]
     """
-    webengine = __import__('webengine')
+    try:
+        webengine = __import__('webengine')
+    except ImportError:
+        return []
     def __isplugin(mod_name):
         """ Nested method of get_valid_plugins, tries to import webengine.<mod_name>.urls. """
         mod = None
