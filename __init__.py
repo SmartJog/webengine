@@ -1,8 +1,6 @@
-from django.http import HttpResponse, HttpResponseRedirect
-from django.conf import settings
+import utils, settings
 
-def index(request):
-    """ Default index page. """
-    if settings.DEFAULT_URL != '':
-        return HttpResponseRedirect(settings.DEFAULT_URL)
-    return HttpResponse("<h1>It works!</h1>")
+# Append to INSTALLED_APPS all valid plugins
+mods = utils.get_valid_plugins()
+for mod in mods:
+    settings.INSTALLED_APPS.append('webengine.' + mod[0])

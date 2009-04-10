@@ -69,21 +69,13 @@ TEMPLATE_DIRS = (
     '/usr/share/webengine/templates',
 )
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'webengine.utils',
-    # DO NOT put modules here, for one good reason:
-    # When looking for templates, django use this tuple and tries
-    # to get templates for the templates directory of each installed apps.
-    # But this is just stupid, cause if you try to get a 'index.html' template,
-    # the first matching template file will be use.
-    # Following this, EACH template must be unique, which is totally 
-    # impossible with a lot of modules having, for example an 'index.html'
-    # But, even if you try to put modules here, the TEMPLATE_LOADER app_directories has been disabled.
-)
+]
 
 # The login url.
 LOGIN_URL = '/auth/login/'
