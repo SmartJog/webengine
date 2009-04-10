@@ -61,3 +61,24 @@ def get_changelog():
     except Exception, e:
         return None
     return out
+
+def get_files_to_delete(max=10):
+    from datetime import datetime
+    files = []
+    links = sjfs.get_links(sjfs.SJFS_FILE_CREATION_DATE)
+    for l in links:
+        if len(files) >= max:
+            break
+        if l['path'].startswith(sjfs.SJFS_BASEDIR):
+            keys = sjfs.get_keys_from_category(l['fid'], 'common')
+            files.append({
+                'lid'       : l['lid'],
+                'filename'  : l['filename'],
+                'path'      : l['path'],
+                'md5'       : keys.get('md5', 'No md5 defined.'),
+                'type'      : keys.get('type', 'No type defined.'),
+                'date'      : datetime.fromtimestamp(float(keys.get('creation_date'))),
+                'size'      : 0,
+            })
+    return files
+
