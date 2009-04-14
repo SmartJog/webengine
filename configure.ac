@@ -13,13 +13,11 @@ AC_SUBST([webenginesysconfdir], [\$\(sysconfdir\)/webengine])
 
 AC_SUBST([webenginedir], [\$\(pkgdatadir\)/app/webengine])
 AC_SUBST([exporterdir], [\$\(webenginedir\)/exporter])
-AC_SUBST([importerdir], [\$\(webenginedir\)/importer])
 AC_SUBST([utilsdir], [\$\(webenginedir\)/utils])
 AC_SUBST([utilstagsdir], [\$\(utilsdir\)/templatetags])
 
 AC_CONFIG_FILES([Makefile \
                  exporter/Makefile \
-                 importer/Makefile \
                  etc/Makefile \
                  utils/Makefile \
                  utils/templatetags/Makefile \
