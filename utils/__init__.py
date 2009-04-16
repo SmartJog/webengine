@@ -46,6 +46,8 @@ def webengine_template_processor(request):
 
     #Sort menus by position and alphabetical order
     def cmp_menu(x,y):
+        if 'position' not in x or 'position' not in y:
+            return 1
         if x['position'] > y['position']:
             return 1
         elif x['position'] == y['position']:
