@@ -16,9 +16,17 @@ def get_valid_plugins():
         """ Nested method of get_valid_plugins, tries to import webengine.<mod_name>.urls. """
         mod = None
         try:
+            mod = __import__('webengine.' + mod_name, {}, {}, [''])
+        except Exception, e:
+            try:
+                from webengine.utils.log import logger
+                logger.debug('[FAILED:' + mod_name + ']: ' + str(e))
+            except Exception:
+                pass
+            return None
+        try:
             __import__('webengine.' + mod_name + '.urls', {}, {}, [''])
-            mod = getattr(webengine, mod_name)
-        except ImportError:
+        except Exception:
             return None
         return mod_name, mod
 

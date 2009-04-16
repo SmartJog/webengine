@@ -5,6 +5,7 @@ Version 0.1.1~dev
 	* Moved default view to utils module.
 	* Append to INSTALLED_APPS all valid modules.
 	* Removed importer as it is now a standalone module
+	* Added log message in utils.get_valid_plugins.
 
 Version 0.1.0 Released on 2009/03/23
 
