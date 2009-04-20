@@ -51,10 +51,19 @@ def get_used_space(path=sjfs.SJFS_BASEDIR):
     free = fsinfo.f_bfree * fsinfo.f_frsize
     return total - free
 
-def get_changelog():
+def get_changelogs_versions():
+    import os
+    all = []
+    try:
+        all = os.listdir('/etc/sjsmartchangelogs')
+    except:
+        return []
+    return all
+
+def get_changelog(version):
     out = ''
     try:
-        log = open('/etc/sjsmartchangelog')
+        log = open('/etc/sjsmartchangelogs/%s' % version)
         for line in log:
             out += line.replace('\n','<br />')
         log.close()
