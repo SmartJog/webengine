@@ -73,7 +73,7 @@ def get_changelog(version):
     try:
         log = open('/etc/sjsmartchangelogs/%s' % version)
         for line in log:
-            out += line.replace('\n','<br />')
+            out += line
         log.close()
     except Exception, e:
         return None
