@@ -18,11 +18,11 @@ def get_valid_plugins():
         try:
             mod = __import__('webengine.' + mod_name, {}, {}, [''])
         except Exception, e:
-            return None
+            return []
         try:
             __import__('webengine.' + mod_name + '.urls', {}, {}, [''])
         except Exception:
-            return None
+            return []
         return mod_name, mod
 
     wdir = webengine.__path__[0]
