@@ -59,16 +59,11 @@ def get_changelogs_versions():
     except:
         return []
 
-    # sort sources version
+    # sort sources version in reverse order
     def cmp_version(x,y):
-        x_list,y_list = x.split('.'),y.split('.')
-        y_list.reverse()
-        for ex in x_list:
-            if len(y_list) == 0: return 1
-            ex, ey = int(ex), int(y_list.pop())
-            if ex == ey: continue
-            return ex > ey and 1 or -1
-        return -1
+        x_list = map(int, x.split('.'))
+        y_list = map(int, y.split('.'))
+        return x_list < y_list and 1 or -1
     all.sort(cmp_version)
 
     return all
