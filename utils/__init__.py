@@ -18,11 +18,6 @@ def get_valid_plugins():
         try:
             mod = __import__('webengine.' + mod_name, {}, {}, [''])
         except Exception, e:
-            try:
-                from webengine.utils.log import logger
-                logger.debug('[FAILED:' + mod_name + ']: ' + str(e))
-            except Exception:
-                pass
             return None
         try:
             __import__('webengine.' + mod_name + '.urls', {}, {}, [''])
