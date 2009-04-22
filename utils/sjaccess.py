@@ -89,6 +89,7 @@ def get_files_to_delete(max=10):
         if l['path'].startswith(sjfs.SJFS_BASEDIR):
             keys = sjfs.get_keys_from_category(l['fid'], 'common')
             files.append({
+                'fid'       : l['fid'],
                 'lid'       : l['lid'],
                 'filename'  : l['filename'],
                 'path'      : l['path'],
@@ -96,6 +97,16 @@ def get_files_to_delete(max=10):
                 'type'      : keys.get('type', 'No type defined.'),
                 'date'      : datetime.fromtimestamp(float(keys.get('creation_date'))),
                 'size'      : 0,
+                'preview'   : sjfs.get_key(l['fid'], 'snapshot', 'media') is not None,
             })
     return files
 
+def get_file_preview(fid):
+    image = None
+    try:
+        fd = sjfs.open_file_meta(fid, "snapshot", "r", "media")
+        image = fd.read()
+        fd.close()
+    except:
+        return None
+    return image
