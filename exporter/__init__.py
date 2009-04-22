@@ -27,7 +27,7 @@ def dispatch(request, *args, **kw):
         from webengine.exporter import settings
         request.session['__importer__'].bound(settings.EXPORT_MODULES)
 
-    full_path = base + '.' + modules.replace('/', '.')
+    full_path = base.replace('/', '.') + '.' + modules.replace('/', '.')
     mod, met = full_path.rsplit('.', 1)
 
     # GET request ?
