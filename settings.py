@@ -108,3 +108,8 @@ PROFILE = 'tvrbox'
 # Logging infos.
 LOG_FILENAME = '/tmp/webengine.log'
 LOG_FORMAT = "%(asctime)s:%(levelname)s: %(message)s"
+
+import utils
+mods = utils.get_valid_plugins()
+for mod in mods:
+    INSTALLED_APPS.append('webengine.' + mod[0])
