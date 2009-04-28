@@ -68,10 +68,19 @@ def get_changelogs_versions():
 
     return all
 
-def get_changelog(version):
+# Get raw changelog from /etc/sjsmartchangelogs
+# or html version of changelogs from /etc/sjsmartchangelogs/<version>/changelog.html
+# If page is specified, it will read /etc/sjsmartchangelogs/<version>/<page>
+def get_changelog(version, page=None):
+    import os.path
     out = ''
+    path = '/etc/sjsmartchangelogs/'
+    if os.path.exists(path+version+'/'):
+        path += version + '/' + (page is not None and page or 'changelog.html')
+    else:
+        path += version
     try:
-        log = open('/etc/sjsmartchangelogs/%s' % version)
+        log = open(path)
         for line in log:
             out += line
         log.close()
