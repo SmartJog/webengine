@@ -107,6 +107,7 @@ def get_files_to_delete(max=10):
                 'date'      : datetime.fromtimestamp(float(keys.get('creation_date'))),
                 'size'      : 0,
                 'preview'   : sjfs.get_key(l['fid'], 'snapshot', 'media') is not None,
+                'media'     : ('media' in sjfs.get_file_categories(l['fid'])),
             })
     return files
 
