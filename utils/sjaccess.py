@@ -97,6 +97,7 @@ def get_files_to_delete(max=10):
             break
         if l['path'].startswith(sjfs.SJFS_BASEDIR):
             keys = sjfs.get_keys_from_category(l['fid'], 'common')
+            file = sjfs.get_file(l['fid'])
             files.append({
                 'fid'       : l['fid'],
                 'lid'       : l['lid'],
@@ -105,9 +106,10 @@ def get_files_to_delete(max=10):
                 'md5'       : keys.get('md5', 'No md5 defined.'),
                 'type'      : keys.get('type', 'No type defined.'),
                 'date'      : datetime.fromtimestamp(float(keys.get('creation_date'))),
-                'size'      : 0,
+                'size'      : file.get('size',0),
                 'preview'   : sjfs.get_key(l['fid'], 'snapshot', 'media') is not None,
                 'media'     : ('media' in sjfs.get_file_categories(l['fid'])),
+                'deleted'   : False,
             })
     return files
 
