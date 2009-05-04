@@ -51,11 +51,11 @@ def get_used_space(path=sjfs.SJFS_BASEDIR):
     free = fsinfo.f_bfree * fsinfo.f_frsize
     return total - free
 
-def get_changelogs_versions():
+def get_changelogs_versions(profile='rxtx'):
     import os
     all = []
     try:
-        all = os.listdir('/etc/sjsmartchangelogs')
+        all = os.listdir('/usr/share/doc/sjchangelogs/%s/' % profile)
     except:
         return []
 
@@ -68,15 +68,15 @@ def get_changelogs_versions():
 
     return all
 
-# Get raw changelog from /etc/sjsmartchangelogs
-# or html version of changelogs from /etc/sjsmartchangelogs/<version>/changelog.html
-# If page is specified, it will read /etc/sjsmartchangelogs/<version>/<page>
-def get_changelog(version, page=None):
+# Get raw changelog from /usr/share/doc/sjchangelogs/<profile>/<version>
+# or html version of changelogs from /usr/share/doc/sjchangelogs/<profile>/<version>/default.html
+# If page is specified, it will read /usr/share/doc/sjchangelogs/<profile>/<version>/<page>
+def get_changelog(profile, version, page=None):
     import os.path
     out = ''
-    path = '/etc/sjsmartchangelogs/'
+    path = '/usr/share/doc/sjchangelogs/%s/' % profile
     if os.path.exists(path+version+'/'):
-        path += version + '/' + (page is not None and page or 'changelog.html')
+        path += version + '/' + (page is not None and page or 'default.html')
     else:
         path += version
     try:
