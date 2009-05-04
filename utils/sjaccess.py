@@ -122,3 +122,12 @@ def get_file_preview(fid):
     except:
         return None
     return image
+
+# Ping an host to check if it's alive
+# Only one packet is sent with a timeout of 1 second
+def ping(host):
+    import popen2
+    ping = popen2.Popen3('ping -c 1 -W 1 %s' % host)
+    status = ping.wait()
+    return (status == 0)
+
