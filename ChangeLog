@@ -8,6 +8,8 @@ Version 0.2.0~dev
 	* Added log message in utils.get_valid_plugins.
 	* Authentication using SSL Certificate.
 	* Fixed exception message not displayed in exporter.
+	* utils/middleware: Use the usersetting_set in User class instead
+	  UserSetting class directly
 
 Version 0.1.0 Released on 2009/03/23
 
