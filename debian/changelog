@@ -1,8 +1,8 @@
-webengine (0.1.1~dev-1) unstable; urgency=low
+webengine (0.2.0~dev-1) unstable; urgency=low
 
   * New upstream release
 
- -- Thomas Meson <thomas.meson@smartjog.com>  Wed, 01 Apr 2009 18:00:35 +0200
+ -- Thomas Meson <thomas.meson@smartjog.com>  Tue, 05 May 2009 11:45:37 +0200
 
 webengine (0.1.0-1) unstable; urgency=low
 

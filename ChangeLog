@@ -1,4 +1,4 @@
-Version 0.1.1~dev
+Version 0.2.0~dev
 
 	* New importer/exporter.
 	* Error-proof get_valid_plugins().
