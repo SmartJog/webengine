@@ -7,6 +7,7 @@ Version 0.2.0~dev
 	* Removed importer as it is now a standalone module
 	* Added log message in utils.get_valid_plugins.
 	* Authentication using SSL Certificate.
+	* Fixed exception message not displayed in exporter.
 
 Version 0.1.0 Released on 2009/03/23
 

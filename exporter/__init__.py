@@ -60,7 +60,7 @@ def dispatch(request, *args, **kw):
             request.session.modified = True
             return (200, ret)
         except ImporterError, e:
-            logger.debug("Exporter: ImporterError catched: " + e.traceback)
+            logger.debug("Exporter: ImporterError catched: " + str(e))
             return (500, {'msg': e.msg, 'traceback': e.traceback})
         except Exception, e:
             import traceback
