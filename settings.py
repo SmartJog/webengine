@@ -61,9 +61,15 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'webengine.utils.middleware.SSLAuthMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'webengine.utils.middleware.UserSettingMiddleware',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'webengine.utils.backends.SSLAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    )
 
 ROOT_URLCONF = 'webengine.urls'
 
