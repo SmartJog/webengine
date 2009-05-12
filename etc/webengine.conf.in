@@ -3,6 +3,10 @@
 
 Alias /medias @webenginemediasdir@
 
+<Directory @webenginemediasdir@>
+        Options -Indexes
+</Directory>
+
 <Directory @webenginedir@>
 	SetHandler python-program
 	PythonHandler django.core.handlers.modpython
