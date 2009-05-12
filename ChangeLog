@@ -1,4 +1,4 @@
-Version 0.2.0~dev
+Version 0.2.0 Released on 2009/05/12
 
 	* New importer/exporter.
 	* Error-proof get_valid_plugins().
