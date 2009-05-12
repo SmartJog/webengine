@@ -90,8 +90,10 @@ def get_changelog(profile, version, page=None):
 
 def get_files_to_delete(max=10):
     from datetime import datetime
+    import os.path
     files = []
     links = sjfs.get_links(sjfs.SJFS_FILE_CREATION_DATE)
+    repo_len = len(sjfs.SJFS_BASEDIR) - 1
     for l in links:
         if len(files) >= max:
             break
@@ -102,7 +104,7 @@ def get_files_to_delete(max=10):
                 'fid'       : l['fid'],
                 'lid'       : l['lid'],
                 'filename'  : l['filename'],
-                'path'      : l['path'],
+                'path'      : os.path.dirname(l['path'][repo_len:]),
                 'md5'       : keys.get('md5', 'No md5 defined.'),
                 'type'      : keys.get('type', 'No type defined.'),
                 'date'      : datetime.fromtimestamp(float(keys.get('creation_date'))),
