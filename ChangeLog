@@ -1,4 +1,4 @@
-Version 0.2.1~dev
+Version 0.2.1 Released on 2009/05/14
 
 	* Removed Indexes option in Apache configuration for
 	  medias directory.
