@@ -2,6 +2,7 @@ Version 0.2.1~dev
 
 	* Removed Indexes option in Apache configuration for
 	  medias directory.
+	* Changed db table to 'rxtx'.
 
 Version 0.2.0 Released on 2009/05/12
 
