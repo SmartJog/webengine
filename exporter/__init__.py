@@ -6,14 +6,9 @@ from webengine.utils.log import logger
 @render(output='pickle')
 def dispatch(request, *args, **kw):
     """
-        Called when a URL created by exporter.urls.create_patterns() match.
         Perform somes checks, call the importer, and returns.
-        Method name can be passed as:
-        /module/method/ or /module/module/module/method/
         Arguments of the method MUST be passed as pickle in POST data.
-
         This method is not meant to be called directly with a web browser.
-
         The Importer() instance is stored in session.
     """
 
@@ -25,7 +20,7 @@ def dispatch(request, *args, **kw):
         request.session['__importer__'] = Importer()
         # Bound to EXPORT_MODULES from configuration
         from webengine.exporter import settings
-        request.session['__importer__'].bound(settings.EXPORT_MODULES)
+        request.session['__importer__'].bound = settings.EXPORT_MODULES
 
     full_path = base.replace('/', '.') + '.' + modules.replace('/', '.')
     mod, met = full_path.rsplit('.', 1)
