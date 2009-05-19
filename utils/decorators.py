@@ -44,15 +44,11 @@ class _CheckRenderMode(object):
         """
         self.status = 200
         self.request = request
-        # Header (Change this, send by every browser)
-        # if request.META['HTTP_ACCEPT']: mode = _extract_type(request.META['HTTP_ACCEPT'])
         # Check for keyword passed by the url dispatcher.
         self.output = settings.DEFAULT_OUTPUT_MODE
         self.output = kwds_urldispatcher.pop('output', self.output)
         # Check forced output by decorator.
         if 'output' in self.decorator_opts.keys(): self.output = self.decorator_opts['output']
-        # Check output validity, otherwise raise 500.
-        if self.output not in settings.ACCEPTABLE_OUTPUT_MODES.keys(): return HttpResponse(status = 500)
         # Lookup the right view.
         # Passed by the urldispatcher
         self.view = kwds_urldispatcher.get('view', None)
@@ -75,6 +71,10 @@ class _CheckRenderMode(object):
             if 'view' in self.view_ctx.keys(): self.view = self.view_ctx.pop('view')
             # Output from returned dictionary.
             if 'output' in self.view_ctx.keys(): self.output = self.view_ctx.pop('output')
+        # Header (override everything)
+        if self.request.META.get('HTTP_WEBENGINE_OUTPUT'): self.output = request.META['HTTP_WEBENGINE_OUTPUT']
+        # Check output validity, otherwise raise 500.
+        if self.output not in settings.ACCEPTABLE_OUTPUT_MODES.keys(): return HttpResponse(status = 500)
         return self._createResponse()
 
     def _createResponse(self):
