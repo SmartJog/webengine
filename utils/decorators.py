@@ -13,9 +13,9 @@ class _CheckRenderMode(object):
         Wraps calls to view methods.
         Determine which kind of output to perform, based on (in this order):
             * Default setting output mode (which variable?).
-            * HTTP Header (which one?).
             * 'output' passed by the urldispatcher.
             * "Forced" 'output' passed in the decorator's dictionary.
+            * HTTP Header: WEBENGINE_OUTPUT.
         The priority is descending, the last one is the strongest.
     """
     def __init__(self, func, **kwds):
@@ -32,9 +32,9 @@ class _CheckRenderMode(object):
         """
             Check are done in this order, each mode found override the previous.
             - Default from settings.DEFAULT_OUTPUT_MODE
-            - Header from request. (FIXME: which header field?)
             - 'output' passed by the urldispatcher (which is passed to every controller methods).
             - Forced 'output' passed in the decorator's dictionary.
+            - Header from request: WEBENGINE_OUTPUT
             View name can be defined by several ways (override the previous).
             - 'view' key passed by the urldispatcher.
             - Passed in the decorator's dictionary.
