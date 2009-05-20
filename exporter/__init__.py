@@ -44,6 +44,7 @@ def dispatch(request, *args, **kw):
             args = list(args)
             if data.get('args'): args += data['args']
             kw.update(data['kw'])
+            kw.update({'__request__': request})
 
             ret = None
             t = data['type']

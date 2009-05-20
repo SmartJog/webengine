@@ -112,6 +112,16 @@ class _CheckRenderMode(object):
             #return HttpResponse('Template does not exist', status = 500)
             raise
 
+class _Export(object):
+    """ Set a member "__exportable__" which will be checked
+    by Importer, to decide if "request" parameter must be given. """
+    def __init__(self, func):
+        self.__exportable__ = True
+        self.__func__ = func
+
+    def __call__(self, request, *args, **kw):
+        return self.__func__(request, *args, **kw)
+
 """ DECORATORS """
 def render(function=None, **kwds):
     """ This decorator MUST wrap any controller methods. """
@@ -119,3 +129,8 @@ def render(function=None, **kwds):
     def __nested__(func):
         return _CheckRenderMode(func, **kwds)
     return __nested__
+
+def exportable(function):
+    """ Define the function as "accessible by the Importer".
+    This decorator MUST be the FIRST decorator used. """
+    return _Export(function)

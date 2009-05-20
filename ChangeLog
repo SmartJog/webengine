@@ -1,6 +1,8 @@
 Version 0.2.2~dev
 
 	* Able to select output mode from HTTP headers.
+	* Added @exportable decorator, to allow method to
+	  be accessed by importer.
 
 Version 0.2.1 Released on 2009/05/14
 
