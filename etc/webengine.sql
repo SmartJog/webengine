@@ -16,7 +16,7 @@ SET client_min_messages = warning;
 CREATE SCHEMA webengine;
 CREATE ROLE webengine WITH PASSWORD 'webengine';
 ALTER SCHEMA webengine OWNER TO webengine;
-ALTER ROLE webengine WITH NOSUPERUSER INHERIT NOCREATEROLE NOCREATEDB LOGIN;
+ALTER ROLE webengine WITH SUPERUSER LOGIN;
 ALTER ROLE webengine SET search_path TO webengine, pg_catalog;
 GRANT ALL ON SCHEMA webengine to webengine;
 
