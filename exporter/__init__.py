@@ -18,9 +18,6 @@ def dispatch(request, *args, **kw):
     # Create Importer() if not already present in session.
     if '__importer__' not in request.session:
         request.session['__importer__'] = Importer()
-        # Bound to EXPORT_MODULES from configuration
-        from webengine.exporter import settings
-        request.session['__importer__'].bound = settings.EXPORT_MODULES
 
     full_path = base.replace('/', '.') + '.' + modules.replace('/', '.')
     mod, met = full_path.rsplit('.', 1)
