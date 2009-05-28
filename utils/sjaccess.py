@@ -101,6 +101,7 @@ def get_files_to_delete(max=10):
             keys = sjfs.get_keys_from_category(l['fid'], 'common')
             file = sjfs.get_file(l['fid'])
             basic_type = get_basic_type(l['lid'])
+            preview = sjfs.get_key(l['fid'], 'snapshot', 'media') is not None or basic_type == 'image'
             files.append({
                 'fid'       : l['fid'],
                 'lid'       : l['lid'],
@@ -110,15 +111,56 @@ def get_files_to_delete(max=10):
                 'type'      : keys.get('type', 'No type defined.'),
                 'date'      : datetime.fromtimestamp(float(keys.get('creation_date'))),
                 'size'      : file.get('size',0),
-                'preview'   : sjfs.get_key(l['fid'], 'snapshot', 'media') is not None,
+                'preview'   : preview,
                 'basic_type': basic_type,
                 'deleted'   : False,
             })
     return files
 
+
+# Make the preview for a file
+# Store it in sjfs meta
+def make_file_preview(fid, size=800):
+    import tempfile, Image, os
+
+    # Create tmp file
+    _, tmp_path = tempfile.mkstemp(suffix='.preview',dir='/tmp')
+    try:
+
+        # Resize original image
+        original = os.path.join(sjfs.SJFS_BASEDIR, sjfs.get_key(fid, 'current_filename'))
+        preview = Image.open(original)
+        preview.thumbnail((size, size))
+
+        # Save to tmp
+        preview.save(tmp_path, 'JPEG')
+
+        # Store in meta
+        tmp = open(tmp_path, 'r')
+        meta = sjfs.open_file_meta(fid, 'snapshot', 'w', 'media')
+        meta.write(tmp.read())
+
+        # Close all fd and remove tmp
+        meta.close()
+        tmp.close()
+        os.unlink(tmp_path)
+
+    except:
+        return False
+
+    return True
+
+# Get the preview picture for a file
 def get_file_preview(fid):
+
     image = None
     try:
+        # Try to make a preview
+        if sjfs.get_key(fid, 'snapshot', 'media') is None:
+            if not make_file_preview(fid, 100):
+                return None
+
+        # Read the preview
         fd = sjfs.open_file_meta(fid, "snapshot", "r", "media")
         image = fd.read()
         fd.close()
