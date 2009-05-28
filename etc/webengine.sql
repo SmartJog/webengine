@@ -24,7 +24,7 @@ GRANT ALL ON SCHEMA webengine to webengine;
 SET search_path = webengine, pg_catalog;
 
 --
--- Name: auth_group; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_group; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE TABLE auth_group (
@@ -43,7 +43,7 @@ SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('auth_group', 'id'), 
 
 
 --
--- Name: auth_group_permissions; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_group_permissions; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE TABLE auth_group_permissions (
@@ -63,7 +63,7 @@ SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('auth_group_permissio
 
 
 --
--- Name: auth_message; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_message; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE TABLE auth_message (
@@ -83,7 +83,7 @@ SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('auth_message', 'id')
 
 
 --
--- Name: auth_permission; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_permission; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE TABLE auth_permission (
@@ -104,7 +104,7 @@ SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('auth_permission', 'i
 
 
 --
--- Name: auth_user; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_user; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE TABLE auth_user (
@@ -125,7 +125,7 @@ CREATE TABLE auth_user (
 ALTER TABLE webengine.auth_user OWNER TO webengine;
 
 --
--- Name: auth_user_groups; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_user_groups; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE TABLE auth_user_groups (
@@ -152,7 +152,7 @@ SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('auth_user', 'id'), 1
 
 
 --
--- Name: auth_user_user_permissions; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE TABLE auth_user_user_permissions (
@@ -172,7 +172,7 @@ SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('auth_user_user_permi
 
 
 --
--- Name: django_content_type; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: django_content_type; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE TABLE django_content_type (
@@ -193,7 +193,7 @@ SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('django_content_type'
 
 
 --
--- Name: django_session; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: django_session; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE TABLE django_session (
@@ -206,7 +206,7 @@ CREATE TABLE django_session (
 ALTER TABLE webengine.django_session OWNER TO webengine;
 
 --
--- Name: django_site; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: django_site; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE TABLE django_site (
@@ -226,7 +226,7 @@ SELECT pg_catalog.setval(pg_catalog.pg_get_serial_sequence('django_site', 'id'),
 
 
 --
--- Name: utils_usersetting; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: utils_usersetting; Type: TABLE; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE TABLE utils_usersetting (
@@ -375,7 +375,7 @@ COPY utils_usersetting (id, user_id, "key", value) FROM stdin;
 SET search_path = webengine, pg_catalog;
 
 --
--- Name: auth_group_name_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_group_name_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_group
@@ -383,7 +383,7 @@ ALTER TABLE ONLY auth_group
 
 
 --
--- Name: auth_group_permissions_group_id_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_group_permissions_group_id_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_group_permissions
@@ -391,7 +391,7 @@ ALTER TABLE ONLY auth_group_permissions
 
 
 --
--- Name: auth_group_permissions_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_group_permissions_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_group_permissions
@@ -399,7 +399,7 @@ ALTER TABLE ONLY auth_group_permissions
 
 
 --
--- Name: auth_group_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_group_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_group
@@ -407,7 +407,7 @@ ALTER TABLE ONLY auth_group
 
 
 --
--- Name: auth_message_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_message_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_message
@@ -415,7 +415,7 @@ ALTER TABLE ONLY auth_message
 
 
 --
--- Name: auth_permission_content_type_id_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_permission_content_type_id_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_permission
@@ -423,7 +423,7 @@ ALTER TABLE ONLY auth_permission
 
 
 --
--- Name: auth_permission_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_permission_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_permission
@@ -431,7 +431,7 @@ ALTER TABLE ONLY auth_permission
 
 
 --
--- Name: auth_user_groups_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_user_groups_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_user_groups
@@ -439,7 +439,7 @@ ALTER TABLE ONLY auth_user_groups
 
 
 --
--- Name: auth_user_groups_user_id_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_user_groups_user_id_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_user_groups
@@ -447,7 +447,7 @@ ALTER TABLE ONLY auth_user_groups
 
 
 --
--- Name: auth_user_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_user_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_user
@@ -455,7 +455,7 @@ ALTER TABLE ONLY auth_user
 
 
 --
--- Name: auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_user_user_permissions
@@ -463,7 +463,7 @@ ALTER TABLE ONLY auth_user_user_permissions
 
 
 --
--- Name: auth_user_user_permissions_user_id_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_user_user_permissions_user_id_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_user_user_permissions
@@ -471,7 +471,7 @@ ALTER TABLE ONLY auth_user_user_permissions
 
 
 --
--- Name: auth_user_username_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_user_username_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY auth_user
@@ -479,7 +479,7 @@ ALTER TABLE ONLY auth_user
 
 
 --
--- Name: django_content_type_app_label_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: django_content_type_app_label_key; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY django_content_type
@@ -487,7 +487,7 @@ ALTER TABLE ONLY django_content_type
 
 
 --
--- Name: django_content_type_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: django_content_type_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY django_content_type
@@ -495,7 +495,7 @@ ALTER TABLE ONLY django_content_type
 
 
 --
--- Name: django_session_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: django_session_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY django_session
@@ -503,7 +503,7 @@ ALTER TABLE ONLY django_session
 
 
 --
--- Name: django_site_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: django_site_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY django_site
@@ -511,7 +511,7 @@ ALTER TABLE ONLY django_site
 
 
 --
--- Name: utils_usersetting_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: utils_usersetting_pkey; Type: CONSTRAINT; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 ALTER TABLE ONLY utils_usersetting
@@ -519,21 +519,21 @@ ALTER TABLE ONLY utils_usersetting
 
 
 --
--- Name: auth_message_user_id; Type: INDEX; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_message_user_id; Type: INDEX; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE INDEX auth_message_user_id ON auth_message USING btree (user_id);
 
 
 --
--- Name: auth_permission_content_type_id; Type: INDEX; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: auth_permission_content_type_id; Type: INDEX; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE INDEX auth_permission_content_type_id ON auth_permission USING btree (content_type_id);
 
 
 --
--- Name: utils_usersetting_user_id; Type: INDEX; Schema: webengine; Owner: webengine; Tablespace: 
+-- Name: utils_usersetting_user_id; Type: INDEX; Schema: webengine; Owner: webengine; Tablespace:
 --
 
 CREATE INDEX utils_usersetting_user_id ON utils_usersetting USING btree (user_id);
