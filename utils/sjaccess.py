@@ -100,6 +100,7 @@ def get_files_to_delete(max=10):
         if l['path'].startswith(sjfs.SJFS_BASEDIR):
             keys = sjfs.get_keys_from_category(l['fid'], 'common')
             file = sjfs.get_file(l['fid'])
+            basic_type = get_basic_type(l['lid'])
             files.append({
                 'fid'       : l['fid'],
                 'lid'       : l['lid'],
@@ -110,7 +111,7 @@ def get_files_to_delete(max=10):
                 'date'      : datetime.fromtimestamp(float(keys.get('creation_date'))),
                 'size'      : file.get('size',0),
                 'preview'   : sjfs.get_key(l['fid'], 'snapshot', 'media') is not None,
-                'media'     : ('media' in sjfs.get_file_categories(l['fid'])),
+                'basic_type': basic_type,
                 'deleted'   : False,
             })
     return files
@@ -133,3 +134,45 @@ def ping(host):
     status = ping.wait()
     return (status == 0)
 
+# Get the basic type for a link
+# Used to display a correct icon
+def get_basic_type(lid):
+    import re
+
+    types = {
+        'image'     : ['^(PNG|JPEG|GIF) image data'],
+        'media'     : [
+            '^Microsoft ASF$', # wmv
+            '^MPEG sequence', '^ISO Media, MPEG ', # mpg
+            'Apple QuickTime movie', # mov
+            '^Macromedia Flash Video$', # flv
+            '^MPEG transport stream data$',
+            '^(Material|General) Exchange Format', # mxf
+            '^RIFF',
+            '^DIF',
+        ],
+        'archive'   : [
+            '^gzip compressed data,', # gz
+            '^(POSIX )?tar archive', # tar
+        ],
+        'pdf'       : ['^PDF document,'],
+        'xml'       : ['^XML 1.0 document text$'],
+        'font'      : ['^TrueType font data$'],
+        'exec'      : ['^Bourne(-Again)? shell script text executable$'],
+        'text'      : ['^Microsoft Office Document$', '^ASCII text$'],
+    }
+
+    # Get the link type
+    try:
+        link = sjfs.get_link(lid)
+        t = sjfs.get_key(link['fid'], 'type', 'common')
+    except:
+        return 'default'
+
+    # Browse all checks
+    for type_name, checks in types.items():
+        for check in checks:
+            if re.match(check, t):
+                return type_name
+
+    return 'default'
