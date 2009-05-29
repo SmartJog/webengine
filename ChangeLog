@@ -7,6 +7,7 @@ Version 0.2.2~dev
 	* Add basic type support using link type conversion, refs: #1963.
 	* Add python-imaging dependency, refs: #1973.
 	* Add images thumbnails support, closes: #1973.
+	* Configuration using sjconf, closes: #1962.
 
 Version 0.2.1 Released on 2009/05/14
 

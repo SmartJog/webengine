@@ -26,4 +26,17 @@ if [ "$1" = "configure" ]; then
 	fi
 fi
 
+# Setup sjconf
+echo "Installing sjconf plugin..."
+if ! sjconf --list-plugins | grep "^Plugin webengine$" > /dev/null
+then
+    sjconf --install-conf --link /etc/webengine/confs/webengine.conf
+    if [ -e /etc/webengine/templates/webengine.conf ]
+    then
+        sjconf --install-template --link /etc/webengine/templates/webengine.conf
+    fi
+    sjconf --install-plugin --link /usr/share/webengine/app/webengine/sjconf/webengine.py
+    sjconf --enable-plugin webengine
+fi
+
 exit 0

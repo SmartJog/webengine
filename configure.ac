@@ -7,6 +7,8 @@ AC_PREREQ(2.52)
 AM_INIT_AUTOMAKE([foreign])
 AM_PATH_PYTHON
 
+AC_PROG_SJCONF
+
 AC_SUBST([webenginesysconfdir], [\$\(sysconfdir\)/webengine])
 
 AC_SUBST([webenginedir], [\$\(pkgdatadir\)/app/webengine])
@@ -20,6 +22,11 @@ AC_CONFIG_FILES([Makefile \
                  etc/Makefile \
                  utils/Makefile \
                  utils/templatetags/Makefile \
-                 templates/Makefile
+                 templates/Makefile \
+                 sjconf/Makefile \
+                 sjconf/plugins/webengine.py \
+                 sjconf/templates/Makefile \
+                 sjconf/templates/webengine/Makefile \
+                 sjconf/confs/Makefile
                  ])
 AC_OUTPUT

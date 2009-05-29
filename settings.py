@@ -23,10 +23,6 @@ DATABASE_PORT       = ''             # Set to empty string for default. Not used
 # system time zone.
 TIME_ZONE = 'Europe/Paris'
 
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'fr-FR'
-
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -110,12 +106,18 @@ ACCEPTABLE_OUTPUT_MODES = {
 # Default URL.
 DEFAULT_URL = '/extract/'
 
-# Webengine profile
-PROFILE = 'tvrbox'
-
 # Logging infos.
 LOG_FILENAME = '/tmp/webengine.log'
 LOG_FORMAT = "%(asctime)s:%(levelname)s: %(message)s"
+
+# Use configuration from sjconf
+sjconf_path = '/etc/webengine/webengine-conf.conf'
+import os.path
+if os.path.exists(sjconf_path):
+    execfile(sjconf_path)
+else:
+    PROFILE = 'tvrbox'
+    LANGUAGE_CODE = 'fr_FR'
 
 import utils
 mods = utils.get_valid_plugins()
