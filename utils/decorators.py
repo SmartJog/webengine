@@ -19,8 +19,15 @@ class _CheckRenderMode(object):
         The priority is descending, the last one is the strongest.
     """
     def __init__(self, func, **kwds):
+        import inspect
+
         self.decorator_opts = kwds
         self.func = func
+        # Extract func's module name
+        mod = inspect.getmodule(self.func).__name__
+        i = mod.rfind('.')
+        if i == -1: self.func_mod_name = mod
+        else: self.func_mod_name, attr = mod[:i], mod[i+1:]
         self.__name__ = '_CheckRenderMode'
         # Default values
         self.output = settings.DEFAULT_OUTPUT_MODE
@@ -79,7 +86,6 @@ class _CheckRenderMode(object):
 
     def _createResponse(self):
         from django.template import loader, RequestContext, TemplateDoesNotExist
-        import inspect
 
         # View is None, check for a Factory for this output mode.
         if self.view is None:
@@ -94,10 +100,7 @@ class _CheckRenderMode(object):
         # Append the output mode to the view.
         self.view += '.' + self.output
         # Extract module name, concat with templates dir and create final view name
-        mod = inspect.getmodule(self.func).__name__
-        i = mod.rfind('.')
-        module, attr = mod[:i], mod[i+1:]
-        self.view = '/'.join([module, self.view])
+        self.view = '/'.join([self.func_mod_name, self.view])
         try:
             from webengine.utils import webengine_template_processor
 
