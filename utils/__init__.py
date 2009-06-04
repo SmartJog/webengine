@@ -40,10 +40,9 @@ def webengine_template_processor(request):
     from django.conf import settings
     modules = get_valid_plugins()
     menus = []
-    authorized = [str(mod) for mod in request.settings.get('authorized_mods', '').split(',') if mod]
     for mod in modules:
         try:
-            if mod[1].__name__.replace('webengine.', '') in authorized: menus.append(mod[1].urls.menus)
+            if request.user.has_perm('mods.' + mod[0]): menus.append(mod[1].urls.menus)
         except AttributeError:
             continue
 
