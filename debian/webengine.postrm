@@ -29,17 +29,4 @@ if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
 	fi
 fi
 
-# sjconf
-echo "Removing sjconf plugin..."
-if [ "$1" = 'remove' ]
-then
-    sjconf --disable-plugin webengine || true
-    sjconf --uninstall-plugin webengine || true
-    if [ -e /etc/webengine/templates/webengine.conf ]
-    then
-        sjconf --uninstall-template webengine || true
-    fi
-    sjconf --uninstall-conf webengine || true
-fi
-
 exit 0

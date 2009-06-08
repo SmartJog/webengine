@@ -9,7 +9,14 @@ Standards-Version: 3.8.0
 Package: webengine
 Architecture: all
 Depends: ${python:Depends}, python-django (>= 1.0.2), python-simplejson, importer, python-imaging
+Recommends: sjconf-webengine
 XB-Python-Version: ${python:Versions}
 Description: Django application for smartjog
  This is an empty box.
  Install webengine-* to add functionality to the webengine.
+
+Package: sjconf-webengine
+Architecture: all
+Depends: ${python:Depends}, webengine
+XB-Python-Version: ${python:Versions}
+Description: Sjconf plugin for WebEngine

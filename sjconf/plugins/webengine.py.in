@@ -12,7 +12,7 @@ class Plugin(PluginWithTemplate):
         return Plugin.VERSION
 
     def template_path(self, file_path, confs_to_test):
-        return '/etc/webengine/templates/webengine.conf'
+        return self.sjconf.etc_dir + '/webengine/sjconf/templates/webengine/webengine.conf'
 
     def conf_section_class(self):
         return Plugin.ConfSection
@@ -21,7 +21,7 @@ class Plugin(PluginWithTemplate):
         return (('webengine','profile','sequence'),('webengine','language','sequence'),)
 
     def conf_files_path(self):
-        return ('/etc/webengine/webengine-conf.conf',)
+        return (self.sjconf.etc_dir + '/webengine/webengine-conf.conf',)
 
     def services_to_restart(self):
         return ('apache2',)

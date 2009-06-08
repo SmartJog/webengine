@@ -1,0 +1,17 @@
+#!/bin/sh
+# PostRm script for WebEngine.
+
+set -e
+
+if [ "$1" = 'remove' ]
+then
+    sjconf --disable-plugin webengine || true
+    sjconf --uninstall-plugin webengine || true
+    if [ -e /etc/webengine/sjconf/templates/templates/webengine.conf ]
+    then
+        sjconf --uninstall-template webengine || true
+    fi
+    sjconf --uninstall-conf webengine || true
+fi
+
+exit 0

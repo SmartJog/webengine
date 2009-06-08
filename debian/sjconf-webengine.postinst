@@ -1,0 +1,17 @@
+#!/bin/sh
+# PostInstall script for WebEngine.
+
+set -e
+
+if ! sjconf --list-plugins | grep "^Plugin webengine$" > /dev/null
+then
+    sjconf --install-conf --link /etc/webengine/sjconf/confs/webengine.conf
+    if [ -e /etc/webengine/sjconf/templates/webengine/webengine.conf ]
+    then
+        sjconf --install-template --link /etc/webengine/sjconf/templates/webengine
+    fi
+    sjconf --install-plugin --link /usr/share/sjconf-webengine/webengine.py
+    sjconf --enable-plugin webengine
+fi
+
+exit 0
