@@ -12,6 +12,7 @@ then
     fi
     sjconf --install-plugin --link /usr/share/sjconf-webengine/webengine.py
     sjconf --enable-plugin webengine
+    sjconf --deploy --restart webengine
 fi
 
 exit 0
