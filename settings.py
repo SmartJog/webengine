@@ -103,9 +103,6 @@ ACCEPTABLE_OUTPUT_MODES = {
         'soap'  : 'application/soap+xml',
         'pickle': 'application/octet-stream'}
 
-# Default URL.
-DEFAULT_URL = '/extract/'
-
 # Logging infos.
 LOG_FILENAME = '/tmp/webengine.log'
 LOG_FORMAT = "%(asctime)s:%(levelname)s: %(message)s"
@@ -118,6 +115,7 @@ if os.path.exists(sjconf_path):
 else:
     PROFILE = 'tvrbox'
     LANGUAGE_CODE = 'fr_FR'
+    DEFAULT_URL = '/welcome/'
 
 import utils
 mods = utils.get_valid_plugins()
