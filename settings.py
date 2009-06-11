@@ -115,7 +115,7 @@ if os.path.exists(sjconf_path):
 else:
     PROFILE = 'tvrbox'
     LANGUAGE_CODE = 'fr_FR'
-    DEFAULT_URL = '/welcome/'
+    DEFAULT_URL = 'welcome'
 
 import utils
 mods = utils.get_valid_plugins()

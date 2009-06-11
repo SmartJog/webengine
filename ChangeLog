@@ -8,6 +8,8 @@ Version 0.2.2~dev
 	* Add python-imaging dependency, refs: #1973.
 	* Add images thumbnails support, closes: #1973.
 	* Configuration using sjconf, closes: #1962.
+	* Per user 'default_url' setting, closes: #2009.
+	* Use the 'reverse' method instead of hardcoded url.
 
 Version 0.2.1 Released on 2009/05/14
 

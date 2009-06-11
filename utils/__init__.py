@@ -1,6 +1,7 @@
 import os
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
+from django.core.urlresolvers import reverse
 
 
 def get_valid_plugins():
@@ -65,6 +66,8 @@ def webengine_template_processor(request):
 
 def default_view(request):
     """ Default index page. """
+    if request.settings.get('default_url', None):
+        return HttpResponseRedirect(reverse(request.settings['default_url']))
     if settings.DEFAULT_URL != '':
-        return HttpResponseRedirect(settings.DEFAULT_URL)
+        return HttpResponseRedirect(reverse(settings.DEFAULT_URL))
     return HttpResponse("<h1>It works!</h1>")
