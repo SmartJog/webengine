@@ -43,7 +43,7 @@ def webengine_template_processor(request):
     menus = []
     for mod in modules:
         try:
-            if request.user.has_perm('mods.' + mod[0]): menus.append(mod[1].urls.menus)
+            if request.user.has_perm('mods.see_' + mod[0]): menus.append(mod[1].urls.menus)
         except AttributeError:
             continue
 

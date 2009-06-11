@@ -10,6 +10,7 @@ Version 0.2.2~dev
 	* Configuration using sjconf, closes: #1962.
 	* Per user 'default_url' setting, closes: #2009.
 	* Use the 'reverse' method instead of hardcoded url.
+	* Auto discover available modules based on permissions.
 
 Version 0.2.1 Released on 2009/05/14
 
