@@ -1,3 +1,4 @@
 sjconf/plugins/*.py usr/share/sjconf-webengine
 sjconf/templates/webengine/*.conf etc/webengine/sjconf/templates/webengine
 sjconf/confs/*.conf etc/webengine/sjconf/confs
+debian/tmp/usr/share/man

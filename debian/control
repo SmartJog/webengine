@@ -3,7 +3,7 @@ Section: misc
 Priority: optional
 Maintainer: Thomas Meson <thomas.meson@smartjog.com>
 Uploaders: Bastien Abadie <bastien.abadie@smartjog.com>
-Build-Depends: debhelper (>= 5.0.38), cdbs, python-central (>= 0.5.6), sjconf1 (>= 1.8)
+Build-Depends: debhelper (>= 5.0.38), cdbs, python-central (>= 0.5.6), sjconf1 (>= 1.8), txt2tags
 XS-Python-Version: current
 Standards-Version: 3.8.0
 

@@ -1,4 +1,4 @@
-SUBDIRS =
+SUBDIRS = doc
 
 SJCONF_PLUGINS_WITH_TEMPLATE = webengine
 

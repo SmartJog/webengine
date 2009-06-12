@@ -27,6 +27,7 @@ AC_CONFIG_FILES([Makefile \
                  sjconf/plugins/webengine.py \
                  sjconf/templates/Makefile \
                  sjconf/templates/webengine/Makefile \
-                 sjconf/confs/Makefile
+                 sjconf/confs/Makefile \
+                 sjconf/doc/Makefile
                  ])
 AC_OUTPUT
