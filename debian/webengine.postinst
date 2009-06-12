@@ -3,6 +3,8 @@
 
 set -e
 
+#DEBHELPER#
+
 apache2_install() {
 	wserver=$1
 	if [ -d /etc/$wserver/conf.d ] && [ ! -e /etc/$wserver/conf.d/webengine.conf ]; then

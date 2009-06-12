@@ -3,6 +3,8 @@
 
 set -e
 
+#DEBHELPER#
+
 if ! sjconf --list-plugins | grep "^Plugin webengine$" > /dev/null
 then
     sjconf --install-conf --link /etc/webengine/sjconf/confs/webengine.conf

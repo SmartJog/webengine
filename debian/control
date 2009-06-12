@@ -2,13 +2,14 @@ Source: webengine
 Section: misc
 Priority: optional
 Maintainer: Thomas Meson <thomas.meson@smartjog.com>
-Build-Depends: debhelper (>= 5.0.38), cdbs, python-central (>= 0.5.6)
+Uploaders: Bastien Abadie <bastien.abadie@smartjog.com>
+Build-Depends: debhelper (>= 5.0.38), cdbs, python-central (>= 0.5.6), sjconf1 (>= 1.8)
 XS-Python-Version: current
 Standards-Version: 3.8.0
 
 Package: webengine
 Architecture: all
-Depends: ${python:Depends}, python-django (>= 1.0.2), python-simplejson, importer, python-imaging
+Depends: ${misc:Depends}, ${python:Depends}, python-django (>= 1.0.2), python-simplejson, importer, python-imaging
 Recommends: sjconf-webengine
 XB-Python-Version: ${python:Versions}
 Description: Django application for smartjog
@@ -17,6 +18,8 @@ Description: Django application for smartjog
 
 Package: sjconf-webengine
 Architecture: all
-Depends: ${python:Depends}, webengine
+Depends: ${misc:Depends}, ${python:Depends}, webengine (= ${binary:Version}), sjconf1 (>= 1.2)
 XB-Python-Version: ${python:Versions}
 Description: Sjconf plugin for WebEngine
+ This SJConf plugin handles configuration for the Webengine
+ plugin.

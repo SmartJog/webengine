@@ -3,11 +3,13 @@
 
 set -e
 
+#DEBHELPER#
+
 if [ "$1" = 'remove' ]
 then
     sjconf --disable-plugin webengine || true
     sjconf --uninstall-plugin webengine || true
-    if [ -e /etc/webengine/sjconf/templates/templates/webengine.conf ]
+    if [ -e /etc/webengine/sjconf/templates/webengine/webengine.conf ]
     then
         sjconf --uninstall-template webengine || true
     fi
