@@ -11,6 +11,7 @@ Version 0.2.2~dev
 	* Per user 'default_url' setting, closes: #2009.
 	* Use the 'reverse' method instead of hardcoded url.
 	* Auto discover available modules based on permissions.
+	* Ship webengine with default /etc/webengine/webengine-conf.conf, closes: #2010.
 
 Version 0.2.1 Released on 2009/05/14
 
