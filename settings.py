@@ -116,6 +116,7 @@ else:
     PROFILE = 'tvrbox'
     LANGUAGE_CODE = 'fr_FR'
     DEFAULT_URL = 'welcome'
+    AUTHORIZED_MODS = []
 
 import utils
 mods = utils.get_valid_plugins()
