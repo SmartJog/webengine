@@ -6,6 +6,7 @@ from django.conf import settings
 from django import http
 
 from webengine.utils.exceptions import *
+from webengine import settings
 
 class _CheckRenderMode(object):
     """
@@ -86,6 +87,10 @@ class _CheckRenderMode(object):
 
     def _createResponse(self):
         from django.template import loader, RequestContext, TemplateDoesNotExist
+
+        # Add skin information to view data
+        if isinstance(self.view_ctx, dict) and 'WEBENGINE_SKIN' not in self.view_ctx:
+            self.view_ctx['WEBENGINE_SKIN'] = getattr(settings, 'SKIN', 'front/base.html')
 
         # View is None, check for a Factory for this output mode.
         if self.view is None:

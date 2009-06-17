@@ -14,6 +14,7 @@ Version 0.2.2~dev
 	* Ship webengine with default /etc/webengine/webengine-conf.conf, closes: #2010.
 	* Add manpage for sjconf plugin, refs: #2012.
 	* SJConf variable to limit module access.
+	* Add skin support for plugins templates, modified by sjconf, refs: #2027.
 
 Version 0.2.1 Released on 2009/05/14
 
