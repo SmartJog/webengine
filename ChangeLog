@@ -13,6 +13,7 @@ Version 0.2.2~dev
 	* Auto discover available modules based on permissions.
 	* Ship webengine with default /etc/webengine/webengine-conf.conf, closes: #2010.
 	* Add manpage for sjconf plugin, refs: #2012.
+	* SJConf variable to limit module access.
 
 Version 0.2.1 Released on 2009/05/14
 

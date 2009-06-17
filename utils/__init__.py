@@ -41,9 +41,15 @@ def webengine_template_processor(request):
     from django.conf import settings
     modules = get_valid_plugins()
     menus = []
+    auth_mods = settings.AUTHORIZED_MODS or [m[0] for m in modules]
     for mod in modules:
         try:
-            if request.user.has_perm('mods.see_' + mod[0]): menus.append(mod[1].urls.menus)
+            # User is superuser, let see all menus
+            if request.user.is_superuser: menus.append(mod[1].urls.menus)
+            # User not authenticated and menu in AUTHORIZED_MODS, add it
+            elif not request.user.is_authenticated() and mod[0] in auth_mods: menus.append(mod[1].urls.menus)
+            # User is authenticated, check permission
+            elif request.user.has_perm('mods.see_' + mod[0]): menus.append(mod[1].urls.menus)
         except AttributeError:
             continue
 
