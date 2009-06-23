@@ -1,9 +1,9 @@
-webengine (0.2.2-2~dev) unstable; urgency=low
+webengine (0.2.2-2) unstable; urgency=low
 
   * Added sjconf-webengine-all metapackage.
   * Added myself to uploaders.
 
- -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Tue, 23 Jun 2009 11:00:28 +0200
+ -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Tue, 23 Jun 2009 11:02:04 +0200
 
 webengine (0.2.2-1) unstable; urgency=low
 
