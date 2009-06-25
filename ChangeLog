@@ -1,3 +1,7 @@
+Version 0.2.3~dev
+
+	* Dummy re-release for rebuild.
+
 Version 0.2.2 Released on 2009/06/22
 
 	* Able to select output mode from HTTP headers.

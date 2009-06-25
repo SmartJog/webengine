@@ -1,3 +1,9 @@
+webengine (0.2.3~dev-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Thu, 25 Jun 2009 13:52:49 +0200
+
 webengine (0.2.2-2) unstable; urgency=low
 
   * Added sjconf-webengine-all metapackage.
