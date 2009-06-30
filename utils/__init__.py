@@ -68,6 +68,7 @@ def webengine_template_processor(request):
     return {
         'profile': settings.PROFILE,
         'menus': menus,
+        'WEBENGINE_SKIN': getattr(settings, 'SKIN', 'front/base.html')
     }
 
 def default_view(request):
