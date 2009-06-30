@@ -9,12 +9,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE     = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME       = 'rxtx'             # Or path to database file if using sqlite3.
-DATABASE_USER       = 'webengine'             # Not used with sqlite3.
-DATABASE_PASSWORD   = 'webengine'         # Not used with sqlite3.
-DATABASE_HOST       = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT       = ''             # Set to empty string for default. Not used with sqlite3.
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -114,10 +108,17 @@ import os.path
 if os.path.exists(sjconf_path):
     execfile(sjconf_path)
 else:
-    PROFILE = 'tvrbox'
-    LANGUAGE_CODE = 'fr_FR'
-    DEFAULT_URL = 'welcome'
-    AUTHORIZED_MODS = []
+    PROFILE             = 'tvrbox'
+    LANGUAGE_CODE       = 'fr_FR'
+    DEFAULT_URL         = 'welcome'
+    AUTHORIZED_MODS     = []
+    DATABASE_ENGINE     = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+    DATABASE_NAME       = 'rxtx'             # Or path to database file if using sqlite3.
+    DATABASE_USER       = 'webengine'             # Not used with sqlite3.
+    DATABASE_PASSWORD   = 'webengine'         # Not used with sqlite3.
+    DATABASE_HOST       = ''             # Set to empty string for localhost. Not used with sqlite3.
+    DATABASE_PORT       = ''             # Set to empty string for default. Not used with sqlite3.
+
 
 import utils
 mods = utils.get_valid_plugins()
