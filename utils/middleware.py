@@ -21,3 +21,23 @@ class SSLAuthMiddleware(object):
         if user.is_authenticated():
             request.user = user
             login(request, user)
+
+class BasicAuthMiddleware(object):
+    def process_request(self, request):
+        """ Try to authenticate user based on Authorization header. """
+        import base64
+
+        if not hasattr(request, 'user'):
+            request.user = get_user(request)
+            if request.user.is_authenticated():
+                return
+
+        if 'HTTP_AUTHORIZATION' in request.META:
+            authmeth, hash = request.META['HTTP_AUTHORIZATION'].split(' ', 1)
+            if authmeth.lower() == 'basic':
+                auth = hash.strip().decode('base64')
+                username, password = auth.split(':', 1)
+                user = authenticate(username=username, password=password) or AnonymousUser()
+                if user.is_authenticated():
+                    request.user = user
+                    login(request, user)

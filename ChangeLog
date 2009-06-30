@@ -1,3 +1,7 @@
+Version 0.3.0~dev
+
+	* Added Basic Auth support, closes: #2082.
+
 Version 0.2.3 Released on 2009/06/25
 
 	* Dummy re-release for rebuild.
