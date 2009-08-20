@@ -8,6 +8,8 @@ from django import http
 from webengine.utils.exceptions import *
 from webengine import settings
 
+import importer
+
 class _CheckRenderMode(object):
     """
         Callable object that will act like a decorator.
@@ -126,6 +128,29 @@ class _Export(object):
     def __call__(self, request, *args, **kw):
         return self.__func__(request, *args, **kw)
 
+class _Proxy(object):
+    """ Set a member "__exportable__" which will be checked
+    by Importer, to decide if "request" parameter must be given. """
+    def __init__(self, function, plugin):
+        self.__func__ = function
+        self.__plugin__ = plugin
+        self.__exportable__ = True
+
+    def __call__(self, request, *args, **kw):
+        self.__exportable__ = True
+        if hasattr(request, 'settings'):
+            distant_url = request.settings.get('proxy-%s-distant_url' % self.__plugin__, None)
+            if distant_url == None:
+                return self.__func__(request, *args, **kw)
+            else:
+                imp = importer.Importer()
+                imp['distant_url']  = distant_url
+                imp['ssl_cert']     = request.settings.get('proxy-%s-ssl_cert' % self.__plugin__, None)
+                imp['ssl_key']      = request.settings.get('proxy-%s-ssl_key' % self.__plugin__, None)
+                return imp.call(self.__plugin__, self.__func__.__name__, *args, **kw)
+        else:
+            return self.__func__(request, *args, **kw)
+
 """ DECORATORS """
 def render(function=None, **kwds):
     """ This decorator MUST wrap any controller methods. """
@@ -138,3 +163,10 @@ def exportable(function):
     """ Define the function as "accessible by the Importer".
     This decorator MUST be the FIRST decorator used. """
     return _Export(function)
+
+def proxy_func(plugin):
+    """ Define the function as "accessible by the Importer".
+    This decorator MUST be the FIRST decorator used. """
+    def __nested__(func):
+        return _Proxy(func, plugin)
+    return __nested__
