@@ -1,4 +1,4 @@
-Version 0.3.1~dev
+Version 0.3.1 Released on 2009/08/21
 
 	* Add support for javascript translations, refs: #2220.
 	* Added @proxy_func decorator allowing to call a function locally or
