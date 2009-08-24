@@ -1,3 +1,9 @@
+Version 0.4.0~dev
+
+	* Add support for request decoders. This feature is seriously limited by
+	  django's ability to fill content-type metadata but it can still be
+	  defined in @render decorator.
+
 Version 0.3.1 Released on 2009/08/21
 
 	* Add support for javascript translations, refs: #2220.

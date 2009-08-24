@@ -81,6 +81,22 @@ LOGIN_URL = '/auth/login/'
 # If 'next' isn't provided, always redirect to site root.
 LOGIN_REDIRECT_URL = '/'
 
+# Default Input mode.
+# Choose the default mode in which submitted data will be decoded.
+# Possible values are:
+#  - xml
+#  - html
+#  - json
+#  - soap
+# Default is html
+DEFAULT_INPUT_MODE = 'text/html'
+# The given input mode must be contained into ACCEPTABLE_INPUT_MODES
+ACCEPTABLE_INPUT_MODES = {
+    'text/html'            : 'html',
+    'text/xml'             : 'xml',
+    'application/json'     : 'json',
+    'application/soap+xml' : 'soap'}
+
 # Default Output mode.
 # Choose the default mode in which pages will be rendered.
 # Possible values are:

@@ -33,6 +33,7 @@ class _CheckRenderMode(object):
         else: self.func_mod_name, attr = mod[:i], mod[i+1:]
         self.__name__ = '_CheckRenderMode'
         # Default values
+        self.input = settings.DEFAULT_INPUT_MODE
         self.output = settings.DEFAULT_OUTPUT_MODE
         self.view = None
         self.status = 200
@@ -54,7 +55,23 @@ class _CheckRenderMode(object):
         """
         self.status = 200
         self.request = request
-        # Check for keyword passed by the url dispatcher.
+        # Check for input in the content-type header
+        ct_value = request.META['CONTENT_TYPE'] or settings.DEFAULT_INPUT_MODE
+        ct_value = ct_value.split(';')[0]
+        if ct_value in settings.ACCEPTABLE_INPUT_MODES:
+            self.input = settings.ACCEPTABLE_INPUT_MODES[ct_value]
+        else:
+            self.input = settings.DEFAULT_INPUT_MODE
+        # Check forced input by decorator.
+        if 'input' in self.decorator_opts.keys(): self.input = self.decorator_opts['input']
+        # Decode input
+        from webengine.utils.decoders import DecoderFactory
+        decoder = DecoderFactory.get(self.input)
+        if request.method == 'POST':
+            request.DECODED = decoder.decode(request.raw_post_data)
+        else:
+            request.DECODED = None
+        # Check for output keyword passed by the url dispatcher.
         self.output = settings.DEFAULT_OUTPUT_MODE
         self.output = kwds_urldispatcher.pop('output', self.output)
         # Check forced output by decorator.
