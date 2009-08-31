@@ -115,7 +115,7 @@ ACCEPTABLE_OUTPUT_MODES = {
         'pickle': 'application/octet-stream'}
 
 # Logging infos.
-LOG_FILENAME = '/tmp/webengine.log'
+LOG_FILENAME = '/var/log/webengine/webengine.log'
 LOG_FORMAT = "%(asctime)s:%(levelname)s: %(message)s"
 
 # Use configuration from sjconf
