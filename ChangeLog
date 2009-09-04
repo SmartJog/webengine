@@ -1,4 +1,4 @@
-Version 0.4.0~dev
+Version 0.4.0 Released on 2009/09/04
 
 	* Add support for request decoders. This feature is seriously limited by
 	  django's ability to fill content-type metadata but it can still be
