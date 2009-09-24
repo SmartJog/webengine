@@ -1,3 +1,7 @@
+Version 0.4.2~dev
+
+	* Add some logging in utils, refs: #2335.
+
 Version 0.4.1 Released on 2009/09/07
 
 	* Fix minor packaging mistake.

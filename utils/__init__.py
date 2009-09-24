@@ -1,4 +1,6 @@
 import os
+import logging
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
 from django.core.urlresolvers import reverse, NoReverseMatch
@@ -38,6 +40,9 @@ def webengine_template_processor(request):
         when processing the template.
         Add everything you need in every template.
     """
+    log = logging.getLogger('webengine.utils.webengine_template_processor')
+    log.setLevel(logging.DEBUG)
+
     from django.conf import settings
     modules = get_valid_plugins()
     menus = []
@@ -53,6 +58,8 @@ def webengine_template_processor(request):
         except AttributeError:
             continue
 
+    log.debug(repr(menus))
+
     #Sort menus by position and alphabetical order
     def cmp_menu(x,y):
         if 'position' not in x or 'position' not in y:
@@ -64,6 +71,7 @@ def webengine_template_processor(request):
         else:
             return -1
     menus.sort(cmp_menu)
+    log.debug(repr(menus))
 
     return {
         'profile': settings.PROFILE,
