@@ -27,7 +27,10 @@ The profile used to select the theme displayed on every webengine pages and plug
 The default language, used by Django internationalization
 
 : **default_url** = //welcome//
-The url used by Django by default, when no url is specified by the user. It's a "reversed" url, so it should match an url defined in a webengine plugin. 
+The url used by Django by default, when no url is specified by the user. It's a "reversed" url, so it should match an url defined in a webengine plugin.
+
+: **skin** = //relative_path_to_front_template//
+Change the main skin, by default set to "front/base.html".
 
 
 = EXAMPLE =
@@ -38,6 +41,7 @@ Here is a sample configuration:
   **profile** = //tvrbox//
   **language** = //fr-FR//
   **default_url** = //welcome//
+  **skin** = //"base/front.html"//
 
 
 = FILES =
