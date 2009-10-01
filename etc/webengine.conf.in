@@ -5,6 +5,7 @@ Alias /medias @webenginemediasdir@
 
 <Directory @webenginemediasdir@>
         Options -Indexes
+        SetHandler None
 </Directory>
 
 <IfModule mod_python.c>
@@ -19,6 +20,3 @@ Alias /medias @webenginemediasdir@
 
 </IfModule>
 
-<Directory @webenginemediasdir@>
-	SetHandler None
-</Directory>
