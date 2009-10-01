@@ -7,13 +7,17 @@ Alias /medias @webenginemediasdir@
         Options -Indexes
 </Directory>
 
-<Directory @webenginedir@>
-	SetHandler python-program
-	PythonHandler django.core.handlers.modpython
-	SetEnv DJANGO_SETTINGS_MODULE webengine.settings
-	PythonDebug On
-	PythonPath "['@webenginedir@', '@webengineappdir@'] + sys.path"
-</Directory>
+<IfModule mod_python.c>
+
+        <Directory @webenginedir@>
+                SetHandler python-program
+                PythonHandler django.core.handlers.modpython
+                SetEnv DJANGO_SETTINGS_MODULE webengine.settings
+                PythonDebug On
+                PythonPath "['@webenginedir@', '@webengineappdir@'] + sys.path"
+        </Directory>
+
+</IfModule>
 
 <Directory @webenginemediasdir@>
 	SetHandler None
