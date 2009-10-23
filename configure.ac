@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_INIT(webengine, 0.4.2~dev)
+AC_INIT(webengine, 0.5.0~dev)
 
 dnl 2.52 is quite realistic
 AC_PREREQ(2.52)

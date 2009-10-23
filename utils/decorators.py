@@ -141,8 +141,13 @@ class _Export(object):
     def __init__(self, func):
         self.__exportable__ = True
         self.__func__ = func
+        self.__doc__ = func.__doc__
+        self.__name__ = func.__name__
+        self.__module__ = func.__module__
+        self.__dict__.update(func.__dict__)
 
     def __call__(self, request, *args, **kw):
+
         return self.__func__(request, *args, **kw)
 
 class _Proxy(object):
