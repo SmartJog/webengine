@@ -3,9 +3,9 @@ Version 0.5.0~dev
 	* Add some logging in utils, refs: #2335.
 	* Wrap mod_python dependant apache configuration in IfModule,
 	  closes: #2409.
-	* Increase log max size from 10k to 20M, closes: #2434
+	* Increase log max size from 10k to 20M, closes: #2434.
 	* Force 'exportable' decorator to be used to access a function with
-	exporter
+	  exporter.
 
 Version 0.4.1 Released on 2009/09/07
 

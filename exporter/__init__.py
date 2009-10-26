@@ -23,7 +23,7 @@ def dispatch(request, *args, **kw):
     mod, met = full_path.rsplit('.', 1)
     module = __import__(mod, {}, {}, [''])
     callee = getattr(module, met)
-    if not hasattr(callee, '__exportable__'): 
+    if not hasattr(callee, '__exportable__'):
         logger.debug("Exporter: method not exportable: " + full_path)
         return (200, Exception("Method not exportable"))
 

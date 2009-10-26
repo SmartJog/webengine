@@ -60,7 +60,7 @@ def get_changelogs_versions(profile='rxtx'):
         return []
 
     # sort sources version in reverse order
-    def cmp_version(x,y):
+    def cmp_version(x, y):
         x_list = map(int, x.split('.'))
         y_list = map(int, y.split('.'))
         return x_list < y_list and 1 or -1
@@ -84,7 +84,7 @@ def get_changelog(profile, version, page=None):
         for line in log:
             out += line
         log.close()
-    except Exception, e:
+    except Exception, _error:
         return None
     return out
 
@@ -124,7 +124,7 @@ def make_file_preview(fid, size=800):
     import tempfile, Image, os
 
     # Create tmp file
-    _, tmp_path = tempfile.mkstemp(suffix='.preview',dir='/tmp')
+    _, tmp_path = tempfile.mkstemp(suffix='.preview', dir='/tmp')
     try:
 
         # Resize original image

@@ -20,7 +20,7 @@ def get_valid_plugins():
         mod = None
         try:
             mod = __import__('webengine.' + mod_name, {}, {}, [''])
-        except Exception, e:
+        except Exception, _error:
             return []
         try:
             __import__('webengine.' + mod_name + '.urls', {}, {}, [''])
@@ -61,7 +61,7 @@ def webengine_template_processor(request):
     log.debug(repr(menus))
 
     #Sort menus by position and alphabetical order
-    def cmp_menu(x,y):
+    def cmp_menu(x, y):
         if 'position' not in x or 'position' not in y:
             return 1
         if x['position'] > y['position']:
@@ -86,5 +86,5 @@ def default_view(request):
             return HttpResponseRedirect(reverse(request.settings['default_url']))
         if settings.DEFAULT_URL != '':
             return HttpResponseRedirect(reverse(settings.DEFAULT_URL))
-    except NoReverseMatch, e:
+    except NoReverseMatch, _error:
         return HttpResponse("<h1>It works!</h1>")

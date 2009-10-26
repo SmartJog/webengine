@@ -12,7 +12,7 @@ class RenderPartialNode(Node):
 
     def render(self, context):
         print self.params
-        for k,v in self.params.items():
+        for k, v in self.params.items():
             print 'Resolve ' + str(v)
             #self.params[k] = resolve_variable(v, context)
             self.params[k] = v
@@ -34,7 +34,7 @@ def render_partial(parser, token):
     if len(items) < 3: raise TemplateSyntaxError('Missing template tag parameters')
     params = {}
     for item in items[1:]:
-        k,v = item.split(':')
+        k, v = item.split(':')
         params[k] = v
     for k in ['controller', 'view']:
         if k not in params.keys():

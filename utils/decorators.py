@@ -30,7 +30,7 @@ class _CheckRenderMode(object):
         mod = inspect.getmodule(self.func).__name__
         i = mod.rfind('.')
         if i == -1: self.func_mod_name = mod
-        else: self.func_mod_name, attr = mod[:i], mod[i+1:]
+        else: self.func_mod_name, _attr = mod[:i], mod[i+1:]
         self.__name__ = '_CheckRenderMode'
         # Default values
         self.input = settings.DEFAULT_INPUT_MODE
@@ -130,7 +130,7 @@ class _CheckRenderMode(object):
                                 content_type = settings.ACCEPTABLE_OUTPUT_MODES[self.output],
                                 status = self.status)
             return resp
-        except TemplateDoesNotExist, e:
+        except TemplateDoesNotExist, _error:
             #TODO: Fallback to a "raw" output.
             #return HttpResponse('Template does not exist', status = 500)
             raise
