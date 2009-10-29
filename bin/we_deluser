@@ -1,0 +1,37 @@
+#!/usr/bin/env python
+
+import psycopg2, os, sys
+from psycopg2.pool import ThreadedConnectionPool
+
+if __name__ == '__main__':
+    argv = os.sys.argv
+
+    if len(argv) > 1:
+        username = argv[1]
+    else:
+        username = raw_input("Username: ")
+
+    conn = None
+    conn_pool = None
+    try:
+        try:
+            connector = "host=%s port=%d user=%s password=%s dbname=%s" % \
+                ('localhost', 5432, 'webengine', 'webengine', 'rxtx')
+            conn_pool = ThreadedConnectionPool(1, 200, connector)
+            conn = conn_pool.getconn()
+            cur = conn.cursor()
+            query = "DELETE FROM auth_user WHERE username='%s'" % username
+            cur.execute(query)
+            if cur.rowcount == 0:
+                print "No user found"
+                sys.exit(1)
+            conn.commit()
+        finally:
+            conn_pool.putconn(conn)
+    except Exception, e:
+        if conn.closed != 1:
+            conn.rollback()
+        print "ERROR: " + str(e)
+        sys.exit(1)
+
+    print "User '%s' deleted" % username

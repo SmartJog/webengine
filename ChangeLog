@@ -1,3 +1,7 @@
+Version 0.6.0~dev
+
+	* Add we_adduser, we_deluser and we_listuser.
+
 Version 0.5.0 Released on 2009/10/26
 
 	* Add some logging in utils, refs: #2335.
