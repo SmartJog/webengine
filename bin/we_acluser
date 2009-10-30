@@ -1,0 +1,93 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+"""
+    A tool to list and modify webengine's user access control list.
+"""
+
+import os
+import sys
+import optparse
+
+sys.path.append('/usr/share/webengine/app/')
+sys.path.append('/usr/share/webengine/app/webengine/')
+
+import sjconf
+# Goddamn SJConf fucking up my sys.path
+if '/var/lib/sjconf/plugins' in sys.path:
+    sys.path.remove('/var/lib/sjconf/plugins')
+os.environ['DJANGO_SETTINGS_MODULE'] = 'webengine.settings'
+
+from django.contrib.auth.models import User, Permission
+
+VERSION = "0.1.0"
+
+def check_profile():
+    """ Check profile is tvrbox enabled. """
+
+    prof = sjconf.SJConf().profiles_infos(('tvrbox',))
+    if prof['tvrbox'] == None:
+        print "Not on a TVRBox, exiting…"
+        sys.exit(0)
+
+def main():
+    """ Main function. """
+
+    parser = optparse.OptionParser(
+        version="%prog " + VERSION, option_list=[
+            optparse.Option("-a", "--add",    dest="add",
+                help="add permissions for the given user",    action="store_true",
+                default=False),
+            optparse.Option("-r", "--remove", dest="remove",
+                help="remove permissions for the given user", action="store_true",
+                default=False),
+            optparse.Option("-l", "--list",   dest="list",
+                help="list permissions for the given user",   action="store_true",
+                default=False),
+            ])
+    (options, args) = parser.parse_args()
+
+    if not len(args):
+        print "Not enough arguments"
+        sys.exit(2)
+
+    if options.add and options.remove:
+        print "Only one permission modifier at a time"
+        sys.exit(2)
+
+    try:
+        user = User.objects.get(username=args[0])
+    except Exception:
+        print "User", args[0], "does not exist"
+        sys.exit(1)
+
+    if options.list:
+        # List all rxtx related permissions
+        all_perms = [_perm for _perm in Permission.objects.values() if _perm['content_type_id'] == 10]
+
+        user_perms = [_perm[5:] for _perm in user.get_all_permissions()]
+        print "List of permissions for user %s (+ means enabled):" % args[0]
+        for perm in all_perms:
+            print '  %s%s - %s' % (perm['codename'] in user_perms and '+' or ' ', perm['codename'], perm['name'])
+
+    if options.remove or options.add:
+        # List all rxtx related permissions
+        all_perms = [_perm['codename'] for _perm in Permission.objects.values() if _perm['content_type_id'] == 10]
+
+        for perm in args[1:]:
+            if perm in all_perms:
+                perm_obj = Permission.objects.get(codename = perm)
+
+                if options.remove:
+                    user.user_permissions.remove(perm_obj)
+                elif options.add:
+                    user.user_permissions.add(perm_obj)
+            else:
+                print "Permission %s does not exist" % perm
+
+        user.save()
+
+if __name__ == "__main__":
+    check_profile()
+    main()
+

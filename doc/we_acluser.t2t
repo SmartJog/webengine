@@ -1,0 +1,50 @@
+we_acluser
+webengine
+%%mtime
+
+%!target : man
+%!encoding : utf-8
+%!postproc(man): "^(\.TH.*) 1 "  "\1 1 "
+
+= NAME =
+
+we_acluser - manage ACLs for webengine users
+
+= SYNOPSIS =
+
+**we_acluser** __action__ __username__ [__acl_modifier__...]
+
+= DESCRIPTION =
+
+**we_acluser** can list and modify ACLs of users registred in **webengine**
+database.
+
+= OPTIONS =
+
+: -**l**, --**list**
+List ACLs for user __username__
+
+: -**a**, --**add**
+Add ACLs for user __username__
+
+: -**r**, --**remove**
+Remove ACLs for user __username__
+
+
+= EXAMPLES =
+
+List ACLs of user foo:
+    we_acluser --list foo
+
+Add access to welcome page for user foo:
+    we_acluser --add foo see_welcome
+
+Remove access to browser page for user bar:
+    we_acluser --remove bar see_browser
+
+
+= AUTHOR =
+
+The **we_acluser** script and this manual page have been written by the
+**SmartJog** company.
+

@@ -1,2 +1,4 @@
+debian/tmp/usr/bin/
 debian/tmp/usr/share/webengine/
+debian/tmp/usr/share/man/man1/
 debian/tmp/etc/webengine/

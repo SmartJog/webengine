@@ -19,6 +19,7 @@ AC_SUBST([templatesdir], [\$\(pkgdatadir\)/templates])
 
 AC_CONFIG_FILES([Makefile \
                  exporter/Makefile \
+                 doc/Makefile \
                  etc/Makefile \
                  utils/Makefile \
                  utils/templatetags/Makefile \

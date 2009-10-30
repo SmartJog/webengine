@@ -1,8 +1,11 @@
 webengine (0.6.0~dev-1) unstable; urgency=low
 
-  * New upstream release. 
+  * New upstream release.
+  * Add usr/bin to webengine.install.
+  * Distribute man pages in appropriate packages.
+  * Add conflict with older sjrtools to control.
 
- -- Gilles Dartiguelongue <gdartigu@smartjog.com>  Thu, 29 Oct 2009 17:47:02 +0100
+ -- Gilles Dartiguelongue <gdartigu@smartjog.com>  Tue, 03 Nov 2009 11:58:01 +0100
 
 webengine (0.5.0-1) unstable; urgency=low
 
