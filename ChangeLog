@@ -1,4 +1,4 @@
-Version 0.6.0~dev
+Version 0.6.0 Released on 2009/11/03
 
 	* Add we_adduser, we_deluser and we_listuser.
 	* Add we_acluser to manager user ACLs, closes: #2346.
