@@ -10,6 +10,7 @@ apache2_install() {
 	if [ -d /etc/$wserver/conf.d ] && [ ! -e /etc/$wserver/conf.d/webengine.conf ]; then
 		ln -s ../../webengine/webengine.conf /etc/$wserver/conf.d/webengine.conf
 	fi
+    ln -sf /usr/share/python-support/python-django/django/contrib/admin/media/ /usr/share/webengine/medias/admin
 }
 
 if [ "$1" = "configure" ]; then
