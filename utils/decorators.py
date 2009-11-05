@@ -7,8 +7,10 @@ from django import http
 
 from webengine.utils.exceptions import *
 from webengine import settings
+from psycopg2.pool import ThreadedConnectionPool
 
 import importer
+import psycopg2
 
 class _CheckRenderMode(object):
     """
@@ -140,15 +142,15 @@ class _Export(object):
     by Importer, to decide if "request" parameter must be given. """
     def __init__(self, func):
         self.__exportable__ = True
-        self.__func__ = func
         self.__doc__ = func.__doc__
         self.__name__ = func.__name__
         self.__module__ = func.__module__
         self.__dict__.update(func.__dict__)
+        self.func = func
 
     def __call__(self, request, *args, **kw):
 
-        return self.__func__(request, *args, **kw)
+        return self.func(request, *args, **kw)
 
 class _Proxy(object):
     """ Set a member "__exportable__" which will be checked
@@ -192,3 +194,60 @@ def proxy_func(plugin):
     def __nested__(func):
         return _Proxy(func, plugin)
     return __nested__
+
+
+def manage_pgconn(conf_file):
+    """ Manage the postgresql database connection using 
+    information stored on conf_file """
+    def __nested__(func):
+        return _Psycopg2(func, conf_file)
+
+    return __nested__
+
+
+class _Psycopg2(object):
+    """ Set a member "__exportable__" which will be checked
+    by Importer, to decide if "request" parameter must be given. """
+    def __init__(self, function, conf_file):
+        self.__func__ = function
+        self.__conf_file__ = conf_file
+        self.__conn_pool__ = None
+        self.__name__ = function.__name__
+
+    class DatabaseError(psycopg2.Error):
+        """ Raised when database connection error occurs. """
+        pass
+
+    def __call__(self, *args, **kw):
+        from ConfigParser import RawConfigParser
+
+        if not self.__conn_pool__:
+            conf = RawConfigParser()
+            conf.read(self.__conf_file__)
+            items = dict(conf.items('database'))
+            connector = "host=%(host)s port=%(port)s user=%(user)s password=%(password)s dbname=%(dbname)s" % items
+            self.__conn_pool__ = ThreadedConnectionPool(1, 200, connector)
+
+        try:
+            conn = self.__conn_pool__.getconn()
+            # Try to get a new valid connection if the one we got is
+            # already closed, since getconn() does not necessarily return
+            # a valid connection
+            if conn.closed is 1:
+                old_conn = conn
+                conn = self.__conn_pool__.getconn()
+                self.__conn_pool__.putconn(old_conn)
+            try:
+                try:
+                    return self.__func__(conn, *args, **kw)
+                finally:
+                    self.__conn_pool__.putconn(conn)
+            except:
+                if conn.closed != 1:
+                    conn.rollback()
+                raise
+        except psycopg2.Error, _error:
+            # We do not want our users to have to 'import psycopg2' to
+            # handle the module's underlying database errors
+            _, value, traceback = sys.exc_info()
+            raise DatabaseError, value, traceback
