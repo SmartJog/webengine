@@ -4,6 +4,7 @@ Version 0.7.0~dev
 	* Added a manage_pgconn(conf_file) decorator to handle DB conns, Closes: #2559.
 	* Added enable_admin conf handling on sjconf plugin.
 	* Change apache webengine-specific configuration, refs: #2513.
+    * Added same default configuration in etc than in sjconf.
 
 Version 0.6.0 Released on 2009/11/03
 
