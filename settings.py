@@ -140,3 +140,5 @@ import utils
 mods = utils.get_valid_plugins()
 for mod in mods:
     INSTALLED_APPS.append('webengine.' + mod[0])
+
+INSTALLED_APPS.append('django.contrib.admin')
