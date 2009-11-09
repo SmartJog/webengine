@@ -213,6 +213,10 @@ class _Psycopg2(object):
         self.__conf_file__ = conf_file
         self.__conn_pool__ = None
         self.__name__ = function.__name__
+        self.__doc__ = function.__doc__
+        self.__module__ = function.__module__
+        self.__dict__.update(function.__dict__)
+
 
     class DatabaseError(psycopg2.Error):
         """ Raised when database connection error occurs. """
