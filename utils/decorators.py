@@ -255,4 +255,4 @@ class _Psycopg2(object):
             # We do not want our users to have to 'import psycopg2' to
             # handle the module's underlying database errors
             _, value, traceback = sys.exc_info()
-            raise DatabaseError, value, traceback
+            raise _Psycopg2.DatabaseError, value, traceback
