@@ -11,6 +11,7 @@ from psycopg2.pool import ThreadedConnectionPool
 
 import importer
 import psycopg2
+import sys
 
 class _CheckRenderMode(object):
     """

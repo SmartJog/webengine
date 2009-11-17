@@ -10,6 +10,7 @@ Version 0.7.0~dev
       init because the html renderer uses the function context to determine where
       it will have to find the template. In that case, not setting these values
       is leading to an error : 'template not found webengine.utils/index.html'.
+	* Added a missing 'import sys' on decorators.py
 
 Version 0.6.0 Released on 2009/11/03
 
