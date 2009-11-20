@@ -1,4 +1,4 @@
-Version 0.7.0~dev
+Version 0.7.0 Released on 2009/11/20
 
 	* Added /admin/ site (enabled by ENABLE_ADMIN setting)
 	* Added a manage_pgconn(conf_file) decorator to handle DB conns, Closes: #2559.
