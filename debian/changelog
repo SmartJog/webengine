@@ -1,3 +1,9 @@
+webengine (0.7.1~dev-1) unstable; urgency=low
+
+  * New upstream release
+
+ -- Thomas SOUVIGNET <thomas.souvignet@smartjog.com>  Mon, 23 Nov 2009 10:58:40 +0100
+
 webengine (0.7.0-1) unstable; urgency=low
 
   * New upstream release.

@@ -1,3 +1,7 @@
+Version 0.7.1~dev
+
+	* Now manage_pgconn tries to reconnect to database when connection is lost, closes: #2657.
+
 Version 0.7.0 Released on 2009/11/20
 
 	* Added /admin/ site (enabled by ENABLE_ADMIN setting)

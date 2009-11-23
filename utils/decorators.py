@@ -198,7 +198,7 @@ def proxy_func(plugin):
 
 
 def manage_pgconn(conf_file):
-    """ Manage the postgresql database connection using 
+    """ Manage the postgresql database connection using
     information stored on conf_file """
     def __nested__(func):
         return _Psycopg2(func, conf_file)
@@ -240,7 +240,12 @@ class _Psycopg2(object):
             # a valid connection
             if conn.closed is 1:
                 old_conn = conn
-                conn = self.__conn_pool__.getconn()
+
+                # WARNING : we use here a "protected" method since the ThreadedConnectionPool class
+                # doesn't allow us to reconnect a lost connection properly. We may need to rewrite
+                # this in case of API changes.
+                conn = self.__conn_pool__._connect()
+
                 self.__conn_pool__.putconn(old_conn)
             try:
                 try:
