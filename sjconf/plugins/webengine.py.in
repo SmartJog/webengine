@@ -18,12 +18,7 @@ class Plugin(PluginWithTemplate):
         return Plugin.ConfSection
 
     def conf_types(self):
-        return (('webengine','profile','sequence'),('webengine','language','sequence'),
-                ('webengine','default_url','sequence'),('webengine','authorized_mods','list'),
-                ('webengine','skin','sequence'), ('webengine','db_engine','sequence'),
-                ('webengine','db_name','sequence'), ('webengine','db_user','sequence'),
-                ('webengine','db_password','sequence'), ('webengine','db_host','sequence'),
-                ('webengine','db_port','sequence'))
+        return (('webengine', 'authorized_mods', 'list'), )
 
     def conf_files_path(self):
         return (self.sjconf.etc_dir + '/webengine/webengine-conf.conf',)
