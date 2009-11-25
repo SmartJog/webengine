@@ -1,5 +1,6 @@
 man1_MANS = \
-	we_acluser.man
+	we_acluser.man \
+	we_manageuser.man
 
 SUFFIXES = .t2t
 

@@ -10,7 +10,7 @@ edit = sed \
 settings.py: settings.py.in Makefile
 	$(edit) $< > $@
 
-dist_bin_SCRIPTS = bin/we_acluser bin/we_adduser bin/we_deluser bin/we_listuser
+dist_bin_SCRIPTS = bin/we_acluser bin/we_adduser bin/we_deluser bin/we_listuser bin/we_manageuser
 
 CLEANFILES = settings.py
 EXTRA_DIST = settings.py.in

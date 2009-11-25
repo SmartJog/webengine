@@ -1,0 +1,39 @@
+we_manageuser
+webengine
+%%mtime
+
+%!target : man
+%!encoding : utf-8
+%!postproc(man): "^(\.TH.*) 1 "  "\1 1 "
+
+= NAME =
+
+we_manageuser - manage webengine users
+
+= SYNOPSIS =
+
+**we_manageuser** [__options__...]
+
+= DESCRIPTION =
+
+**we_manageuser** is a command line interface to do basic user management for
+**webengine**.
+
+= OPTIONS =
+
+: -**l**, --**list**
+List users
+
+: -**a**, --**add**=username
+Create user. This will ask a few question a register the user in **webengine**
+database.
+
+: -**r**, --**remove**
+Remove user.
+
+
+= AUTHOR =
+
+The **we_manageuser** script and this manual page have been written by the
+**SmartJog** company.
+
