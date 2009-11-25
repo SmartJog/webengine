@@ -118,23 +118,23 @@ ACCEPTABLE_OUTPUT_MODES = {
 LOG_FILENAME = '/var/log/webengine/webengine.log'
 LOG_FORMAT = "%(asctime)s:%(levelname)s: %(message)s"
 
-# Use configuration from sjconf
-sjconf_path = '/etc/webengine/webengine-conf.conf'
-import os.path
-if os.path.exists(sjconf_path):
-    execfile(sjconf_path)
-else:
-    PROFILE             = 'tvrbox'
-    LANGUAGE_CODE       = 'fr_FR'
-    DEFAULT_URL         = 'welcome'
-    AUTHORIZED_MODS     = []
-    DATABASE_ENGINE     = 'postgresql_psycopg2'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-    DATABASE_NAME       = 'rxtx'             # Or path to database file if using sqlite3.
-    DATABASE_USER       = 'webengine'             # Not used with sqlite3.
-    DATABASE_PASSWORD   = 'webengine'         # Not used with sqlite3.
-    DATABASE_HOST       = ''             # Set to empty string for localhost. Not used with sqlite3.
-    DATABASE_PORT       = ''             # Set to empty string for default. Not used with sqlite3.
+# Get configuration file
+from ConfigParser import RawConfigParser
+conf = RawConfigParser()
+conf.read('@webenginesysconfdir@/webengine-conf.conf')
+items = dict(conf.items('webengine'))
 
+PROFILE             = items['profile']
+SKIN                = items['skin']
+LANGUAGE_CODE       = items['language_code']
+DEFAULT_URL         = items['default_url']
+AUTHORIZED_MODS     = items['authorized_mods']
+DATABASE_ENGINE     = items['database_engine']
+DATABASE_NAME       = items['database_name']
+DATABASE_USER       = items['database_user']
+DATABASE_PASSWORD   = items['database_password']
+DATABASE_HOST       = items['database_host']
+DATABASE_PORT       = items['database_port']
 
 import utils
 mods = utils.get_valid_plugins()
