@@ -7,8 +7,9 @@ webengine (0.7.1~dev-1) unstable; urgency=low
   * Add myself to Uploaders.
   * Bumped standards-version to 3.8.3.
   * Add missing ${misc:Depends} to sjconf-webengine-all.
+  * Fix webengine postinst. (Closes: #2693)
 
- -- Benoit Mauduit <benoit.mauduit@smartjog.com>  Wed, 25 Nov 2009 14:46:40 +0100
+ -- Benoit Mauduit <benoit.mauduit@smartjog.com>  Wed, 25 Nov 2009 18:50:10 +0100
 
 webengine (0.7.0-1) unstable; urgency=low
 
