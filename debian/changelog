@@ -9,7 +9,11 @@ webengine (0.7.1~dev-1) unstable; urgency=low
   * Add missing ${misc:Depends} to sjconf-webengine-all.
   * Fix webengine postinst. (Closes: #2693)
 
- -- Benoit Mauduit <benoit.mauduit@smartjog.com>  Wed, 25 Nov 2009 18:50:10 +0100
+  [ Guillaume Camera ]
+  * Added myself to Uploaders.
+  * Added missing sjconf-webengine-tracking depends to sjconf-webengine-all.
+
+ -- Guillaume Camera <guillaume.camera@smartjog.com>  Thu, 26 Nov 2009 11:33:11 +0100
 
 webengine (0.7.0-1) unstable; urgency=low
 
