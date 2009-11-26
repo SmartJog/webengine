@@ -233,31 +233,15 @@ class _Psycopg2(object):
             connector = "host=%(host)s port=%(port)s user=%(user)s password=%(password)s dbname=%(dbname)s" % items
             self.__conn_pool__ = ThreadedConnectionPool(1, 200, connector)
 
-        try:
-            conn = self.__conn_pool__.getconn()
-            # Try to get a new valid connection if the one we got is
-            # already closed, since getconn() does not necessarily return
-            # a valid connection
-            if conn.closed is 1:
-                old_conn = conn
-
-                # WARNING : we use here a "protected" method since the ThreadedConnectionPool class
-                # doesn't allow us to reconnect a lost connection properly. We may need to rewrite
-                # this in case of API changes.
-                conn = self.__conn_pool__._connect()
-
-                self.__conn_pool__.putconn(old_conn)
             try:
-                try:
-                    return self.__func__(conn, *args, **kw)
-                finally:
-                    self.__conn_pool__.putconn(conn)
+                ret = self.__func__(conn, *args, **kw)
+                self.__conn_pool__.putconn(conn, close=False)
+                return ret
+            except psycopg2.Error, _error:
+                self.__conn_pool__.putconn(conn, close=True)
+                raise
             except:
                 if conn.closed != 1:
-                    conn.rollback()
+                   conn.rollback()
+                self.__conn_pool__.putconn(conn, close=False)
                 raise
-        except psycopg2.Error, _error:
-            # We do not want our users to have to 'import psycopg2' to
-            # handle the module's underlying database errors
-            _, value, traceback = sys.exc_info()
-            raise _Psycopg2.DatabaseError, value, traceback
