@@ -27,7 +27,7 @@ Description: Sjconf plugin for WebEngine
 
 Package: sjconf-webengine-all
 Architecture: all
-Depends: ${misc:Depends}, sjconf-webengine, sjconf-webengine-extract, sjconf-webengine-welcome, sjconf-webengine-tracking
+Depends: ${misc:Depends}, sjconf-webengine, sjconf-webengine-extract, sjconf-webengine-welcome, sjconf-webengine-tracking, sjconf-webengine-wc10
 Description: WebEngine -- SJConf plugins metapackage
  This package depends on the full suite of SJConf plugins for webengine and its
  plugins.
