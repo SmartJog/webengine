@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
 from django.core.urlresolvers import reverse, NoReverseMatch
 
+import log
 
 def get_valid_plugins():
     """

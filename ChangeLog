@@ -7,6 +7,7 @@ Version 0.7.1~dev
 	* Add we_manageuser, alternative to we_{add|del|list}user,
 	  closes: #2685.
 	* Add {% sjversion %} template tag, refs: #2622.
+	* Now utils/__init__.py imports webengine.utils.log, closes: #2701.
 
 Version 0.7.0 Released on 2009/11/20
 
