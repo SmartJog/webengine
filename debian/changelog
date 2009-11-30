@@ -2,6 +2,7 @@ webengine (0.7.1~dev-1) unstable; urgency=low
 
   [ Thomas SOUVIGNET ]
   * New upstream release. (Closes: #2657, #2659, #2656)
+  * Installation procedure correction. (Closes: #2661)
 
   [ Benoit Mauduit ]
   * Add myself to Uploaders.
@@ -14,7 +15,7 @@ webengine (0.7.1~dev-1) unstable; urgency=low
   * Added myself to Uploaders.
   * Added missing sjconf-webengine-tracking depends to sjconf-webengine-all.
 
- -- Benoit Mauduit <benoit.mauduit@smartjog.com>  Thu, 26 Nov 2009 13:37:07 +0100
+ -- Thomas SOUVIGNET <tsouvign@tsouvign.lab.fr.lan>  Mon, 30 Nov 2009 17:06:36 +0100
 
 webengine (0.7.0-1) unstable; urgency=low
 
