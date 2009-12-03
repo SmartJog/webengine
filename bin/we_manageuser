@@ -39,6 +39,8 @@ def main():
         version="%prog " + VERSION, option_list=[
             optparse.Option("-a", "--add",    dest="add",
                 help="add the given user", metavar="username"),
+            optparse.Option("-p", "--passwd", dest="passwd",
+                help="change password of given user", metavar="username"),
             optparse.Option("-r", "--remove", dest="remove",
                 help="remove the given user", metavar="username"),
             optparse.Option("-l", "--list",   dest="list",
@@ -83,6 +85,23 @@ def main():
 
         except KeyboardInterrupt:
             print "Creation Aborted"
+
+    elif options.passwd:
+
+        user = User.objects.get(username=options.passwd)
+        try:
+            passwd = getpass.getpass('New password: ')
+            passwd2 = getpass.getpass('Type your new password again: ')
+
+            if passwd != passwd2:
+                print 'Password mismatch, exiting…'
+                del user
+                sys.exit(1)
+
+            user.set_password(passwd)
+            user.save()
+        except KeyboardInterrupt:
+            print "Password change aborted"
 
 if __name__ == "__main__":
     check_profile()
