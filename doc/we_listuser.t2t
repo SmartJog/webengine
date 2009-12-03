@@ -1,0 +1,25 @@
+we_listuser
+webengine
+%%mtime
+
+%!target : man
+%!encoding : utf-8
+%!postproc(man): "^(\.TH.*) 1 "  "\1 1 "
+
+= NAME =
+
+we_listuser - list all webengine users
+
+= SYNOPSIS =
+
+**we_listuser**
+
+= DESCRIPTION =
+
+**we_listuser** lists all users registered in **webengine** database.
+
+= AUTHOR =
+
+The **we_listuser** script and this manual page have been written by the
+**SmartJog** company.
+
