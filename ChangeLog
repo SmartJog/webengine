@@ -10,6 +10,7 @@ Version 0.7.1~dev
 	* Now utils/__init__.py imports webengine.utils.log, closes: #2701.
 	* Make we_manageuser actually set password, refs: #2685.
 	* Add password changing tools, closes: #2687.
+	* Add missing manpages we_{adduser|deluser|listuser}, closes: #2688.
 
 Version 0.7.0 Released on 2009/11/20
 
