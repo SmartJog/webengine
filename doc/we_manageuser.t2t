@@ -31,6 +31,8 @@ database.
 : -**r**, --**remove**
 Remove user.
 
+: -**p**, --**passwd**
+Change user's password.
 
 = AUTHOR =
 
