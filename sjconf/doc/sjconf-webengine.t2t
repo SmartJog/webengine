@@ -35,6 +35,9 @@ Change the main skin, by default set to "front/base.html".
 : **enable_admin** = //boolean//
 Enable/Disabled django administration page on /admin/
 
+: **time_zone** = //Europe/Paris//
+Define the time zone.
+
 
 = EXAMPLE =
 

@@ -9,13 +9,18 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+# Get configuration file
+from ConfigParser import RawConfigParser
+conf = RawConfigParser()
+conf.read('@webenginesysconfdir@/webengine-conf.conf')
+items = dict(conf.items('webengine'))
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'Europe/Paris'
+TIME_ZONE = items['time_zone']
 
 SITE_ID = 1
 
@@ -118,11 +123,6 @@ ACCEPTABLE_OUTPUT_MODES = {
 LOG_FILENAME = '/var/log/webengine/webengine.log'
 LOG_FORMAT = "%(asctime)s:%(levelname)s: %(message)s"
 
-# Get configuration file
-from ConfigParser import RawConfigParser
-conf = RawConfigParser()
-conf.read('@webenginesysconfdir@/webengine-conf.conf')
-items = dict(conf.items('webengine'))
 
 PROFILE             = items['profile']
 SKIN                = items['skin']
