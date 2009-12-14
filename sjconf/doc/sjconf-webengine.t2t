@@ -38,6 +38,9 @@ Enable/Disabled django administration page on /admin/
 : **time_zone** = //Europe/Paris//
 Define the time zone.
 
+: **authorized_mods** = //welcome, ...//
+List of **webengine**(8) modules enabled for non-authenticated users (wild
+guess).
 
 = EXAMPLE =
 

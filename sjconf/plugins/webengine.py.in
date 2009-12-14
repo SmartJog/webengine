@@ -18,6 +18,12 @@ class Plugin(PluginWithTemplate):
         return ('apache2',)
 
     class ConfSection(Conf.ConfSection):
+
         def __getitem__(self, key):
-            return Conf.ConfSection.__getitem__(self, key)
+            value = Conf.ConfSection.__getitem__(self, key)
+
+            if  key == 'authorized_mods_list':
+                return ', '.join(value)
+            else:
+                return value
 

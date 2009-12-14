@@ -12,6 +12,9 @@ Version 0.7.1~dev
 	* Add TIME_ZONE option in webengine sjconf, closes: #2715.
 	* Fixed logging format to display logger name.
 	* Drop useless sjconf plugin overrides.
+	* authorized_mods should not be represented as a python list in
+	  generated configuration and add documentation about this option,
+	  refs: #2656.
 
 Version 0.7.0 Released on 2009/11/20
 
