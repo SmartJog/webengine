@@ -1,7 +1,6 @@
-webengine (0.7.1~dev-1) unstable; urgency=low
+webengine (0.7.1-1) unstable; urgency=low
 
   [ Thomas Souvignet ]
-  * New upstream release. (Closes: #2657, #2659, #2656)
   * Installation procedure correction. (Closes: #2661)
 
   [ Benoit Mauduit ]
@@ -19,8 +18,10 @@ webengine (0.7.1~dev-1) unstable; urgency=low
   * Set Philippe Bridant as Maintainer.
   * Clean up Uploaders.
   * Replace usage of gdartigu by gilles.dartiguelongue.
+  * New upstream release. (Closes: #2622, #2656, #2657, #2685, #2687, #2688,
+    #2690, #2715)
 
- -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Mon, 14 Dec 2009 16:02:04 +0100
+ -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Mon, 14 Dec 2009 16:03:03 +0100
 
 webengine (0.7.0-1) unstable; urgency=low
 
