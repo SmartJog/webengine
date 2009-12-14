@@ -1,13 +1,11 @@
 Version 0.7.1~dev
 
 	* Now manage_pgconn tries to reconnect to database when connection is lost, closes: #2657.
-	* Now get_valid_plugins() logs when encountering a plugin it can't load, closes: #2659.
 	* Fix access method to configuration file, closes: #2656.
 	* Fix wrong sjconf types, closes: #2690.
 	* Add we_manageuser, alternative to we_{add|del|list}user,
 	  closes: #2685.
 	* Add {% sjversion %} template tag, refs: #2622.
-	* Now utils/__init__.py imports webengine.utils.log, closes: #2701.
 	* Make we_manageuser actually set password, refs: #2685.
 	* Add password changing tools, closes: #2687.
 	* Add missing manpages we_{adduser|deluser|listuser}, closes: #2688.
