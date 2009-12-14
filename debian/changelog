@@ -1,6 +1,6 @@
 webengine (0.7.1~dev-1) unstable; urgency=low
 
-  [ Thomas SOUVIGNET ]
+  [ Thomas Souvignet ]
   * New upstream release. (Closes: #2657, #2659, #2656)
   * Installation procedure correction. (Closes: #2661)
 
@@ -15,7 +15,12 @@ webengine (0.7.1~dev-1) unstable; urgency=low
   * Added myself to Uploaders.
   * Added missing sjconf-webengine-tracking depends to sjconf-webengine-all.
 
- -- Thomas SOUVIGNET <tsouvign@tsouvign.lab.fr.lan>  Mon, 30 Nov 2009 17:06:36 +0100
+  [ Gilles Dartiguelongue ]
+  * Set Philippe Bridant as Maintainer.
+  * Clean up Uploaders.
+  * Replace usage of gdartigu by gilles.dartiguelongue.
+
+ -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Mon, 14 Dec 2009 16:02:04 +0100
 
 webengine (0.7.0-1) unstable; urgency=low
 
@@ -30,13 +35,13 @@ webengine (0.6.0-1) unstable; urgency=low
   * Distribute man pages in appropriate packages.
   * Add conflict with older sjrtools to control.
 
- -- Gilles Dartiguelongue <gdartigu@smartjog.com>  Tue, 03 Nov 2009 12:08:25 +0100
+ -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Tue, 03 Nov 2009 12:08:25 +0100
 
 webengine (0.5.0-1) unstable; urgency=low
 
   * New upstream release.
 
- -- Gilles Dartiguelongue <gdartigu@smartjog.com>  Thu, 24 Sep 2009 16:09:19 +0200
+ -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Thu, 24 Sep 2009 16:09:19 +0200
 
 webengine (0.4.1-1) unstable; urgency=low
 
