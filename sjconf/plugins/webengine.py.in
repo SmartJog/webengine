@@ -5,17 +5,8 @@ class Plugin(PluginWithTemplate):
 
     VERSION = '@VERSION@'
 
-    def name(self):
-        return __name__
-
-    def version(self):
-        return Plugin.VERSION
-
     def template_path(self, file_path, confs_to_test):
         return self.sjconf.etc_dir + '/webengine/sjconf/templates/webengine/webengine.conf'
-
-    def conf_section_class(self):
-        return Plugin.ConfSection
 
     def conf_types(self):
         return (('webengine', 'authorized_mods', 'list'), )

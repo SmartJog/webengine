@@ -11,6 +11,7 @@ Version 0.7.1~dev
 	* Add missing manpages we_{adduser|deluser|listuser}, closes: #2688.
 	* Add TIME_ZONE option in webengine sjconf, closes: #2715.
 	* Fixed logging format to display logger name.
+	* Drop useless sjconf plugin overrides.
 
 Version 0.7.0 Released on 2009/11/20
 
