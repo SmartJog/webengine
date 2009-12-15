@@ -1,9 +1,10 @@
-webengine (0.7.2~dev-1) unstable; urgency=low
+webengine (0.7.2-1) unstable; urgency=low
 
+  [ Thomas Souvignet ]
   * New upstream release
   * Added myself to uploaders
 
- -- Thomas Souvignet <thomas.souvignet@smartjog.com>  Tue, 15 Dec 2009 14:29:45 +0100
+ -- Thomas Souvignet <thomas.souvignet@smartjog.com>  Tue, 15 Dec 2009 14:50:09 +0100
 
 webengine (0.7.1-1) unstable; urgency=low
 

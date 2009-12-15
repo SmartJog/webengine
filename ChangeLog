@@ -1,4 +1,4 @@
-Version 0.7.2~dev
+Version 0.7.2 Released on 2009/12/15
 
 	* Fix manage_pgconn decorator, refs: #2657.
 
