@@ -230,7 +230,7 @@ class _Psycopg2(object):
             conf = RawConfigParser()
             conf.read(self.__conf_file__)
             items = dict(conf.items('database'))
-            connector = "host=%(host)s port=%(port)s user=%(user)spassword=%(password)s dbname=%(dbname)s" % items
+            connector = "host=%(host)s port=%(port)s user=%(user)s password=%(password)s dbname=%(dbname)s" % items
             self.__conn_pool__ = ThreadedConnectionPool(1, 200, connector)
 
         try:
