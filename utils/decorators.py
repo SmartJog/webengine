@@ -230,8 +230,14 @@ class _Psycopg2(object):
             conf = RawConfigParser()
             conf.read(self.__conf_file__)
             items = dict(conf.items('database'))
-            connector = "host=%(host)s port=%(port)s user=%(user)s password=%(password)s dbname=%(dbname)s" % items
+            connector = "host=%(host)s port=%(port)s user=%(user)spassword=%(password)s dbname=%(dbname)s" % items
             self.__conn_pool__ = ThreadedConnectionPool(1, 200, connector)
+
+        try:
+            conn = self.__conn_pool__.getconn()
+            # Try to get a new valid connection if the one we got is
+            # already closed, since getconn() does not necessarily return
+            # a valid connection
 
             try:
                 ret = self.__func__(conn, *args, **kw)
@@ -245,3 +251,8 @@ class _Psycopg2(object):
                    conn.rollback()
                 self.__conn_pool__.putconn(conn, close=False)
                 raise
+        except psycopg2.Error, _error:
+            # We do not want our users to have to 'import psycopg2' to
+            # handle the module's underlying database errors
+            _, value, traceback = sys.exc_info()
+            raise _Psycopg2.DatabaseError, value, traceback

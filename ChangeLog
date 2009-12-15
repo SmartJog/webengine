@@ -1,3 +1,7 @@
+Version 0.7.2~dev
+
+	* Fix manage_pgconn decorator, refs: #2657.
+
 Version 0.7.1 Released on 2009/12/14
 
 	* Now manage_pgconn tries to reconnect to database when connection is lost, closes: #2657.
