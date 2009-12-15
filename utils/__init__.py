@@ -57,8 +57,6 @@ def webengine_template_processor(request):
         except AttributeError:
             continue
 
-    log.debug(repr(menus))
-
     #Sort menus by position and alphabetical order
     def cmp_menu(x, y):
         if 'position' not in x or 'position' not in y:
@@ -70,7 +68,6 @@ def webengine_template_processor(request):
         else:
             return -1
     menus.sort(cmp_menu)
-    log.debug(repr(menus))
 
     return {
         'profile': settings.PROFILE,
