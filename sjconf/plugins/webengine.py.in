@@ -9,7 +9,7 @@ class Plugin(PluginWithTemplate):
         return self.sjconf.etc_dir + '/webengine/sjconf/templates/webengine/webengine.conf'
 
     def conf_types(self):
-        return (('webengine', 'authorized_mods', 'list'), )
+        return (('webengine', 'authorized_mods', 'list'), ('webengine', 'enable_admin', 'bool'),)
 
     def conf_files_path(self):
         return (self.sjconf.etc_dir + '/webengine/webengine-conf.conf',)
