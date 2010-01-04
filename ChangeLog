@@ -1,4 +1,4 @@
-Version 0.7.3~dev
+Version 0.7.3 Released on 2010/01/04
 
 	* Fix enable_admin conf key, closes: #2816.
 	* settings.ENABLE_ADMIN variable was removed, closes: #2824.
