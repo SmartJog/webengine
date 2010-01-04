@@ -1,4 +1,4 @@
-Version 0.7.4~dev
+Version 0.7.4 Released on 2010/01/04
 
     * Added utils/admin.py file containing UserSetting class so UserSettings can be
       configured via admin interface, closes: #2830.

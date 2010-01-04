@@ -1,4 +1,4 @@
-webengine (0.7.4~dev-1) unstable; urgency=low
+webengine (0.7.4-1) unstable; urgency=low
 
   * New upstream release. (Closes: #2830, #2822)
 
