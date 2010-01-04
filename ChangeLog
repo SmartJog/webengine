@@ -1,6 +1,7 @@
 Version 0.7.5~dev
 
     * utils/admin.py was not provided.
+    * DEBUG_TEMPLATE has to be set after DEBUG on settings.py
 
 Version 0.7.4 Released on 2010/01/04
 

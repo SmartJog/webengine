@@ -1,6 +1,5 @@
 # Django settings for rxtxmanager project.
 
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
         ('Thomas Meson', 'thomas.meson@smartjog.com'),
@@ -144,3 +143,5 @@ for mod in mods:
 ENABLE_ADMIN = "enable_admin" in items and conf.getboolean("webengine", "enable_admin") or False
 if ENABLE_ADMIN:
     INSTALLED_APPS.append('django.contrib.admin')
+
+TEMPLATE_DEBUG = DEBUG
