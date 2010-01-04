@@ -141,5 +141,6 @@ mods = utils.get_valid_plugins()
 for mod in mods:
     INSTALLED_APPS.append('webengine.' + mod[0])
 
-if conf.getboolean("webengine", "enable_admin"):
+ENABLE_ADMIN = "enable_admin" in items and conf.getboolean("webengine", "enable_admin") or False
+if ENABLE_ADMIN:
     INSTALLED_APPS.append('django.contrib.admin')
