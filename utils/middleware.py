@@ -1,6 +1,10 @@
 from django.contrib.auth import authenticate, login, get_user
 from django.contrib.auth.models import AnonymousUser
 
+import logging
+import log
+import traceback
+
 class UserSettingMiddleware(object):
     def process_request(self, request):
         from utils.models import UserSetting
@@ -41,3 +45,9 @@ class BasicAuthMiddleware(object):
                 if user.is_authenticated():
                     request.user = user
                     login(request, user)
+
+class ExceptionHandlingMiddleware(object):
+    def process_exception(self, request, exception):
+        logger = logging.getLogger('webengine.utils.exceptions')
+        logger.error(traceback.format_exc())
+        return None

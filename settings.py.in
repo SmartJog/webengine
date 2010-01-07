@@ -58,6 +58,7 @@ MIDDLEWARE_CLASSES = (
     'webengine.utils.middleware.SSLAuthMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'webengine.utils.middleware.UserSettingMiddleware',
+    'webengine.utils.middleware.ExceptionHandlingMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
