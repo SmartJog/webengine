@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-    A tool to list and modify webengine's user access control list.
+    A tool to list and modify webengine's user accounts.
 """
 
 import os
