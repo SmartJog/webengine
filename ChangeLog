@@ -1,4 +1,4 @@
-Version 0.8.0~dev
+Version 0.8.0 Released on 2010/01/12
 
 	* Add exception handling middleware, closes: #2572.
 
