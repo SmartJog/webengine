@@ -1,3 +1,10 @@
+webengine (0.8.1~dev) unstable; urgency=low
+
+  * New upstream release.
+  * Added myself to Uploaders.
+
+ -- Rémi Cardona <remi.cardona@smartjog.com>  Tue, 12 Jan 2010 12:06:54 +0100
+
 webengine (0.8.0-1) unstable; urgency=low
 
   * New upstream release

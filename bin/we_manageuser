@@ -20,6 +20,7 @@ if '/var/lib/sjconf/plugins' in sys.path:
     sys.path.remove('/var/lib/sjconf/plugins')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'webengine.settings'
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
 
 VERSION = "0.1.0"
@@ -60,7 +61,12 @@ def main():
                 user.id, user.username, user.get_full_name(), user.email,
                 ', '.join(extra))
     elif options.remove:
-        user = User.objects.get(username=options.remove)
+        try:
+            user = User.objects.get(username=options.remove)
+        except ObjectDoesNotExist:
+            print "User", options.remove, "does not exist"
+            sys.exit(1)
+
         print 'Removing', user.username
         user.delete()
     elif options.add:
@@ -88,7 +94,12 @@ def main():
 
     elif options.passwd:
 
-        user = User.objects.get(username=options.passwd)
+        try:
+            user = User.objects.get(username=options.passwd)
+        except ObjectDoesNotExist:
+            print "User", options.passwd, "does not exist"
+            sys.exit(1)
+
         try:
             passwd = getpass.getpass('New password: ')
             passwd2 = getpass.getpass('Type your new password again: ')

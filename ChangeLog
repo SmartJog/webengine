@@ -1,3 +1,7 @@
+Version 0.8.1~dev
+
+	* Improve exception handling in we_ tools, refs: #2846.
+
 Version 0.8.0 Released on 2010/01/12
 
 	* Add exception handling middleware, closes: #2572.
