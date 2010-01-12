@@ -34,6 +34,29 @@ Remove user.
 : -**p**, --**passwd**
 Change user's password.
 
+: -**N**, --**db-name**
+Database name
+
+: -**U**, --**db-user**
+Database connection user
+
+: -**W**, --**db-password**
+Database connection password
+
+: -**H**, --**db-host**
+Database server host
+
+: -**P**, --**db-port**
+Database server port
+
+
+= KNOWN LIMITATIONS =
+
+When manually setting database connection settings (using the above --db-
+options), **ALL** five options must be set on the command line or
+**we_manageuser** will refuse to work.
+
+
 = AUTHOR =
 
 The **we_manageuser** script and this manual page have been written by the

@@ -1,6 +1,6 @@
-webengine (0.8.1~dev) unstable; urgency=low
+webengine (0.9.0~dev) unstable; urgency=low
 
-  * New upstream release.
+  * New upstream release (Closes: #2846)
   * Added myself to Uploaders.
 
  -- Rémi Cardona <remi.cardona@smartjog.com>  Tue, 12 Jan 2010 12:06:54 +0100

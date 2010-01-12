@@ -20,8 +20,8 @@ if '/var/lib/sjconf/plugins' in sys.path:
     sys.path.remove('/var/lib/sjconf/plugins')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'webengine.settings'
 
+from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
-from django.contrib.auth.models import User
 
 VERSION = "0.1.0"
 
@@ -48,7 +48,39 @@ def main():
                 help="list users",   action="store_true",
                 default=False),
             ])
+
+    db_group = optparse.OptionGroup(parser, "WebEngine Database Options",
+        "Note: *ALL* these options must be used together if you wish to "
+        "change the default database connection settings.")
+    db_group.add_option("-N", "--db-name", dest="db_name",
+        help="database name", default=None)
+    db_group.add_option("-U", "--db-user", dest="db_user",
+        help="database user", default=None)
+    db_group.add_option("-W", "--db-password", dest="db_password",
+        help="database password", default=None)
+    db_group.add_option("-H", "--db-host", dest="db_host",
+        help="database host", default=None)
+    db_group.add_option("-P", "--db-port", dest="db_port",
+        help="database port", default=None)
+    parser.add_option_group(db_group)
+
     (options, _args) = parser.parse_args()
+
+    if options.db_name and options.db_user and options.db_password and options.db_host and options.db_port:
+        settings.configure(
+            DATABASE_ENGINE="postgresql_psycopg2",
+            DATABASE_NAME=options.db_name,
+            DATABASE_USER=options.db_user,
+            DATABASE_PASSWORD=options.db_password,
+            DATABASE_HOST=options.db_host,
+            DATABASE_PORT=options.db_port)
+    elif options.db_name or options.db_user or options.db_password or options.db_host or options.db_port:
+        print "Must set *ALL* database-related options. See --help for more info."
+        sys.exit(2)
+
+    # Uses django settings, must be imported after eventual call to
+    # settings.configure()
+    from django.contrib.auth.models import User
 
     if options.list:
         for user in User.objects.all():

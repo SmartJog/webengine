@@ -30,6 +30,21 @@ Add ACLs for user __username__
 : -**r**, --**remove**
 Remove ACLs for user __username__
 
+: -**N**, --**db-name**
+Database name
+
+: -**U**, --**db-user**
+Database connection user
+
+: -**W**, --**db-password**
+Database connection password
+
+: -**H**, --**db-host**
+Database server host
+
+: -**P**, --**db-port**
+Database server port
+
 
 = EXAMPLES =
 
@@ -41,6 +56,13 @@ Add access to welcome page for user foo:
 
 Remove access to browser page for user bar:
     we_acluser --remove bar see_browser
+
+
+= KNOWN LIMITATIONS =
+
+When manually setting database connection settings (using the above --db-
+options), **ALL** five options must be set on the command line or
+**we_acluser** will refuse to work.
 
 
 = AUTHOR =
