@@ -1,4 +1,4 @@
-Version 0.9.0~dev
+Version 0.9.0 Released on 2010/01/15
 
 	* Improve exception handling in we_ tools, refs: #2846.
 	* Add cmdline options to we_ tools to change DB, closes: #2846.
