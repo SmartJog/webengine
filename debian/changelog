@@ -1,8 +1,8 @@
-webengine (1.0.0~dev-1) unstable; urgency=low
+webengine (0.10.0~dev-1) unstable; urgency=low
 
   * New upstream release.
 
- -- Thomas Souvignet <thomas.souvignet@smartjog.com>  Tue, 19 Jan 2010 16:53:42 +0100
+ -- Thomas Souvignet <thomas.souvignet@smartjog.com>  Tue, 19 Jan 2010 17:22:18 +0100
 
 webengine (0.9.0-1) unstable; urgency=low
 

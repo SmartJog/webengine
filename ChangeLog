@@ -1,4 +1,4 @@
-Version 1.0.0~dev
+Version 0.10.0~dev
 
 	* New decorator using new PgConnManager implementation, refs: #2807.
 
