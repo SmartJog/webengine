@@ -9,7 +9,7 @@ Standards-Version: 3.8.3
 
 Package: webengine
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, python-django (>= 1.0.2), python-simplejson, importer, python-imaging
+Depends: ${misc:Depends}, ${python:Depends}, python-django (>= 1.0.2), python-simplejson, importer, python-imaging, python-sjutils (>= 1.15)
 Recommends: sjconf-webengine
 Conflicts: sjrtools (<< 0.33)
 XB-Python-Version: ${python:Versions}
