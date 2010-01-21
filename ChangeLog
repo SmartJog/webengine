@@ -1,4 +1,4 @@
-Version 0.10.0~dev
+Version 0.10.0 Released on 2010/01/21
 
 	* New decorator using new PgConnManager implementation, refs: #2807.
 	* Fix sjconf debug key support, closes: #2902.
