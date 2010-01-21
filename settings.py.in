@@ -123,7 +123,7 @@ LOG_FILENAME = '/var/log/webengine/webengine.log'
 LOG_FORMAT = "%(asctime)s:%(levelname)s:%(name)s: %(message)s"
 
 
-DEBUG               = items['debug']
+DEBUG               = conf.getboolean("webengine", "debug")
 PROFILE             = items['profile']
 SKIN                = items['skin']
 LANGUAGE_CODE       = items['language_code']
