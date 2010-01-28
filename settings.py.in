@@ -70,6 +70,7 @@ ROOT_URLCONF = 'webengine.urls'
 
 TEMPLATE_DIRS = (
     '/usr/share/webengine/templates',
+    '/usr/share/python-support/python-django/django/contrib/admin/templates',
 )
 
 INSTALLED_APPS = [
