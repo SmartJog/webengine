@@ -37,6 +37,9 @@ if __name__ == '__main__':
     argv = os.sys.argv
 
     if len(argv) > 1:
+        if argv[1] in ('--help', '--usage', '-h'):
+            print('Usage: %s [username]' % argv[0])
+            sys.exit(0)
         username = argv[1]
     else:
         username = raw_input('Username: ')

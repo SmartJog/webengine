@@ -1,6 +1,7 @@
 Version 0.10.1~dev
 
-  * Fix admin template path, closes: #2903.
+	* Fix admin template path, closes: #2903.
+	* Added --help option in we_chpasswd, closes: #2910.
 
 Version 0.10.0 Released on 2010/01/21
 
