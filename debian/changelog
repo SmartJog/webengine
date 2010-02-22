@@ -1,9 +1,12 @@
-webengine (0.10.1~dev-1) unstable; urgency=low
+webengine (0.10.1-1) unstable; urgency=low
 
-  * New upstream release, closes: #2903.
+  [ Anthony Mavic ]
   * Added myself to Uploaders.
 
- -- Anthony Mavic <amavic@smartjog.com>  Thu, 28 Jan 2010 16:07:10 +0100
+  [ Nicolas Noirbent ]
+  * New upstream release, closes: #2903.
+
+ -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Mon, 22 Feb 2010 16:11:39 +0100
 
 webengine (0.10.0-1) unstable; urgency=low
 
