@@ -1,6 +1,7 @@
 Version 0.10.3~dev
 
 	* Switched default locale to en-US, closes: #2981.
+	* Check for txt2tags in configure.
 
 Version 0.10.2 Released on 2010/03/09
 

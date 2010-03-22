@@ -9,7 +9,7 @@ man1_MANS = \
 SUFFIXES = .t2t
 
 .t2t.man:
-	txt2tags -o $@ $<
+	$(TXT2TAGS) -o $@ $<
 
 CLEANFILES = $(man1_MANS)
 EXTRA_DIST = $(man1_MANS:.man=.t2t)
