@@ -1,6 +1,7 @@
 webengine (0.10.3~dev-1) unstable; urgency=low
 
   * New upstream release, closes: #2981.
+  * Update packaging for Lenny.
 
  -- Rémi Cardona <remi.cardona@smartjog.com>  Wed, 24 Mar 2010 14:42:48 +0100
 
