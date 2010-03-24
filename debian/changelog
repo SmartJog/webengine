@@ -1,3 +1,9 @@
+webengine (0.10.3~dev-1) unstable; urgency=low
+
+  * New upstream release, closes: #2981.
+
+ -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Wed, 24 Mar 2010 11:50:29 +0100
+
 webengine (0.10.2-1) unstable; urgency=low
 
   * New upstream release.
