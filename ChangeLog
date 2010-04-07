@@ -4,6 +4,7 @@ Version 0.10.3~dev
 	* Check for txt2tags in configure.
 	* Check for sed in configure.
 	* Don't distribute webengine.conf, only webengine.conf.in.
+	* Distribute and install the SQL schema.
 
 Version 0.10.2 Released on 2010/03/09
 

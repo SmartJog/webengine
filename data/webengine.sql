@@ -2,8 +2,6 @@
 -- PostgreSQL database dump
 --
 
-\connect rxtx
-
 SET client_encoding = 'UTF8';
 SET check_function_bodies = false;
 SET client_min_messages = warning;
@@ -608,4 +606,3 @@ ALTER TABLE ONLY utils_usersetting
 --
 -- PostgreSQL database dump complete
 --
-
