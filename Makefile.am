@@ -4,7 +4,7 @@ SUBDIRS = exporter utils etc templates sjconf doc data
 dist_webengine_PYTHON = __init__.py urls.py
 nodist_webengine_PYTHON =  settings.py
 
-edit = sed \
+edit = $(SED) \
 	-e 's|@webenginesysconfdir[@]|$(webenginesysconfdir)|g'
 
 settings.py: settings.py.in Makefile
