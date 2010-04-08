@@ -2,8 +2,9 @@ webengine (0.10.3~dev-1) unstable; urgency=low
 
   * New upstream release, closes: #2981.
   * Update packaging for Lenny.
+  * Ship SQL schemas in webengine-data.
 
- -- Rémi Cardona <remi.cardona@smartjog.com>  Wed, 24 Mar 2010 14:42:48 +0100
+ -- Rémi Cardona <remi.cardona@smartjog.com>  Thu, 08 Apr 2010 11:55:26 +0200
 
 webengine (0.10.2-1) unstable; urgency=low
 

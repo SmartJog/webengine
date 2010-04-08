@@ -17,6 +17,13 @@ Description: Django application for smartjog
  This is an empty box.
  Install webengine-* to add functionality to the webengine.
 
+Package: webengine-data
+Architecture: all
+Depends: ${misc:Depends}
+Suggests: postgresql
+Description: SmartJog schema for WebEngine
+ Provides SQL schemas to create WebEngine's postgres database.
+
 Package: sjconf-webengine
 Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}, webengine (= ${binary:Version}), sjconf1 (>= 1.2)
