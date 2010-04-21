@@ -3,6 +3,7 @@ webengine (0.10.3~dev-1) unstable; urgency=low
   * New upstream release, closes: #2981.
   * Update packaging for Lenny.
   * Ship SQL schemas in webengine-data.
+  * Removed sjconf1 from Build-Depends.
 
  -- Rémi Cardona <remi.cardona@smartjog.com>  Thu, 08 Apr 2010 11:55:26 +0200
 
