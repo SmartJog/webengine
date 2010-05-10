@@ -1,3 +1,7 @@
+Version 0.10.4~dev
+
+	* Added webengine.fcgi file allowing to run webengine in FastCGI mode.
+
 Version 0.10.3 Released on 2010/04/21
 
 	* Switched default locale to en-US, closes: #2981.

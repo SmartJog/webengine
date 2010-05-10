@@ -1,7 +1,7 @@
 ACLOCAL_AMFLAGS = -I /usr/share/sjconf/autotools
 
 SUBDIRS = exporter utils etc templates sjconf doc data
-dist_webengine_PYTHON = __init__.py urls.py
+dist_webengine_PYTHON = __init__.py urls.py webengine.fcgi
 nodist_webengine_PYTHON =  settings.py
 
 edit = $(SED) \
