@@ -1,6 +1,7 @@
 # TEMPORARY, NEVER EVER RELY ON IT.
 
 import sjfs
+import sjevents
 
 def unlink(lid=-1, path=None):
     if lid != -1 and path is not None:
@@ -10,6 +11,23 @@ def unlink(lid=-1, path=None):
         lid = sjfs.get_lid(path)
     if fid == 0 and not sjfs.file_exists(fid):
         raise sjfs.IOError(sjfs.SJFS_NOTFOUND, 'File not found.')
+    link = sjfs.get_link(lid)
+    md5 = sjfs.get_key(link["fid"], "md5") or ""
+    sha = sjfs.get_key(link["fid"], "sha") or ""
+    sjevents.create_events([{
+        'type'          : 'FILE_DELETED',
+        'message'       : 'File deleted from server',
+        'event_infos'   : {
+            'source'        : 'WWW',
+            'lid'           : str(link['lid']),
+            'fid'           : str(link['fid']),
+            'did'           : str(link['did']),
+            'path'          : link["path"],
+            'filename'      : link["filename"],
+            'md5'           : md5,
+            'sha'           : sha
+            }
+    }])
     sjfs.unlink(lid)
 
 def list_files(path=None, full_data=False):

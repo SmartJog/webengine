@@ -1,6 +1,7 @@
 Version 0.10.4~dev
 
 	* Added webengine.fcgi file allowing to run webengine in FastCGI mode.
+	* Fix Create delete event on deletion, closes: #3156.
 
 Version 0.10.3 Released on 2010/04/21
 
