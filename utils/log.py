@@ -6,7 +6,7 @@ from django.conf import settings
 
 logger = logging.getLogger('webengine')
 logger.setLevel(logging.DEBUG)
-handler = logging.handlers.RotatingFileHandler(filename=settings.LOG_FILENAME, maxBytes=20000000, backupCount=5)
+handler = logging.FileHandler(settings.LOG_FILENAME)
 FORMAT = settings.LOG_FORMAT
 formatter = logging.Formatter(FORMAT)
 handler.setFormatter(formatter)
