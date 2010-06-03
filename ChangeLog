@@ -3,6 +3,8 @@ Version 0.10.4~dev
 	* Added webengine.fcgi file allowing to run webengine in FastCGI mode.
 	* Fix Create delete event on deletion, closes: #3156.
 	* Added non rotating log file, closes: #2983.
+	* setting.py now gets its configuration file from ENVIRON (with a default
+	to /etc/webengine/webengine.conf), making it multi-site.
 
 Version 0.10.3 Released on 2010/04/21
 

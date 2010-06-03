@@ -7,10 +7,13 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+import os
+
 # Get configuration file
 from ConfigParser import RawConfigParser
 conf = RawConfigParser()
-conf.read('@webenginesysconfdir@/webengine-conf.conf')
+conf.read(os.getenv('WEBENGINE_SETTINGS_FILE', '@webenginesysconfdir/webengine-conf.conf'))
+
 items = dict(conf.items('webengine'))
 
 # Local time zone for this installation. Choices can be found here:
