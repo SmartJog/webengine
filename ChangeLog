@@ -4,7 +4,7 @@ Version 0.10.4~dev
 	* Fix Create delete event on deletion, closes: #3156.
 	* Added non rotating log file, closes: #2983.
 	* setting.py now gets its configuration file from ENVIRON (with a default
-	to /etc/webengine/webengine.conf), making it multi-site.
+	  to /etc/webengine/webengine.conf), making it multi-site.
 
 Version 0.10.3 Released on 2010/04/21
 
@@ -45,8 +45,8 @@ Version 0.7.5 Released on 2010/01/04
 
 Version 0.7.4 Released on 2010/01/04
 
-	* Added utils/admin.py file containing UserSetting class so UserSettings can be
-	configured via admin interface, closes: #2830.
+	* Added utils/admin.py file containing UserSetting class so
+	  UserSettings can be configured via admin interface, closes: #2830.
 	* webengine did not handle debug conf key, closes: #2822.
 
 Version 0.7.3 Released on 2010/01/04
