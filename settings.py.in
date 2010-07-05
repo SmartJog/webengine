@@ -12,7 +12,7 @@ import os
 # Get configuration file
 from ConfigParser import RawConfigParser
 conf = RawConfigParser()
-conf.read(os.getenv('WEBENGINE_SETTINGS_FILE', '@webenginesysconfdir/webengine-conf.conf'))
+conf.read(os.getenv('WEBENGINE_SETTINGS_FILE', '@webenginesysconfdir@/webengine-conf.conf'))
 
 items = dict(conf.items('webengine'))
 

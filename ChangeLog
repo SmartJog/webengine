@@ -1,3 +1,7 @@
+Version 0.10.5~dev
+
+	* Fix settings.py.in, closes: #3300.
+
 Version 0.10.4 Released on 2010/07/02
 
 	* Added webengine.fcgi file allowing to run webengine in FastCGI mode.
