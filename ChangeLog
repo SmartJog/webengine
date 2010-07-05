@@ -1,4 +1,4 @@
-Version 0.10.5~dev
+Version 0.10.5 Released on 2010/07/05
 
 	* Fix settings.py.in, closes: #3300.
 
