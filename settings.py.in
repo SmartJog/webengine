@@ -80,6 +80,18 @@ if items.get('enable_generic_ssl_auth', 'False').lower() == 'true':
 
 
 
+if items.get('enable_ldap', 'False').lower() == 'true':
+
+    import ldap
+    from django_auth_ldap.config import LDAPSearch
+
+    AUTHENTICATION_BACKENDS = ('django_auth_ldap.backend.LDAPBackend',) + AUTHENTICATION_BACKENDS
+
+    AUTH_LDAP_SERVER_URI    = items['ldap_uri']
+    AUTH_LDAP_BIND_DN       = items.get('ldap_bind_dn', '')
+    AUTH_LDAP_BIND_PASSWORD = items.get('ldap_bind_password', '')
+    AUTH_LDAP_USER_SEARCH   = LDAPSearch(items['ldap_search'], ldap.SCOPE_SUBTREE, items.get('ldap_scope_subtree', "(uid=%(user)s)"))
+
 ROOT_URLCONF = 'webengine.urls'
 
 TEMPLATE_DIRS = [
