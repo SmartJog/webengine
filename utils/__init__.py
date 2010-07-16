@@ -45,6 +45,13 @@ def webengine_template_processor(request):
     from django.conf import settings
     modules = get_valid_plugins()
     menus = []
+    if settings.ENABLE_ADMIN and request.user and request.user.is_staff:
+        menus += [{
+            'title' : _('Admin'),
+                'url': '/admin/',
+                'position': 1,
+        }]
+
     auth_mods = settings.AUTHORIZED_MODS or [m[0] for m in modules]
     for mod in modules:
         try:
