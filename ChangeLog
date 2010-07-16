@@ -1,3 +1,8 @@
+Version 0.10.6~dev
+
+	* Added GenericSSLAuth backend, allowing to dynamically set model
+	containing SSL certificate serial and return django user.
+
 Version 0.10.5 Released on 2010/07/05
 
 	* Fix settings.py.in, closes: #3300.

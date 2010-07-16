@@ -69,6 +69,17 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     )
 
+if items.get('enable_generic_ssl_auth', 'False').lower() == 'true':
+
+    AUTHENTICATION_BACKENDS = ('webengine.utils.backends.GenericSSLAuthBackend', ) + AUTHENTICATION_BACKENDS
+
+    GENERIC_SSL_AUTH_MODULE         = items['generic_ssl_auth_module']
+    GENERIC_SSL_AUTH_MODEL          = items['generic_ssl_auth_model']
+    GENERIC_SSL_AUTH_SERIAL_COLUMN  = items['generic_ssl_auth_serial_column']
+    GENERIC_SSL_AUTH_USER_COLUMN    = items['generic_ssl_auth_user_column']
+
+
+
 ROOT_URLCONF = 'webengine.urls'
 
 TEMPLATE_DIRS = [
