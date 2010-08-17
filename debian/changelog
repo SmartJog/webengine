@@ -1,3 +1,9 @@
+webengine (0.10.7~dev-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Philippe Bridant <philippe.bridant@smartjog.com>  Tue, 17 Aug 2010 16:09:14 +0200
+
 webengine (0.10.6-1) unstable; urgency=low
 
   * New upstream release.

@@ -4,6 +4,7 @@ import logging
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
 from django.core.urlresolvers import reverse, NoReverseMatch
+from django.utils.translation import ugettext_lazy as _
 
 def get_valid_plugins():
     """
