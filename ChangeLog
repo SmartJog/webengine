@@ -1,4 +1,4 @@
-Version 0.10.7~dev
+Version 0.10.7 Released on 2010/08/23
 
 	* Added missing import in utils/__init__.py.
 
