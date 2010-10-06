@@ -48,6 +48,9 @@ Define the time zone.
 List of **webengine**(8) modules enabled for non-authenticated users (wild
 guess).
 
+: **login_url** = //URL//
+URL on which user is redirected if an authentication is needed.
+
 
 = EXAMPLE =
 

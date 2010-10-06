@@ -26,7 +26,6 @@ for name, mod in plugs:
     # settings.INSTALLED_APPS; see also #2306.
     urlpatterns += patterns('', url(r'^jsi18n/' + name + '/$', 'django.views.i18n.javascript_catalog', {'packages': ['webengine.' + name]}))
 
-
 # JUST FOR DEBUG PURPOSE, STATIC PAGES WILL BE SERVED BY APACHE.
 
 
