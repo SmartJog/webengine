@@ -5,6 +5,7 @@ Version 0.11.0~dev
 	* Fix django request KeyError exception.
 	* Add a WSGI support script, closes: #3301.
 	* New menu system, refs: #2771.
+	* Add 'login_url' option to configure the login redirection URL.
 
 Version 0.10.8 Released on 2010/10/20
 
