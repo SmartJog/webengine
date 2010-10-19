@@ -1,3 +1,10 @@
+webengine (0.11.0~dev-1) unstable; urgency=low
+
+  * New upstream release, closes: #3577.
+  * Added myself to Uploaders.
+
+ -- Matthieu Bouron <matthieu.bouron@smartjog.com>  Tue, 02 Nov 2010 18:31:18 +0100
+
 webengine (0.10.8-1) unstable; urgency=low
 
   * New upstream release.
