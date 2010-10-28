@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls.defaults import patterns, url, include
 from webengine.utils import get_valid_plugins
 from django.contrib import admin
 from django.conf import settings
