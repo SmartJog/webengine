@@ -2,6 +2,7 @@ Version 0.11.0~dev
 
 	* Add remote user middleware and backend in order to
 	  trust apache credential checks, closes: #3577.
+	* New menu system, refs: #2771.
 
 Version 0.10.8 Released on 2010/10/20
 

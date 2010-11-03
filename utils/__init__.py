@@ -46,36 +46,14 @@ def webengine_template_processor(request):
     from django.conf import settings
     modules = get_valid_plugins()
     menus = []
-    if settings.ENABLE_ADMIN and request.user and request.user.is_staff:
-        menus += [{
-            'title' : _('Admin'),
-                'url': '/admin/',
-                'position': 1,
-        }]
 
     auth_mods = settings.AUTHORIZED_MODS or [m[0] for m in modules]
     for mod in modules:
         try:
-            # User is superuser, let see all menus
-            if request.user.is_superuser: menus.append(mod[1].urls.menus)
-            # User not authenticated and menu in AUTHORIZED_MODS, add it
-            elif not request.user.is_authenticated() and mod[0] in auth_mods: menus.append(mod[1].urls.menus)
-            # User is authenticated, check permission
-            elif request.user.has_perm('mods.see_' + mod[0]): menus.append(mod[1].urls.menus)
+            if hasattr(mod[1].urls, 'menus'):
+                menus.extend(mod[1].urls.menus)
         except AttributeError:
             continue
-
-    #Sort menus by position and alphabetical order
-    def cmp_menu(x, y):
-        if 'position' not in x or 'position' not in y:
-            return 1
-        if x['position'] > y['position']:
-            return 1
-        elif x['position'] == y['position']:
-            return x['title'] > y['title']
-        else:
-            return -1
-    menus.sort(cmp_menu)
 
     return {
         'profile': settings.PROFILE,
