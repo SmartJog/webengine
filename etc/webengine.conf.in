@@ -10,12 +10,12 @@ Alias /medias @webenginemediasdir@
 
 <IfModule mod_python.c>
 
-        <Directory @webenginedir@>
+        <Directory @webengineappdir@>
                 SetHandler python-program
                 PythonHandler django.core.handlers.modpython
                 SetEnv DJANGO_SETTINGS_MODULE webengine.settings
                 PythonDebug On
-                PythonPath "sys.path+['@webenginedir@', '@webengineappdir@']"
+                PythonPath "sys.path+['@webengineappdir@', '@webenginedir@']"
         </Directory>
 
 </IfModule>

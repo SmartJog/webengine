@@ -13,9 +13,10 @@ AC_PATH_PROG(TXT2TAGS, txt2tags)
 
 AC_SUBST([webenginesysconfdir], [\$\(sysconfdir\)/webengine])
 
-AC_SUBST([webenginedir], [\$\(pkgdatadir\)/app/webengine])
-AC_SUBST([exporterdir], [\$\(webenginedir\)/exporter])
-AC_SUBST([utilsdir], [\$\(webenginedir\)/utils])
+AC_SUBST([webenginedir], [\$\(pkgdatadir\)])
+AC_SUBST([webengineappdir], [\$\(pkgdatadir\)/app/webengine])
+AC_SUBST([exporterdir], [\$\(webengineappdir\)/exporter])
+AC_SUBST([utilsdir], [\$\(webengineappdir\)/utils])
 AC_SUBST([utilstagsdir], [\$\(utilsdir\)/templatetags])
 AC_SUBST([templatesdir], [\$\(pkgdatadir\)/templates])
 
