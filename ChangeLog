@@ -4,6 +4,7 @@ Version 0.11.0~dev
 	  trust apache credential checks, closes: #3577.
 	* New menu system, refs: #2771.
 	* Add 'login_url' option to configure the login redirection URL.
+	* Fix django request KeyError exception.
 
 Version 0.10.8 Released on 2010/10/20
 
