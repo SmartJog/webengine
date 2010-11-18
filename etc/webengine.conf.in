@@ -8,15 +8,8 @@ Alias /medias @webenginemediasdir@
         SetHandler None
 </Directory>
 
-<IfModule mod_python.c>
+<IfModule mod_wsgi.c>
 
-        <Directory @webengineappdir@>
-                SetHandler python-program
-                PythonHandler django.core.handlers.modpython
-                SetEnv DJANGO_SETTINGS_MODULE webengine.settings
-                PythonDebug On
-                PythonPath "sys.path+['@webengineappdir@', '@webenginedir@']"
-        </Directory>
+        WSGIScriptAlias /webengine @webengineappdir@/webengine.wsgi
 
 </IfModule>
-

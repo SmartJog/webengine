@@ -4,9 +4,13 @@ webengine (0.11.0~dev-1) unstable; urgency=low
   * Added myself to Uploaders.
 
   [ Rémi Cardona ]
-  * New upstream release, closes: #3577.
+  * New upstream release, closes: #3301, #3577.
+  * Add Suggests/Recommends on apache2/mod_wsgi like most web apps do in the
+    main Debian repository.
+  * Add Breaks section on sjconf-rxtx versions older than 0.10.0 since the
+    apache2 configuration provided here is no longer compatible with it.
 
- -- Rémi Cardona <remi.cardona@smartjog.com>  Wed, 03 Nov 2010 18:33:25 +0100
+ -- Rémi Cardona <remi.cardona@smartjog.com>  Wed, 17 Nov 2010 12:42:04 +0100
 
 webengine (0.10.8-1) unstable; urgency=low
 

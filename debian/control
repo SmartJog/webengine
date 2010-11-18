@@ -10,8 +10,10 @@ Standards-Version: 3.8.4
 Package: webengine
 Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}, python-django (>= 1.0.2), python-simplejson, importer, python-imaging, python-sjutils (>= 1.15)
-Recommends: sjconf-webengine
+Recommends: apache2 | httpd, sjconf-webengine
+Suggests: libapache2-mod-wsgi
 Conflicts: sjrtools (<< 0.33)
+Breaks: sjconf-rxtx (<< 0.10.0)
 XB-Python-Version: ${python:Versions}
 Description: Django application for smartjog
  This is an empty box.
