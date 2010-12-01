@@ -108,8 +108,7 @@ INSTALLED_APPS = [
 ]
 
 # The login url.
-LOGIN_URL = items['login_url']
-
+LOGIN_URL = '/auth/login/'
 # If 'next' isn't provided, always redirect to site root.
 LOGIN_REDIRECT_URL = '/'
 
