@@ -1,4 +1,11 @@
-from django.conf.urls.defaults import patterns, url, include
+# Do not remove the 'import *', this is what allows this module to provide
+# 'handler404' and 'handler500'. We provide django's default handlers. In a
+# nutshell, this module inherits django.conf.urls.defaults and redefines
+# whatever it wants. We could import the needed bit explicitely, but if newer
+# django versions add other handlers, we'll get bit in the a** again. Django's
+# API is retarded, but whatever.
+# See http://docs.djangoproject.com/en/dev/topics/http/views/#the-404-page-not-found-view
+from django.conf.urls.defaults import *
 from webengine.utils import get_valid_plugins
 from django.contrib import admin
 from django.conf import settings
