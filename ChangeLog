@@ -1,4 +1,4 @@
-Version 0.11.0~dev
+Version 0.11.0 Released on 2010/12/14
 
 	* Add remote user middleware and backend in order to
 	  trust apache credential checks, closes: #3577.
