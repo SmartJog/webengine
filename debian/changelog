@@ -1,14 +1,22 @@
-webengine (0.11.0~dev-1) unstable; urgency=low
+webengine (0.12.0~dev-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Rémi Cardona <remi.cardona@smartjog.com>  Fri, 17 Dec 2010 17:02:37 +0100
+
+webengine (0.11.0-1) unstable; urgency=low
 
   [ Matthieu Bouron ]
   * Added myself to Uploaders.
 
   [ Rémi Cardona ]
-  * New upstream release, closes: #3301, #3577.
   * Add Suggests/Recommends on apache2/mod_wsgi like most web apps do in the
     main Debian repository.
 
- -- Rémi Cardona <remi.cardona@smartjog.com>  Wed, 17 Nov 2010 12:42:04 +0100
+  [ Nicolas Noirbent ]
+  * New upstream release, closes: #3301, #3577.
+
+ -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Tue, 14 Dec 2010 19:22:26 +0100
 
 webengine (0.10.8-1) unstable; urgency=low
 
