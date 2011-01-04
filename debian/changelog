@@ -1,3 +1,10 @@
+webengine (0.11.0-2~dev) unstable; urgency=low
+
+  * Remove dependency on sjconf-webengine-wc10 from the sjconf-webengine-all
+    meta package.
+
+ -- Rémi Cardona <remi.cardona@smartjog.com>  Tue, 04 Jan 2011 18:53:04 +0100
+
 webengine (0.11.0-1) unstable; urgency=low
 
   [ Matthieu Bouron ]
