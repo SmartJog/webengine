@@ -33,7 +33,7 @@ The default language, used by Django internationalization
 The url used by Django by default, when no url is specified by the user. It's a "reversed" url, so it should match an url defined in a webengine plugin.
 
 : **skin** = //relative_path_to_front_template//
-Change the main skin, by default set to "front/base.html".
+Change the main skin, by default set to "front/front/base.html".
 
 : **enable_admin** = //boolean//
 Enable/Disabled django administration page on /admin/
