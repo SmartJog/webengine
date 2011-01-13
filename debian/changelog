@@ -1,6 +1,6 @@
 webengine (0.12.0~dev-1) unstable; urgency=low
 
-  * New upstream release.
+  * New upstream release, closes: #3837.
 
  -- Rémi Cardona <remi.cardona@smartjog.com>  Fri, 17 Dec 2010 17:02:37 +0100
 
