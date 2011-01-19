@@ -27,7 +27,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = conf.getboolean("webengine", "enable_i18n") or False
+USE_I18N = conf.getboolean("webengine", "enable_i18n")
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -70,7 +70,7 @@ AUTHENTICATION_BACKENDS = (
     'webengine.utils.backends.RemoteUserBackend',
 )
 
-if items.get('enable_generic_ssl_auth', 'False').lower() == 'true':
+if conf.getboolean('webengine', 'enable_generic_ssl_auth'):
 
     AUTHENTICATION_BACKENDS = ('webengine.utils.backends.GenericSSLAuthBackend', ) + AUTHENTICATION_BACKENDS
 
@@ -81,7 +81,7 @@ if items.get('enable_generic_ssl_auth', 'False').lower() == 'true':
 
 
 
-if items.get('enable_ldap', 'False').lower() == 'true':
+if conf.getboolean('webengine', 'enable_ldap'):
 
     import ldap
     from django_auth_ldap.config import LDAPSearch
@@ -169,8 +169,7 @@ mods = utils.get_valid_plugins()
 for mod in mods:
     INSTALLED_APPS.append('webengine.' + mod[0])
 
-ENABLE_ADMIN = "enable_admin" in items and conf.getboolean("webengine", "enable_admin") or False
-if ENABLE_ADMIN:
+if conf.getboolean('webengine', 'enable_admin'):
     INSTALLED_APPS.append('django.contrib.admin')
     TEMPLATE_DIRS.append('/usr/share/python-support/python-django/django/contrib/admin/templates')
 

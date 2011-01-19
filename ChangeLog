@@ -1,3 +1,7 @@
+Version 0.12.1~dev
+
+	* Use ConfigParser helpers where possible, refs: #3868.
+
 Version 0.12.0 Released on 2011/01/14
 
 	* New menu system, refs: #2771.
