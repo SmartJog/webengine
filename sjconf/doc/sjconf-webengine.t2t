@@ -54,6 +54,9 @@ URL on which user is redirected if an authentication is needed.
 : **enable_i18n** = //boolean//
 Enable webengine internationalization.
 
+: **enable_auth** = //boolean//
+Enable authentication backends.
+
 
 = EXAMPLE =
 

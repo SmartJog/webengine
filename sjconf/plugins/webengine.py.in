@@ -13,7 +13,8 @@ class Plugin(PluginWithTemplate):
             ('webengine', 'authorized_mods', 'list'),
             ('webengine', 'enable_admin', 'bool'),
             ('webengine', 'debug', 'bool'),
-            ('webengine', 'enable_i18n', 'bool')
+            ('webengine', 'enable_i18n', 'bool'),
+            ('webengine', 'enable_auth', 'bool'),
         )
 
     def conf_files_path(self):
