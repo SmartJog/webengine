@@ -68,6 +68,8 @@ else:
 # It is needed for working with the importer
 MIDDLEWARE_CLASSES += ('django.contrib.sessions.middleware.SessionMiddleware', )
 
+SESSION_ENGINE = conf.get('session', 'engine')
+
 if conf.getboolean('webengine', 'enable_auth'):
     MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + (
         'webengine.utils.middleware.SSLAuthMiddleware',

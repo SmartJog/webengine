@@ -2,6 +2,7 @@ Version 0.12.1~dev
 
 	* Use ConfigParser helpers where possible, refs: #3868.
 	* Sanitize authentication and related middleware handling, refs: #3868.
+	* Allow switching session backend, closes: #3867.
 
 Version 0.12.0 Released on 2011/01/14
 

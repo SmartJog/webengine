@@ -23,6 +23,16 @@ class Plugin(PluginWithTemplate):
     def services_to_restart(self):
         return ('apache2',)
 
+    def template_conf(self, file_path):
+        conf = self.conf_section_class()(self.conf['webengine'])
+        for section in self.conf:
+            if section.startswith('webengine:'):
+                conf.update(dict(
+                    ('%s_%s' % (section[10:], key), value)
+                    for key, value in self.conf[section]
+                ))
+        return conf
+
     class ConfSection(Conf.ConfSection):
 
         def __getitem__(self, key):

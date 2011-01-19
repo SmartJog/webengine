@@ -21,7 +21,7 @@ The sjconf-webengine plugin allows for handling the SmartJog **webengine**(8) co
 
 = OPTIONS =
 
-Here is the list of options:
+Here is the list of options for the **[webengine]** section:
 
 : **profile** = //tvrbox//
 The profile used to select the theme displayed on every webengine pages and plugins using the standard template.
@@ -56,6 +56,12 @@ Enable webengine internationalization.
 
 : **enable_auth** = //boolean//
 Enable authentication backends.
+
+
+Here is the list of options for the **[webengine:session]** section:
+
+: **engine** = //engine_backend_module//
+Module to load to handle sessions.
 
 
 = EXAMPLE =

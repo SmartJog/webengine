@@ -1,8 +1,8 @@
 webengine (0.12.1~dev-1) unstable; urgency=low
 
-  * New upstream release.
+  * New upstream release, closes: #3867.
 
- -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Wed, 19 Jan 2011 12:26:31 +0100
+ -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Wed, 19 Jan 2011 17:34:41 +0100
 
 webengine (0.12.0-1) unstable; urgency=low
 
