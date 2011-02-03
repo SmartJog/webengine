@@ -29,7 +29,7 @@ class Plugin(PluginWithTemplate):
             if section.startswith('webengine:'):
                 conf.update(dict(
                     ('%s_%s' % (section[10:], key), value)
-                    for key, value in self.conf[section]
+                    for key, value in self.conf[section].items()
                 ))
         return conf
 
