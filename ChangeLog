@@ -1,4 +1,4 @@
-Version 0.12.2~dev
+Version 0.12.2 Released on 2011/02/17
 
 	* Added option enable_generic_ssl_auth in sjconf template,
 	  closes: #3910.

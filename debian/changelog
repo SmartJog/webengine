@@ -1,8 +1,8 @@
-webengine (0.12.2~dev-1) unstable; urgency=low
+webengine (0.12.2-1) unstable; urgency=low
 
   * New upstream release, closes: #3888, #3910.
 
- -- Bryann Lamour <blamour.lamour@smartjog.com>  Fri, 04 Feb 2011 12:38:14 +0100
+ -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Thu, 17 Feb 2011 16:06:48 +0100
 
 webengine (0.12.1-1) unstable; urgency=low
 
