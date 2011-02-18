@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from sjconf import *
 
 
@@ -42,6 +44,17 @@ class Plugin(PluginWithTemplate):
 
             if  key == 'authorized_mods_list':
                 return ', '.join(value)
+            elif key in ('enable_admin_bool', 'debug_bool', 'enable_i18n_bool',
+                         'enable_auth_bool', 'enable_auth_generic_ssl_bool',
+                         'enable_auth_ldap_bool'):
+                # sjconf will convert one_shot_dcp to a boolean thanks to the “conf_types” method
+                value = sjconf.Conf.ConfSection.__getitem__(self, key)
+                # We now need to convert it to our own conf file format
+                if value:
+                    value = "True"
+                else:
+                    value = "False"
+                return value
             else:
                 return value
 
