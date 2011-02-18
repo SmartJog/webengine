@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from sjconf import *
+import sjconf
 
 
-class Plugin(PluginWithTemplate):
+class Plugin(sjconf.PluginWithTemplate):
 
     VERSION = '@VERSION@'
 
@@ -37,10 +37,10 @@ class Plugin(PluginWithTemplate):
                 ))
         return conf
 
-    class ConfSection(Conf.ConfSection):
+    class ConfSection(sjconf.Conf.ConfSection):
 
         def __getitem__(self, key):
-            value = Conf.ConfSection.__getitem__(self, key)
+            value = sjconf.Conf.ConfSection.__getitem__(self, key)
 
             if  key == 'authorized_mods_list':
                 return ', '.join(value)
