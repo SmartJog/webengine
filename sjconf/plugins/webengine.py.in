@@ -2,7 +2,6 @@
 
 import sjconf
 
-
 class Plugin(sjconf.PluginWithTemplate):
 
     VERSION = '@VERSION@'
@@ -42,7 +41,7 @@ class Plugin(sjconf.PluginWithTemplate):
         def __getitem__(self, key):
             value = sjconf.Conf.ConfSection.__getitem__(self, key)
 
-            if  key == 'authorized_mods_list':
+            if key == 'authorized_mods_list':
                 return ', '.join(value)
             elif key in ('enable_admin_bool', 'debug_bool', 'enable_i18n_bool',
                          'enable_auth_bool', 'enable_auth_generic_ssl_bool',
