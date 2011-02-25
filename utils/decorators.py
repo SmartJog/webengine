@@ -60,6 +60,9 @@ class _CheckRenderMode(object):
         self.request = request
         # Check for input in the content-type header
         ct_value = request.META.get('CONTENT_TYPE', settings.DEFAULT_INPUT_MODE)
+        # mod_python defines this value to None by default
+        if not ct_value:
+            ct_value = settings.DEFAULT_INPUT_MODE
         ct_value = ct_value.split(';')[0]
         if ct_value in settings.ACCEPTABLE_INPUT_MODES:
             self.input = settings.ACCEPTABLE_INPUT_MODES[ct_value]
