@@ -1,3 +1,7 @@
+Version 0.12.4~dev
+
+	* Disable restrictions on signal use, closes: #4009.
+
 Version 0.12.3 Released on 2011/02/18
 
 	* Fix conf_types handling in sjconf plugin.

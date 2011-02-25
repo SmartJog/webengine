@@ -10,6 +10,7 @@ Alias /medias @webenginemediasdir@
 
 <IfModule mod_wsgi.c>
 
+        WSGIRestrictSignal Off
         WSGIScriptAlias /webengine @webengineappdir@/webengine.wsgi
 
 </IfModule>
