@@ -1,4 +1,4 @@
-Version 0.12.4~dev
+Version 0.12.4 Released on 2011/02/28
 
 	* Disable restrictions on signal use, closes: #4009.
 	* Double verification of content-type value. mod_python defines this

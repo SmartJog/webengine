@@ -1,8 +1,8 @@
-webengine (0.12.4~dev-1) unstable; urgency=low
+webengine (0.12.4-1) unstable; urgency=low
 
   * New upstream release, closes: #4009.
 
- -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Fri, 25 Feb 2011 15:39:37 +0100
+ -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Mon, 28 Feb 2011 14:07:14 +0100
 
 webengine (0.12.3-1) unstable; urgency=low
 
