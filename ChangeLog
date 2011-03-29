@@ -1,3 +1,8 @@
+Version 0.12.5~dev
+
+	* Fix settings.py in order to really set enable_admin to True
+	  when desired, closes: #4097.
+
 Version 0.12.4 Released on 2011/02/28
 
 	* Disable restrictions on signal use, closes: #4009.

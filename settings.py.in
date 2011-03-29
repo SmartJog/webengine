@@ -190,7 +190,10 @@ for mod in mods:
     INSTALLED_APPS.append('webengine.' + mod[0])
 
 if conf.getboolean('webengine', 'enable_admin'):
+    ENABLE_ADMIN = True
     INSTALLED_APPS.append('django.contrib.admin')
     TEMPLATE_DIRS.append('/usr/share/python-support/python-django/django/contrib/admin/templates')
+else:
+    ENABLE_ADMIN = False
 
 TEMPLATE_DEBUG = DEBUG
