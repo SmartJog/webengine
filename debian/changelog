@@ -1,8 +1,12 @@
 webengine (0.12.5~dev-1) unstable; urgency=low
 
+  [ Bryann Lamour ]
   * New upstream release, closes: #4097.
 
- -- Bryann Lamour <bryann.lamour@smartjog.com>  Tue, 29 Mar 2011 17:56:39 +0200
+  [ Nicolas Noirbent ]
+  * Added a cronjob to clean up sessions, closes: #4067.
+
+ -- Nicolas Noirbent <nicolas.noirbent@smartjog.com>  Mon, 18 Apr 2011 12:48:42 +0200
 
 webengine (0.12.4-1) unstable; urgency=low
 
