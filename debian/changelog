@@ -8,6 +8,7 @@ webengine (0.12.5~dev-1) unstable; urgency=low
 
   [ Stephane Kanschine ]
   * Added myself to Uploaders.
+  * Add README.rst.
   * Delete utils/sjaccess.py
 
  -- Stephane Kanschine <stephane.kanschine@smartjog.com>  Fri, 22 Apr 2011 17:09:44 +0200

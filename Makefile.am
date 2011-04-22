@@ -2,6 +2,7 @@ SUBDIRS = exporter utils etc templates sjconf doc data
 
 dist_webengineapp_PYTHON = __init__.py urls.py webengine.fcgi
 nodist_webengineapp_PYTHON =  settings.py webengine.wsgi
+dist_doc_DATA = README.rst
 
 edit = $(SED) \
 	-e 's|@webenginedir[@]|$(webenginedir)|g' \
