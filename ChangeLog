@@ -4,6 +4,7 @@ Version 0.12.5~dev
 	  when desired, closes: #4097.
 	* Clean up webengine sessions daily, closes: #4067.
 	* Remove utils/sjaccess.py.
+	* Now released under the LGPL-2.1.
 
 Version 0.12.4 Released on 2011/02/28
 
