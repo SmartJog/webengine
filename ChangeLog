@@ -1,4 +1,4 @@
-Version 0.12.5~dev
+Version 0.12.5 Released on 2011/04/26
 
 	* Fix settings.py in order to really set enable_admin to True
 	  when desired, closes: #4097.
