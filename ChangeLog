@@ -2,6 +2,8 @@ Version 0.12.5~dev
 
 	* Fix settings.py in order to really set enable_admin to True
 	  when desired, closes: #4097.
+	* Clean up webengine sessions daily, closes: #4067.
+	* Remove utils/sjaccess.py.
 
 Version 0.12.4 Released on 2011/02/28
 
