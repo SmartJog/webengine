@@ -6,12 +6,12 @@ webengine (0.12.5-1) unstable; urgency=low
   [ Nicolas Noirbent ]
   * Added a cronjob to clean up sessions, closes: #4067.
 
-  [ Stephane Kanschine ]
+  [ Stéphane Kanschine ]
   * Added myself to Uploaders.
   * Add README.rst.
   * Delete utils/sjaccess.py
 
- -- Stephane Kanschine <stephane.kanschine@smartjog.com>  Tue, 26 Apr 2011 16:31:04 +0200
+ -- Stéphane Kanschine <stephane.kanschine@smartjog.com>  Tue, 26 Apr 2011 16:31:04 +0200
 
 webengine (0.12.4-1) unstable; urgency=low
 
