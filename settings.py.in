@@ -56,17 +56,18 @@ MIDDLEWARE_CLASSES = (
 
 AUTHENTICATION_BACKENDS = ()
 
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
-if conf.getboolean('webengine', 'enable_i18n'):
-    MIDDLEWARE_CLASSES = ('django.middleware.locale.LocaleMiddleware', ) + MIDDLEWARE_CLASSES
-    USE_I18N = True
-else:
-    USE_I18N = False
-
 # Default django session handling
 # It is needed for working with the importer
 MIDDLEWARE_CLASSES += ('django.contrib.sessions.middleware.SessionMiddleware', )
+
+# If you set this to False, Django will make some optimizations so as not
+# to load the internationalization machinery.
+# It must be loaded after session middleware.
+if conf.getboolean('webengine', 'enable_i18n'):
+    MIDDLEWARE_CLASSES += ('django.middleware.locale.LocaleMiddleware', )
+    USE_I18N = True
+else:
+    USE_I18N = False
 
 SESSION_ENGINE = conf.get('session', 'engine')
 

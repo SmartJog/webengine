@@ -1,3 +1,8 @@
+Version 0.12.6~dev
+
+	* Fix middleware declaration order, session middleware must be
+	  declared before locale middleware, closes: #4321.
+
 Version 0.12.5 Released on 2011/04/26
 
 	* Fix settings.py in order to really set enable_admin to True

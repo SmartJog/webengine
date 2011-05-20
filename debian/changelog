@@ -1,3 +1,9 @@
+webengine (0.12.6~dev-1) unstable; urgency=low
+
+  * New upstream release, closes: #4321.
+
+ -- Matthieu Bouron <matthieu.bouron@smartjog.com>  Wed, 03 Aug 2011 12:29:24 +0200
+
 webengine (0.12.5-1) unstable; urgency=low
 
   [ Bryann Lamour ]
