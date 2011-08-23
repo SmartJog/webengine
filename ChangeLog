@@ -1,4 +1,4 @@
-Version 0.12.6~dev
+Version 0.12.6 Release on 2011/08/22
 
 	* Fix middleware declaration order, session middleware must be
 	  declared before locale middleware, closes: #4321.

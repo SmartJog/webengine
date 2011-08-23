@@ -1,4 +1,4 @@
-webengine (0.12.6~dev-1) unstable; urgency=low
+webengine (0.12.6-1) unstable; urgency=low
 
   [ Matthieu Bouron ]
   * New upstream release, closes: #4321.
