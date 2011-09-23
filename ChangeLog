@@ -1,3 +1,7 @@
+Version 0.12.7~dev
+
+	* Fix path to django-admin templates which changed on Squeeze, closes: #4861.
+
 Version 0.12.6 Release on 2011/08/22
 
 	* Fix middleware declaration order, session middleware must be

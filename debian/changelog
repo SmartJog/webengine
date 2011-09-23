@@ -1,3 +1,10 @@
+webengine (0.12.7~dev-1) unstable; urgency=low
+
+  * New upstream release, closes: #4861.
+  * Add myself to Uploaders.
+
+ -- Laurent Defert <laurent.defert@smartjog.com>  Fri, 23 Sep 2011 15:03:08 +0200
+
 webengine (0.12.6-1) unstable; urgency=low
 
   [ Matthieu Bouron ]
