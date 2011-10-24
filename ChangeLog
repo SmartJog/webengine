@@ -1,6 +1,7 @@
-Version 0.12.7~dev
+Version 0.13.0~dev
 
 	* Fix path to django-admin templates which changed on Squeeze, closes: #4861.
+	* Add Pickle decoder, refs: #5022.
 
 Version 0.12.6 Release on 2011/08/22
 

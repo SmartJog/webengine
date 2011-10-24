@@ -49,6 +49,16 @@ class DefaultDecoder(Decoder):
         super(DefaultDecoder, self).decode(obj)
         return str(obj)
 
+class PickleDecoder(Decoder):
+    def __init__(self):
+        super(PickleDecoder, self).__init__()
+        self._input = 'pickle'
+
+    def decode(self, obj):
+        super(PickleDecoder, self).decode(obj)
+        import cPickle
+        return cPickle.loads(obj)
+
 class DecoderFactory(object):
     """ DecoderFactory handles Decoder instances for the right input mode. """
     _input = {
@@ -56,6 +66,7 @@ class DecoderFactory(object):
         'soap'   : SoapDecoder,
         'json'   : JSONDecoder,
         'default': DefaultDecoder,
+        'pickle' : PickleDecoder,
     }
 
     @staticmethod

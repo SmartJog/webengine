@@ -148,7 +148,9 @@ ACCEPTABLE_INPUT_MODES = {
     'text/html'            : 'html',
     'text/xml'             : 'xml',
     'application/json'     : 'json',
-    'application/soap+xml' : 'soap'}
+    'application/soap+xml' : 'soap',
+    'application/pickle'   : 'pickle',
+}
 
 # Default Output mode.
 # Choose the default mode in which pages will be rendered.
