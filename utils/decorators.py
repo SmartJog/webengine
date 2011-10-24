@@ -71,6 +71,8 @@ class _CheckRenderMode(object):
         # Check forced input by decorator.
         if 'input' in self.decorator_opts.keys(): self.input = self.decorator_opts['input']
         # Decode input
+        if request.META.has_key('HTTP_WEBENGINE_OUTPUT') and request.META['HTTP_WEBENGINE_OUTPUT'] == 'pickle':
+            self.input = 'pickle'
         from webengine.utils.decoders import DecoderFactory
         decoder = DecoderFactory.get(self.input)
         if request.method == 'POST':

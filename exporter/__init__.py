@@ -39,11 +39,9 @@ def dispatch(request, *args, **kw):
     # Method call with args, instantiations
     elif request.method == 'POST':
         try:
-            import cPickle
-
-            data = cPickle.loads(request.raw_post_data)
             # Cause args is a tuple, create a list before.
             args = list(args)
+            data = request.DECODED
             if data.get('args'): args += data['args']
             kw.update(data['kw'])
             kw.update({'__request__': request})
