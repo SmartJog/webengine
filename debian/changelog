@@ -4,7 +4,7 @@ webengine (0.13.0~dev-1) unstable; urgency=low
   * Add myself to Uploaders.
 
   [ Jonathan Billaud ]
-  * New upstream release, closes: #4861.
+  * New upstream release, closes: #4861, #5022.
 
  -- Jonathan Billaud <jonathan.billaud@smartjog.com>  Mon, 24 Oct 2011 18:40:25 +0200
 
