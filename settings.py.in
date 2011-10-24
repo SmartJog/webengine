@@ -167,7 +167,8 @@ ACCEPTABLE_OUTPUT_MODES = {
         'xml'   : 'text/xml',
         'json'  : 'application/json',
         'soap'  : 'application/soap+xml',
-        'pickle': 'application/octet-stream'}
+        'pickle': 'application/octet-stream',
+}
 
 # Logging infos.
 LOG_FILENAME = '/var/log/webengine/webengine.log'
