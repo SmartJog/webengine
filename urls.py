@@ -43,5 +43,5 @@ if settings.DEBUG:
 
 if hasattr(settings, 'ENABLE_ADMIN') and settings.ENABLE_ADMIN:
     urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/usr/share/python-support/python-django/django/contrib/admin/media'}),
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/usr/share/pyshared/django/contrib/admin/media/'}),
     )
