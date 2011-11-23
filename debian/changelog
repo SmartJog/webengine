@@ -1,4 +1,4 @@
-webengine (0.13.0~dev-1) unstable; urgency=low
+webengine (0.13.0-1) unstable; urgency=low
 
   [ Laurent Defert ]
   * Add myself to Uploaders.
@@ -9,7 +9,7 @@ webengine (0.13.0~dev-1) unstable; urgency=low
   [ Gilles Dartiguelongue ]
   * Switch to dpkg-source 3.0 (quilt) format.
 
- -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Wed, 23 Nov 2011 14:43:24 +0100
+ -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Wed, 23 Nov 2011 15:49:32 +0100
 
 webengine (0.12.6-1) unstable; urgency=low
 
