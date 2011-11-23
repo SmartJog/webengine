@@ -4,6 +4,7 @@ Version 0.13.0~dev
 	* Add Pickle decoder, refs: #5022.
 	* Use of the generic django decoder/generator, refs: #5022.
 	* Fix JSON generator for the date support, closes: #5022.
+	* Drop sjconf profile check in we_acluser and we_manageuser.
 
 Version 0.12.6 Release on 2011/08/22
 

@@ -12,24 +12,13 @@ import optparse
 sys.path.append('/usr/share/webengine/app/')
 sys.path.append('/usr/share/webengine/app/webengine/')
 
-import sjconf
-# Goddamn SJConf fucking up my sys.path
-if '/var/lib/sjconf/plugins' in sys.path:
-    sys.path.remove('/var/lib/sjconf/plugins')
 os.environ['DJANGO_SETTINGS_MODULE'] = 'webengine.settings'
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 
-def check_profile():
-    """ Check profile is tvrbox enabled. """
-
-    prof = sjconf.SJConf().profiles_infos(('tvrbox',))
-    if prof['tvrbox'] == None:
-        print "Not on a TVRBox, exiting…"
-        sys.exit(0)
 
 def main():
     """ Main function. """
@@ -121,6 +110,5 @@ def main():
         user.save()
 
 if __name__ == "__main__":
-    check_profile()
     main()
 
