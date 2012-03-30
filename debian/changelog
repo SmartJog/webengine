@@ -2,9 +2,10 @@ webengine (0.13.0-2~dev) unstable; urgency=low
 
   * Remove overly-brutal removal of configuration directory from postrm.
   * Use wwwconfig-common to link webengine.conf and to restart apache2.
+  * Add a trigger on /usr/share/webengine that reloads apache2 automatically.
   * Add dependency on wwwconfig-common.
 
- -- Rémi Cardona <remi.cardona@smartjog.com>  Fri, 30 Mar 2012 15:34:56 +0200
+ -- Rémi Cardona <remi.cardona@smartjog.com>  Fri, 30 Mar 2012 15:35:23 +0200
 
 webengine (0.13.0-1) unstable; urgency=low
 

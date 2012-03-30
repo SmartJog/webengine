@@ -22,6 +22,19 @@ if [ "$1" = "configure" ]; then
 	. /usr/share/wwwconfig-common/restart.sh
 	[ "$status" = "error" ] && echo $error
 
+elif [ "$1" = "triggered" ]; then
+	for triggername in $2; do
+		case "$triggername" in
+		"/usr/share/webengine")
+			restart="apache2"
+			. /usr/share/wwwconfig-common/restart.sh
+			[ "$status" = "error" ] && echo $error
+			;;
+		*)
+			echo "unhandled/unknown trigger '$triggername'!"
+			;;
+		esac
+	done
 fi
 
 exit 0
