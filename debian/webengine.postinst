@@ -5,27 +5,23 @@ set -e
 
 #DEBHELPER#
 
-apache2_install() {
-	wserver=$1
-	if [ -d /etc/$wserver/conf.d ] && [ ! -e /etc/$wserver/conf.d/webengine.conf ]; then
-		ln -s ../../webengine/webengine.conf /etc/$wserver/conf.d/webengine.conf
-	fi
-}
+# wwwconfig-common variables
+servers="apache2"
 
 if [ "$1" = "configure" ]; then
-	webserver="apache2"
-
 	#FIXME: Utiliser debconf.
 
 	# Install the configuration.
-	apache2_install $webserver
+	linkname="webengine.conf"
+	linkdestination_apache="/etc/webengine/webengine.conf"
+	. /usr/share/wwwconfig-common/confd-link.sh
+	[ "$status" = "error" ] && echo $error
 
 	# Reload the webserver.
-	if [ -x /usr/sbin/invoke-rc.d ]; then
-		invoke-rc.d $webserver reload 3> /dev/null || true
-	else
-		/etc/init.d/$webserver reload 3> /dev/null || true
-	fi
+	restart="apache2"
+	. /usr/share/wwwconfig-common/restart.sh
+	[ "$status" = "error" ] && echo $error
+
 fi
 
 exit 0
