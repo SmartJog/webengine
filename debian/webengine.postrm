@@ -10,12 +10,6 @@ servers="apache2"
 
 if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
 
-	# Remove the configuration.
-	linkname="webengine.conf"
-	linkdestination_apache="/etc/webengine/webengine.conf"
-	. /usr/share/wwwconfig-common/confd-link.sh
-	[ "$status" = "error" ] && echo $error
-
 	# Reload the webserver.
 	restart="apache2"
 	. /usr/share/wwwconfig-common/restart.sh

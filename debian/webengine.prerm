@@ -1,0 +1,21 @@
+#!/bin/sh
+# PreRm script for WebEngine.
+
+set -e
+
+#DEBHELPER#
+
+# wwwconfig-common variables
+servers="apache2"
+
+if [ "$1" = "remove" ]; then
+
+	# Remove the configuration.
+	linkname="webengine.conf"
+	linkdestination_apache="/etc/webengine/webengine.conf"
+	. /usr/share/wwwconfig-common/confd-link.sh
+	[ "$status" = "error" ] && echo $error
+
+fi
+
+exit 0
