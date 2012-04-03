@@ -1,4 +1,4 @@
-webengine (0.13.0-2~dev) unstable; urgency=low
+webengine (0.13.0-2) unstable; urgency=low
 
   * Remove overly-brutal removal of configuration directory from postrm.
   * Use wwwconfig-common to link webengine.conf and to restart apache2.
@@ -6,7 +6,7 @@ webengine (0.13.0-2~dev) unstable; urgency=low
   * Add dependency on wwwconfig-common.
   * Move apache2 configuration symlink removal to prerm rather than postrm.
 
- -- Rémi Cardona <remi.cardona@smartjog.com>  Fri, 30 Mar 2012 17:17:46 +0200
+ -- Rémi Cardona <remi.cardona@smartjog.com>  Tue, 03 Apr 2012 11:37:42 +0200
 
 webengine (0.13.0-1) unstable; urgency=low
 
