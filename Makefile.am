@@ -10,10 +10,10 @@ edit = $(SED) \
 	-e 's|@webenginesysconfdir[@]|$(webenginesysconfdir)|g'
 
 settings.py: settings.py.in Makefile
-	$(edit) $< > $@
+	$(AM_V_GEN)$(edit) $< > $@
 
 webengine.wsgi: webengine.wsgi.in Makefile
-	$(edit) $< > $@
+	$(AM_V_GEN)$(edit) $< > $@
 
 dist_bin_SCRIPTS = \
 	bin/we_acluser \

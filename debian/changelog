@@ -1,3 +1,9 @@
+webengine (0.13.1~dev-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Mon, 30 Apr 2012 11:51:48 +0200
+
 webengine (0.13.0-3) unstable; urgency=low
 
   * Fix postinst when apache2 symlink already exists.
