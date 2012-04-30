@@ -19,10 +19,6 @@ webengine.wsgi: webengine.wsgi.in Makefile
 
 dist_bin_SCRIPTS = \
 	bin/we_acluser \
-	bin/we_adduser \
-	bin/we_chpasswd \
-	bin/we_deluser \
-	bin/we_listuser \
 	bin/we_manageuser
 
 CLEANFILES = $(nodist_webengineapp_PYTHON)
