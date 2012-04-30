@@ -1,7 +1,6 @@
 SUBDIRS = exporter utils etc templates sjconf doc data
-
-dist_webengineapp_PYTHON = __init__.py urls.py webengine.fcgi
-nodist_webengineapp_PYTHON =  settings.py webengine.wsgi
+dist_webengineapp_PYTHON = __init__.py urls.py
+nodist_webengineapp_PYTHON =  settings.py webengine.wsgi webengine.fcgi
 dist_doc_DATA = README.rst
 
 edit = $(SED) \
@@ -10,6 +9,9 @@ edit = $(SED) \
 	-e 's|@webenginesysconfdir[@]|$(webenginesysconfdir)|g'
 
 settings.py: settings.py.in Makefile
+	$(AM_V_GEN)$(edit) $< > $@
+
+webengine.fcgi: webengine.fcgi.in Makefile
 	$(AM_V_GEN)$(edit) $< > $@
 
 webengine.wsgi: webengine.wsgi.in Makefile
@@ -23,5 +25,5 @@ dist_bin_SCRIPTS = \
 	bin/we_listuser \
 	bin/we_manageuser
 
-CLEANFILES = settings.py webengine.wsgi
-EXTRA_DIST = settings.py.in webengine.wsgi.in
+CLEANFILES = $(nodist_webengineapp_PYTHON)
+EXTRA_DIST = $(nodist_webengineapp_PYTHON:=.in)

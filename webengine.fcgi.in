@@ -1,8 +1,9 @@
 #!/usr/bin/python
 import sys, os
 
-sys.path.insert(0, "/usr/share/webengine/app/")
-os.chdir("/usr/share/webengine/app/webengine/")
+sys.path.insert(0, "@webengineappdir@")
+sys.path.insert(0, "@webenginedir@/app")
+os.chdir("@webengineappdir@")
 os.environ['DJANGO_SETTINGS_MODULE'] = "webengine.settings"
 
 from django.core.servers.fastcgi import runfastcgi
