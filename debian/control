@@ -34,10 +34,3 @@ XB-Python-Version: ${python:Versions}
 Description: Sjconf plugin for WebEngine
  This SJConf plugin handles configuration for the Webengine
  plugin.
-
-Package: sjconf-webengine-all
-Architecture: all
-Depends: ${misc:Depends}, sjconf-webengine, sjconf-webengine-extract, sjconf-webengine-welcome, sjconf-webengine-tracking
-Description: WebEngine -- SJConf plugins metapackage
- This package depends on the full suite of SJConf plugins for webengine and its
- plugins.

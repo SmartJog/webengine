@@ -1,8 +1,12 @@
 webengine (0.13.1~dev-1) unstable; urgency=low
 
+  [ Gilles Dartiguelongue ]
   * New upstream release.
 
- -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Mon, 30 Apr 2012 11:51:48 +0200
+  [ Rémi Cardona ]
+  * Remove useless sjconf-webengine-all meta package.
+
+ -- Rémi Cardona <remi.cardona@smartjog.com>  Fri, 11 May 2012 14:41:43 +0200
 
 webengine (0.13.0-3) unstable; urgency=low
 
