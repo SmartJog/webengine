@@ -4,6 +4,7 @@ Version 0.14.0~dev
 	* Also generate webengine.fcgi with autoconfed paths.
 	* Drop useless tools modifying database directly.
 	* Add msgpack serialization support.
+	* exporter: drop constraint on output format.
 
 Version 0.13.0 Released on 2011/11/23
 

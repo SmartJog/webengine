@@ -3,7 +3,7 @@ from importer import Importer, ImporterError
 from webengine.utils.decorators import render
 from webengine.utils.log import logger
 
-@render(output='pickle')
+@render
 def dispatch(request, *args, **kw):
     """
         Perform somes checks, call the importer, and returns.
