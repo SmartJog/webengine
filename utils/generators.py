@@ -56,6 +56,16 @@ class PickleGenerator(Generator):
             import pickle
             return pickle.dumps(obj)
 
+class MsgpackGenerator(Generator):
+    def __init__(self):
+        super(MsgpackGenerator, self).__init__()
+        self._output = 'msgpack'
+
+    def generate(self, obj):
+        super(MsgpackGenerator, self).generate(obj)
+        import msgpack
+        return msgpack.packb(obj)
+
 class DefaultGenerator(Generator):
     def __init__(self):
         super(DefaultGenerator, self).__init__()
@@ -73,6 +83,7 @@ class GeneratorFactory(object):
         'json'   : JSONGenerator,
         'pickle' : PickleGenerator,
         'default': DefaultGenerator,
+        'msgpack': MsgpackGenerator,
     }
 
     @staticmethod

@@ -141,6 +141,7 @@ LOGIN_REDIRECT_URL = '/'
 #  - html
 #  - json
 #  - soap
+#  - msgpack
 # Default is html
 DEFAULT_INPUT_MODE = 'text/html'
 # The given input mode must be contained into ACCEPTABLE_INPUT_MODES
@@ -150,6 +151,7 @@ ACCEPTABLE_INPUT_MODES = {
     'application/json'     : 'json',
     'application/soap+xml' : 'soap',
     'application/pickle'   : 'pickle',
+    'application/x-msgpack': 'msgpack',
 }
 
 # Default Output mode.
@@ -159,6 +161,7 @@ ACCEPTABLE_INPUT_MODES = {
 #  - html
 #  - json
 #  - soap
+#  - msgpack
 # Default is html
 DEFAULT_OUTPUT_MODE = 'html'
 # The given output mode must be contained into ACCEPTABLE_OUTPUT_MODES
@@ -168,6 +171,7 @@ ACCEPTABLE_OUTPUT_MODES = {
         'json'  : 'application/json',
         'soap'  : 'application/soap+xml',
         'pickle': 'application/octet-stream',
+        'msgpack': 'application/x-msgpack',
 }
 
 # Logging infos.

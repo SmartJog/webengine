@@ -11,7 +11,7 @@ Package: webengine
 Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}, python-django (>= 1.2.3),
  python-simplejson, importer, python-imaging, python-sjutils (>= 1.15),
- wwwconfig-common (>= 0.2.1)
+ wwwconfig-common (>= 0.2.1), msgpack-python
 Recommends: apache2 | httpd, sjconf-webengine
 Suggests: libapache2-mod-wsgi
 Conflicts: sjrtools (<< 0.33)

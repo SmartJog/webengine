@@ -59,6 +59,16 @@ class PickleDecoder(Decoder):
         import cPickle
         return cPickle.loads(obj)
 
+class MsgpackDecoder(Decoder):
+    def __init__(self):
+        super(MsgpackDecoder, self).__init__()
+        self._input = 'msgpack'
+
+    def decode(self, obj):
+        super(MsgpackDecoder, self).decode(obj)
+        import msgpack
+        return msgpack.unpackb(obj)
+
 class DecoderFactory(object):
     """ DecoderFactory handles Decoder instances for the right input mode. """
     _input = {
@@ -67,6 +77,7 @@ class DecoderFactory(object):
         'json'   : JSONDecoder,
         'default': DefaultDecoder,
         'pickle' : PickleDecoder,
+        'msgpack': MsgpackDecoder,
     }
 
     @staticmethod

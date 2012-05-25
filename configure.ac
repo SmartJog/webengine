@@ -1,5 +1,5 @@
 AC_PREREQ([2.67])
-AC_INIT([webengine],[0.13.1~dev],[contact@smartjog.com])
+AC_INIT([webengine],[0.14.0~dev],[contact@smartjog.com])
 
 AM_INIT_AUTOMAKE([foreign -Wall 1.11])
 AM_SILENT_RULES([yes])
