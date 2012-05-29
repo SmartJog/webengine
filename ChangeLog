@@ -5,6 +5,7 @@ Version 0.14.0~dev
 	* Drop useless tools modifying database directly.
 	* Add msgpack serialization support.
 	* exporter: drop constraint on output format.
+	* Switch to tar.xz distribution.
 
 Version 0.13.0 Released on 2011/11/23
 
