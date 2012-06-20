@@ -2,10 +2,16 @@
 # Made to be used along rxtxmanager, remove useless things when alone.
 
 Alias /medias @webenginemediasdir@
+Alias /media @datadir@/pyshared/django/contrib/admin/media
 
 <Directory @webenginemediasdir@>
         Options -Indexes
         SetHandler None
+</Directory>
+
+<Directory @datadir@/pyshared/django/contrib/admin/media>
+	Options -Indexes
+	SetHandler None
 </Directory>
 
 <IfModule mod_wsgi.c>

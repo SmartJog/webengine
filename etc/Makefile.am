@@ -6,6 +6,7 @@ webengine.conf: $(top_srcdir)/etc/webengine.conf.in Makefile
 	$(AM_V_GEN)$(SED) \
 		-e 's|@webengineappdir[@]|$(webengineappdir)|g' \
 		-e 's|@webenginemediasdir[@]|$(pkgdatadir)/medias|g' \
+		-e 's|@datadir[@]|$(datadir)|g' \
 		$< > $@
 
 DISTCLEANFILES = webengine.conf
