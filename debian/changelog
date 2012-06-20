@@ -1,3 +1,9 @@
+webengine (0.15.1~dev-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>  Wed, 20 Jun 2012 15:34:02 +0200
+
 webengine (0.15.0-1) unstable; urgency=low
 
   * New upstream release.
