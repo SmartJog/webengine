@@ -89,10 +89,12 @@ if conf.getboolean('webengine', 'enable_auth'):
 
         AUTHENTICATION_BACKENDS = ('webengine.utils.backends.GenericSSLAuthBackend', ) + AUTHENTICATION_BACKENDS
 
-        GENERIC_SSL_AUTH_MODULE         = items['generic_ssl_auth_module']
-        GENERIC_SSL_AUTH_MODEL          = items['generic_ssl_auth_model']
-        GENERIC_SSL_AUTH_SERIAL_COLUMN  = items['generic_ssl_auth_serial_column']
-        GENERIC_SSL_AUTH_USER_COLUMN    = items['generic_ssl_auth_user_column']
+        auth_items = dict(conf.items('auth:generic_ssl_auth'))
+
+        GENERIC_SSL_AUTH_MODULE         = auth_items['generic_ssl_auth_module']
+        GENERIC_SSL_AUTH_MODEL          = auth_items['generic_ssl_auth_model']
+        GENERIC_SSL_AUTH_SERIAL_COLUMN  = auth_items['generic_ssl_auth_serial_column']
+        GENERIC_SSL_AUTH_USER_COLUMN    = auth_items['generic_ssl_auth_user_column']
 
     if conf.getboolean('webengine', 'enable_ldap'):
 
@@ -101,10 +103,14 @@ if conf.getboolean('webengine', 'enable_auth'):
 
         AUTHENTICATION_BACKENDS = ('django_auth_ldap.backend.LDAPBackend',) + AUTHENTICATION_BACKENDS
 
-        AUTH_LDAP_SERVER_URI    = items['ldap_uri']
-        AUTH_LDAP_BIND_DN       = items.get('ldap_bind_dn', '')
-        AUTH_LDAP_BIND_PASSWORD = items.get('ldap_bind_password', '')
-        AUTH_LDAP_USER_SEARCH   = LDAPSearch(items['ldap_search'], ldap.SCOPE_SUBTREE, items.get('ldap_scope_subtree', "(uid=%(user)s)"))
+        auth_items = dict(conf.items('auth:ldap'))
+
+        AUTH_LDAP_SERVER_URI    = auth_items['ldap_uri']
+        AUTH_LDAP_BIND_DN       = auth_items.get('ldap_bind_dn', '')
+        AUTH_LDAP_BIND_PASSWORD = auth_items.get('ldap_bind_password', '')
+        AUTH_LDAP_USER_SEARCH   = LDAPSearch(auth_items['ldap_search'],
+            ldap.SCOPE_SUBTREE,
+            auth_items.get('ldap_scope_subtree', "(uid=%(user)s)"))
 
         AUTH_LDAP_USER_ATTR_MAP = {
             'first_name': 'givenName',
