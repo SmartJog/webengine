@@ -1,3 +1,9 @@
+webengine (0.15.0~dev-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Rémi Cardona <remi.cardona@smartjog.com>  Mon, 02 Jul 2012 12:46:04 +0200
+
 webengine (0.14.0-2) unstable; urgency=low
 
   * Add python-django-auth-ldap to Suggests.

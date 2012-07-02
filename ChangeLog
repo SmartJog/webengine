@@ -1,3 +1,7 @@
+Version 0.15.0~dev
+
+	* Remove RxTx-specific 'sjversion' tag, refs: #2622.
+
 Version 0.14.0 Released on 2012/05/29
 
 	* Update autotools/automake and fail configure when txt2tags is missing.

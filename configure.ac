@@ -1,5 +1,5 @@
 AC_PREREQ([2.67])
-AC_INIT([webengine],[0.14.0],[contact@smartjog.com])
+AC_INIT([webengine],[0.15.0~dev],[contact@smartjog.com])
 
 AM_INIT_AUTOMAKE([foreign -Wall 1.11 no-dist-gzip dist-xz])
 AM_SILENT_RULES([yes])
