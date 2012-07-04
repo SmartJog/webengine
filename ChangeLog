@@ -1,4 +1,4 @@
-Version 0.15.0~dev
+Version 0.15.0 Released on 2012/07/04
 
 	* Remove RxTx-specific 'sjversion' tag, refs: #2622.
 
