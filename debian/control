@@ -2,7 +2,7 @@ Source: webengine
 Section: misc
 Priority: optional
 Maintainer: Philippe Bridant <philippe.bridant@smartjog.com>
-Uploaders: Nicolas Noirbent <nicolas.noirbent@smartjog.com>, Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>, Thomas Souvignet <thomas.souvignet@smartjog.com>, Rémi Cardona <remi.cardona@smartjog.com>, Anthony Mavic <anthony.mavic@smartjog.com>, Matthieu Bouron <matthieu.bouron@smartjog.com>, Stéphane Kanschine <stephane.kanschine@smartjog.com>, Laurent Defert <laurent.defert@smartjog.com>
+Uploaders: Nicolas Noirbent <nicolas.noirbent@smartjog.com>, Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>, Thomas Souvignet <thomas.souvignet@smartjog.com>, Rémi Cardona <remi.cardona@smartjog.com>, Anthony Mavic <anthony.mavic@smartjog.com>, Matthieu Bouron <matthieu.bouron@smartjog.com>, Stéphane Kanschine <stephane.kanschine@smartjog.com>, Laurent Defert <laurent.defert@smartjog.com>, Jonathan Billaud <jonathan.billaud@smartjog.com>
 Build-Depends: debhelper (>= 8), cdbs, python-central (>= 0.6), txt2tags
 XS-Python-Version: >= 2.6
 Standards-Version: 3.9.1
