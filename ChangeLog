@@ -1,4 +1,4 @@
-Version 0.15.2~dev
+Version 0.15.2 Release on 2012/09/27
 
 	* Fix permissions on the manage.py script, refs: #6190.
 
