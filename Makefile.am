@@ -1,5 +1,6 @@
 SUBDIRS = exporter utils etc templates sjconf doc data
-dist_webengineapp_PYTHON = __init__.py urls.py manage.py
+dist_webengineapp_PYTHON = __init__.py urls.py
+dist_webengineapp_SCRIPTS = manage.py
 nodist_webengineapp_PYTHON =  settings.py webengine.wsgi webengine.fcgi
 dist_doc_DATA = README.rst
 

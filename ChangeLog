@@ -1,3 +1,7 @@
+Version 0.15.2~dev
+
+	* Fix permissions on the manage.py script, refs: #6190.
+
 Version 0.15.1 Release on 2012/09/19
 
 	* Add manage.py in the dist packaging, closes: #6190.

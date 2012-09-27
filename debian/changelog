@@ -1,3 +1,9 @@
+webengine (0.15.2~dev-1) UNRELEASED; urgency=low
+
+  * New upstream release.
+
+ -- Jonathan Billaud <jonathan.billaud@smartjog.com>  Thu, 27 Sep 2012 10:58:52 +0200
+
 webengine (0.15.1-1) unstable; urgency=low
 
   * New upstream release.
