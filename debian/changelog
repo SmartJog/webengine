@@ -1,3 +1,11 @@
+webengine (0.15.3~dev-1) unstable; urgency=low
+
+  * New upstream release, ref: RXTX-17 and RXTX-62
+  * Update the Uploaders field
+  * Clean the debian/control file
+
+ -- Nicolas Delvaux <nicolas.delvaux@smartjog.com>  Fri, 28 Jun 2013 14:57:12 +0200
+
 webengine (0.15.2-1) unstable; urgency=low
 
   * New upstream release.

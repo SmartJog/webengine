@@ -205,3 +205,5 @@ else:
     ENABLE_ADMIN = False
 
 TEMPLATE_DEBUG = DEBUG
+
+CACHE_BACKEND = 'file:///tmp/webengine_cache'
