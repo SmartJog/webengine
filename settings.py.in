@@ -207,3 +207,7 @@ else:
 TEMPLATE_DEBUG = DEBUG
 
 CACHE_BACKEND = 'file:///tmp/webengine_cache'
+
+# Little trick for setting the HttpOnly parameter into all of our HTTP cookies
+# For further information, see: https://groups.google.com/forum/#!topic/django-users/vX9WLVuTgFQ
+SESSION_COOKIE_PATH = '/;HttpOnly'

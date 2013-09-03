@@ -1,6 +1,6 @@
 Version 0.15.4~dev
 
-	* TODO
+	* Set the 'HttpOnly' security parameter for all cookies, closes: RXTX-185
 
 Version 0.15.3 Released on 2013/08/27
 
