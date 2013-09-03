@@ -1,3 +1,11 @@
+webengine (0.15.4~dev-1) UNRELEASED; urgency=low
+
+  * TODO
+  * Add myself to the Uploaders
+  * Clean up the debian/control file
+
+ -- Nicolas Godinho <nicolas.godinho@smartjog.com>  Tue, 03 Sep 2013 11:51:39 +0200
+
 webengine (0.15.3-1) unstable; urgency=low
 
   * New upstream release, ref: RXTX-17 and RXTX-62
