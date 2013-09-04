@@ -28,7 +28,15 @@ Recommends: apache2 | httpd,
             sjconf-webengine
 Suggests: libapache2-mod-wsgi,
           python-django-auth-ldap
-Conflicts: sjrtools (<< 0.33)
+Conflicts: sjrtools (<< 0.33),
+           webengine-automations (<= 0.6.4),
+           webengine-browser (<= 0.8.3),
+           webengine-configuration (<= 0.6.1),
+           webengine-exports (<= 0.5.4),
+           webengine-front (<= 0.6.7),
+           webengine-sysops (<= 0.1.1),
+           webengine-tracking (<= 0.4.8),
+           webengine-welcome (<= 0.2.12)
 XB-Python-Version: ${python:Versions}
 Description: Django application for smartjog
  This is an empty box.

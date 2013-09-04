@@ -211,3 +211,7 @@ CACHE_BACKEND = 'file:///tmp/webengine_cache'
 # Little trick for setting the HttpOnly parameter into all of our HTTP cookies
 # For further information, see: https://groups.google.com/forum/#!topic/django-users/vX9WLVuTgFQ
 SESSION_COOKIE_PATH = '/;HttpOnly'
+
+# Enabling CSRF middleware for mitigating CSRF attacks, ref: RXTX-184
+# For further information, see: https://docs.djangoproject.com/en/1.2/ref/contrib/csrf/
+MIDDLEWARE_CLASSES += ('django.contrib.csrf.middleware.CsrfMiddleware',)

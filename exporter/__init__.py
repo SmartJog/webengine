@@ -2,7 +2,9 @@ import simplejson as json
 from importer import Importer, ImporterError
 from webengine.utils.decorators import render
 from webengine.utils.log import logger
+from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 @render
 def dispatch(request, *args, **kw):
     """

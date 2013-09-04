@@ -1,6 +1,7 @@
 webengine (0.15.4~dev-1) UNRELEASED; urgency=low
 
   * TODO
+  * Add conflicting versions of webgine-plugins into debian/control
   * Add myself to the Uploaders
   * Clean up the debian/control file
 
