@@ -1,11 +1,11 @@
-webengine (0.15.4~dev-1) UNRELEASED; urgency=low
+webengine (0.15.4-1) unstable; urgency=low
 
-  * TODO
+  * New upstream release, closes: RXTX-184, RXTX-185
   * Add conflicting versions of webgine-plugins into debian/control
   * Add myself to the Uploaders
   * Clean up the debian/control file
 
- -- Nicolas Godinho <nicolas.godinho@smartjog.com>  Tue, 03 Sep 2013 11:51:39 +0200
+ -- Nicolas Godinho <nicolas.godinho@smartjog.com>  Wed, 04 Sep 2013 10:46:10 +0200
 
 webengine (0.15.3-1) unstable; urgency=low
 

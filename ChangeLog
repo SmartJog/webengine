@@ -1,4 +1,4 @@
-Version 0.15.4~dev
+Version 0.15.4 Released on 2013/09/04
 
 	* Set the 'HttpOnly' security parameter for all cookies, closes: RXTX-185
 	* Enable CSRF protection for all HTML forms, closes: RXTX-184
