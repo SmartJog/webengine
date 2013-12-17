@@ -47,10 +47,10 @@ Description: SmartJog schema for WebEngine
 
 Package: sjconf-webengine
 Architecture: all
+Pre-Depends: sjconf1 (>= 1.13.0)
 Depends: ${misc:Depends},
          ${python:Depends},
          webengine (= ${binary:Version}),
-         sjconf1 (>= 1.2)
 XB-Python-Version: ${python:Versions}
 Description: Sjconf plugin for WebEngine
  This SJConf plugin handles configuration for the Webengine

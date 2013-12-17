@@ -5,14 +5,14 @@ set -e
 
 #DEBHELPER#
 
-if ! sjconf --list-plugins | grep "^Plugin webengine$" > /dev/null
+if ! sjconf --list-plugins | grep "^Plugin webengine:$" > /dev/null
 then
-    sjconf --install-conf --link /etc/webengine/sjconf/confs/webengine.conf
+    sjconf --install-conf-with-symlink /etc/webengine/sjconf/confs/webengine.conf
     if [ -e /etc/webengine/sjconf/templates/webengine/webengine.conf ]
     then
-        sjconf --install-template --link /etc/webengine/sjconf/templates/webengine
+        sjconf --install-template-with-symlink /etc/webengine/sjconf/templates/webengine
     fi
-    sjconf --install-plugin --link /usr/share/sjconf-webengine/webengine.py
+    sjconf --install-plugin-with-symlink /usr/share/sjconf-webengine/webengine.py
     sjconf --enable-plugin webengine
     sjconf --deploy --restart webengine
 fi
