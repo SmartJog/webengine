@@ -212,6 +212,14 @@ def webengine_pgconn(conf_file):
         conf = RawConfigParser()
         conf.read(conf_file)
         items = dict(conf.items('database'))
+        # The password might be overridden in the global DB configuration file
+        dbconf = RawConfigParser()
+        dbconf.read('/etc/db.ini')
+        if 'password' in items and 'user' in items:
+            try:
+                items['password'] = dbconf.get('db', items['user'])
+            except:
+                pass
         return PgConnProxy(items, func)
 
     return __nested__
