@@ -8,6 +8,8 @@ ADMINS = (
 MANAGERS = ADMINS
 
 import os
+import string
+import random
 
 # Get configuration file
 from ConfigParser import RawConfigParser
@@ -40,8 +42,16 @@ MEDIA_URL = ''
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/media/'
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = '3=1gkvcqd+4v5xb)!m6b9%s*to%6dye%nk6*^-w5unj&^e3a+b'
+# Secret key
+try:
+    with open('/var/lib/webengine/secret.txt') as secret:
+        SECRET_KEY = secret.read().strip()
+except IOError:
+    # Generate the secret key
+    SECRET_KEY = ''.join([random.SystemRandom().choice(string.digits + string.letters + string.punctuation) for i in range(100)])
+    # Save it in a file
+    with open('/var/lib/webengine/secret.txt', 'w') as secret:
+        secret.write(SECRET_KEY)
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (

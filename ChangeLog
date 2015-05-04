@@ -4,6 +4,7 @@ Version 0.15.5~dev
 	* Complete the sjconf man page
 	* Change the default admin to myself
 	* Try to parse the DB password from a global configuration file
+	* Randomized the SECRET_KEY
 
 Version 0.15.4 Released on 2013/09/04
 
