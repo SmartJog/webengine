@@ -1,11 +1,7 @@
 Source: webengine
 Section: misc
 Priority: optional
-Maintainer: Philippe Bridant <philippe.bridant@smartjog.com>
-Uploaders: Jonathan Billaud <jonathan.billaud@smartjog.com>,
-           Nicolas Delvaux <nicolas.delvaux@smartjog.com>,
-           Marc Fouche <marc.fouche@smartjog.com>,
-           Nicolas Godinho <nicolas.godinho@smartjog.com>
+Maintainer: Nicolas Delvaux <nicolas.delvaux@arkena.com>
 Build-Depends: debhelper (>= 8),
                cdbs,
                python-central (>= 0.6),

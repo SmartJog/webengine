@@ -1,6 +1,7 @@
 webengine (0.15.5~dev-1) UNRELEASED; urgency=medium
 
   * New upstream release
+  * Make myself the Maintainer
 
  -- Nicolas Delvaux <nicolas.delvaux@arkena.com>  Mon, 04 May 2015 10:37:33 +0200
 
