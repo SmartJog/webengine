@@ -1,11 +1,11 @@
-webengine (0.15.5~dev-1) UNRELEASED; urgency=medium
+webengine (0.15.5-1) unstable; urgency=medium
 
   * New upstream release
   * Make myself the Maintainer
   * Fix sjconf arguments in scripts to match the new sjconf arguments
   * Modernize the packaging
 
- -- Nicolas Delvaux <nicolas.delvaux@arkena.com>  Mon, 04 May 2015 10:37:33 +0200
+ -- Nicolas Delvaux <nicolas.delvaux@arkena.com>  Mon, 04 May 2015 14:37:01 +0200
 
 webengine (0.15.4-1) unstable; urgency=low
 
