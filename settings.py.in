@@ -2,7 +2,7 @@
 
 
 ADMINS = (
-        ('Thomas Meson', 'thomas.meson@smartjog.com'),
+        ('Nicolas Delvaux', 'nicolas.delvaux@arkena.com'),
 )
 
 MANAGERS = ADMINS

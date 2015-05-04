@@ -2,6 +2,7 @@ Version 0.15.5~dev
 
 	* Change the default DB host to the PostgreSQL Unix socket
 	* Complete the sjconf man page
+	* Change the default admin to myself
 
 Version 0.15.4 Released on 2013/09/04
 
