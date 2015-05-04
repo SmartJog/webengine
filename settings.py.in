@@ -188,9 +188,18 @@ AUTHORIZED_MODS     = [_amod.strip() for _amod in items['authorized_mods'].split
 DATABASE_ENGINE     = items['database_engine']
 DATABASE_NAME       = items['database_name']
 DATABASE_USER       = items['database_user']
-DATABASE_PASSWORD   = items['database_password']
 DATABASE_HOST       = items['database_host']
 DATABASE_PORT       = items['database_port']
+
+# Try to parse the DB password from a global configuration file
+DATABASE_PASSWORD = items['database_password']
+dbconfig = RawConfigParser()
+dbconfig.read('/etc/db.ini')
+try:
+    DATABASE_PASSWORD = dbconfig.get('db', DATABASE_USER)
+except:
+    pass
+
 
 import utils
 mods = utils.get_valid_plugins()
