@@ -1,6 +1,6 @@
 Version 0.15.5~dev
 
-	* TODO
+	* Change the default DB host to the PostgreSQL Unix socket
 
 Version 0.15.4 Released on 2013/09/04
 
