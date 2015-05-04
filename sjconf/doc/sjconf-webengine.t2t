@@ -26,7 +26,7 @@ Here is the list of options for the **[webengine]** section:
 : **profile** = //tvrbox//
 The profile used to select the theme displayed on every webengine pages and plugins using the standard template.
 
-: **language** = //fr-FR//
+: **language** = //en-US//
 The default language, used by Django internationalization
 
 : **default_url** = //welcome//
@@ -48,7 +48,7 @@ Define the time zone.
 List of **webengine**(8) modules enabled for non-authenticated users (wild
 guess).
 
-: **login_url** = //URL//
+: **login_url** = ///front/login///
 URL on which user is redirected if an authentication is needed.
 
 : **enable_i18n** = //boolean//
@@ -56,6 +56,24 @@ Enable webengine internationalization.
 
 : **enable_auth** = //boolean//
 Enable authentication backends.
+
+: **db_engine** = //postgresql_psycopg2//
+Database backend to use.
+
+: **db_name** = //rxtx//
+Database to connect to.
+
+: **db_user** = //webengine//
+Database user to connect with.
+
+: **db_password** = //webengine//
+Database password to connect with.
+
+: **db_host** = ///var/run/postgresql//
+Database host to connect to.
+
+: **db_port** = //5432//
+Database port to connect to.
 
 
 Here is the list of options for the **[webengine:session]** section:
