@@ -1,3 +1,9 @@
+webengine (0.15.5~dev-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Nicolas Delvaux <nicolas.delvaux@arkena.com>  Mon, 04 May 2015 10:37:33 +0200
+
 webengine (0.15.4-1) unstable; urgency=low
 
   * New upstream release, closes: RXTX-184, RXTX-185
