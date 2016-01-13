@@ -10,7 +10,7 @@ import traceback
 
 class UserSettingMiddleware(object):
     def process_request(self, request):
-        from utils.models import UserSetting
+        from models import UserSetting
         assert hasattr(request, 'user'), "UserSettingMiddleware require to have the AuthenticationMiddleware before."
         if request.user.is_anonymous(): request.__class__.settings = {}
         else: request.__class__.settings = dict(request.user.usersetting_set.all().values_list('key', 'value'))

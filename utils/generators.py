@@ -37,7 +37,7 @@ class JSONGenerator(Generator):
 
     def generate(self, obj):
         super(JSONGenerator, self).generate(obj)
-        import django.utils.simplejson as json
+        import json
         from django.core.serializers.json import DateTimeAwareJSONEncoder
         return json.dumps(obj, cls=DateTimeAwareJSONEncoder)
 

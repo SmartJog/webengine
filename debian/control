@@ -12,7 +12,7 @@ Package: webengine
 Architecture: all
 Depends: ${misc:Depends},
          ${python:Depends},
-         python-django (>= 1.2.3),
+         python-django (>= 1.6.0),
          python-simplejson,
          importer,
          python-imaging,

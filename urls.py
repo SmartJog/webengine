@@ -5,7 +5,8 @@
 # django versions add other handlers, we'll get bit in the a** again. Django's
 # API is retarded, but whatever.
 # See http://docs.djangoproject.com/en/dev/topics/http/views/#the-404-page-not-found-view
-from django.conf.urls.defaults import *
+
+from django.conf.urls import patterns, url, include
 from webengine.utils import get_valid_plugins
 from django.contrib import admin
 from django.conf import settings
@@ -43,5 +44,5 @@ if settings.DEBUG:
 
 if hasattr(settings, 'ENABLE_ADMIN') and settings.ENABLE_ADMIN:
     urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/usr/share/pyshared/django/contrib/admin/media/'}),
+        (r'^admin/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/usr/share/python-django-common/django/contrib/admin/static/admin/'}),
     )
