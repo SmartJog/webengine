@@ -1,3 +1,7 @@
+Version 0.15.7~dev
+
+	* TODO
+
 Version 0.15.6 Released on 2015/05/04
 
 	* Try to parse all DB passwords from a global configuration file
