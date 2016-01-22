@@ -27,6 +27,7 @@ TIME_ZONE = items['time_zone']
 
 SITE_ID = 1
 
+ALLOWED_HOSTS = ['*']
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
@@ -55,7 +56,7 @@ except IOError:
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
+    'django.template.loaders.filesystem.Loader',
     # DO NOT use the following loader, it does not make what we want.
     #'django.template.loaders.app_directories.load_template_source',
 )
@@ -195,21 +196,26 @@ SKIN                = items['skin']
 LANGUAGE_CODE       = items['language_code']
 DEFAULT_URL         = items['default_url']
 AUTHORIZED_MODS     = [_amod.strip() for _amod in items['authorized_mods'].split(',') if _amod.strip()]
-DATABASE_ENGINE     = items['database_engine']
-DATABASE_NAME       = items['database_name']
-DATABASE_USER       = items['database_user']
-DATABASE_HOST       = items['database_host']
-DATABASE_PORT       = items['database_port']
 
 # Try to parse the DB password from a global configuration file
 DATABASE_PASSWORD = items['database_password']
 dbconfig = RawConfigParser()
 dbconfig.read('/etc/db.ini')
 try:
-    DATABASE_PASSWORD = dbconfig.get('db', DATABASE_USER)
+    DATABASE_PASSWORD = dbconfig.get('db', items['database_user'])
 except:
     pass
 
+DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': items['database_name'],
+            'USER': items['database_user'],
+            'PASSWORD': dbconfig.get('db', items['database_user']),
+            'HOST': items['database_host'],
+            'PORT': items['database_port'],
+        }
+}
 
 import utils
 mods = utils.get_valid_plugins()
@@ -233,4 +239,4 @@ SESSION_COOKIE_PATH = '/;HttpOnly'
 
 # Enabling CSRF middleware for mitigating CSRF attacks, ref: RXTX-184
 # For further information, see: https://docs.djangoproject.com/en/1.2/ref/contrib/csrf/
-MIDDLEWARE_CLASSES += ('django.contrib.csrf.middleware.CsrfMiddleware',)
+MIDDLEWARE_CLASSES += ('django.middleware.csrf.CsrfViewMiddleware',)

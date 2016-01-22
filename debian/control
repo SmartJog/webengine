@@ -2,6 +2,7 @@ Source: webengine
 Section: misc
 Priority: optional
 Maintainer: Nicolas Delvaux <nicolas.delvaux@arkena.com>
+Uploaders: Julien Mori <julien.mori@arkena.com>
 Build-Depends: debhelper (>= 8),
                python-all (>= 2.6.6-3),
                txt2tags
@@ -12,7 +13,7 @@ Package: webengine
 Architecture: all
 Depends: ${misc:Depends},
          ${python:Depends},
-         python-django (>= 1.2.3),
+         python-django (>= 1.6.0),
          python-simplejson,
          importer,
          python-imaging,

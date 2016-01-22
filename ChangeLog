@@ -1,3 +1,8 @@
+Version 1.0.0 Released on 2016/01/21
+
+	* Make the project compatible with django up to version 1.7
+	* Add myself to uploaders
+
 Version 0.15.6 Released on 2015/05/04
 
 	* Try to parse all DB passwords from a global configuration file

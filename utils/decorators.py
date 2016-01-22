@@ -76,7 +76,7 @@ class _CheckRenderMode(object):
         from webengine.utils.decoders import DecoderFactory
         decoder = DecoderFactory.get(self.input)
         if request.method == 'POST':
-            request.DECODED = decoder.decode(request.raw_post_data)
+            request.DECODED = decoder.decode(request.body)
         else:
             request.DECODED = None
         # Check for output keyword passed by the url dispatcher.
