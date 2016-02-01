@@ -1,4 +1,4 @@
-Version 1.0.1~dev
+Version 1.0.1 Released on 2016/02/01
 
 	* Change an obsolete import
 	* Do not try to store the Importer instance in the session
