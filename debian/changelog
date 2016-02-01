@@ -1,3 +1,9 @@
+webengine (1.0.1~dev-1) UNRELEASED; urgency=medium
+
+  * New upstream version
+
+ -- Julien Mori <julien.mori@arkena.com>  Mon, 01 Feb 2016 15:55:27 +0100
+
 webengine (1.0.0-1) unstable; urgency=medium
 
   * New upstream version
