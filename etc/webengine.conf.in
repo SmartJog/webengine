@@ -8,9 +8,4 @@ Alias /medias @webenginemediasdir@
         SetHandler None
 </Directory>
 
-<IfModule mod_wsgi.c>
-
-        WSGIRestrictSignal Off
-        WSGIScriptAlias /webengine @webengineappdir@/webengine.wsgi
-
-</IfModule>
+ProxyPass "/webengine" "unix:/var/run/uwsgi/app/webengine/socket|http://uwsgi-webengine"
