@@ -2,5 +2,6 @@ usr/bin/
 usr/share/webengine/app/
 usr/share/webengine/templates/
 usr/share/man/man1/
-etc/webengine/
+etc/webengine/webengine.ini /etc/uwsgi/apps-available
+etc/webengine/*.conf
 usr/share/doc
