@@ -64,7 +64,7 @@ class MsgpackGenerator(Generator):
     def generate(self, obj):
         super(MsgpackGenerator, self).generate(obj)
         import msgpack
-        return msgpack.packb(obj)
+        return msgpack.packb(obj, default=str)
 
 class DefaultGenerator(Generator):
     def __init__(self):

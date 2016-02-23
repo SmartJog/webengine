@@ -4,6 +4,7 @@ Version 1.0.1~dev
 	* Do not try to store the Importer instance in the session
 	* Change webengine.conf to be compatible with uwsgi
 	* Add uwsgi config and modify the packaging to install it
+	* Improve compatibility with some existing exporter plugins
 
 Version 1.0.0 Released on 2016/01/21
 
