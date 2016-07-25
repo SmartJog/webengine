@@ -1,5 +1,6 @@
 # Django settings for rxtxmanager project.
 
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 ADMINS = (
         ('Nicolas Delvaux', 'nicolas.delvaux@arkena.com'),
