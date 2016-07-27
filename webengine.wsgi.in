@@ -7,4 +7,8 @@ os.chdir("@webengineappdir@")
 os.environ['DJANGO_SETTINGS_MODULE'] = "webengine.settings"
 
 from django.core.wsgi import get_wsgi_application
-application = get_wsgi_application()
+_application = get_wsgi_application()
+
+def application(environ, start_response):
+    os.environ.update(environ)
+    return _application(environ, start_response)
