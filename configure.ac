@@ -1,5 +1,5 @@
 AC_PREREQ([2.67])
-AC_INIT([webengine],[1.0.5],[opensource@arkena.com])
+AC_INIT([webengine],[1.0.6~dev],[opensource@arkena.com])
 
 AM_INIT_AUTOMAKE([foreign -Wall 1.11])
 AM_SILENT_RULES([yes])

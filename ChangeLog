@@ -1,3 +1,7 @@
+Version 1.0.6~dev
+
+	* TODO
+
 Version 1.0.5 Released on 2016/07/27
 
 	* Fix bug where SSL environment wasn't passed to the application with uwsgi, fixes: SLASH-3870
