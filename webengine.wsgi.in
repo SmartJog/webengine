@@ -10,5 +10,7 @@ from django.core.wsgi import get_wsgi_application
 _application = get_wsgi_application()
 
 def application(environ, start_response):
-    os.environ.update(environ)
+    for env in environ:
+        if env.startswith('SSL'):
+            os.environ[env] = environ[env]
     return _application(environ, start_response)

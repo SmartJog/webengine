@@ -1,6 +1,6 @@
 Version 1.0.6~dev
 
-	* TODO
+	* Only transmit the SSL environment (this prevents some crash cases)
 
 Version 1.0.5 Released on 2016/07/27
 
