@@ -1,4 +1,4 @@
-Version 1.0.6~dev
+Version 1.0.6 Released on 2017/01/05
 
 	* Only transmit the SSL environment (this prevents some crash cases)
 
