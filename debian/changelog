@@ -1,3 +1,9 @@
+webengine (1.0.7-1) unstable; urgency=medium
+
+  * New upstream version
+
+ -- Nicolas Delvaux <nicolas.delvaux@arkena.com>  Thu, 12 Oct 2017 15:22:29 +0200
+
 webengine (1.0.6-1) unstable; urgency=medium
 
   * New upstream version

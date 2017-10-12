@@ -9,3 +9,4 @@ Alias /medias @webenginemediasdir@
 </Directory>
 
 ProxyPass "/webengine" "unix:/var/run/uwsgi/app/webengine/socket|http://uwsgi-webengine"
+ProxyPreserveHost On
