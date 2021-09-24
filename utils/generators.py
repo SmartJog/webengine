@@ -59,7 +59,7 @@ class PickleGenerator(Generator):
 
         try:
             return cPickle.dumps(obj)
-        except cPickle.PickleError, _error:
+        except cPickle.PickleError as _error:
             # cPickle failed, try pickle
             import pickle
 

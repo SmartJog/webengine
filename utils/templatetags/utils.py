@@ -12,9 +12,9 @@ class RenderPartialNode(Node):
         self.name = self.controller + "/_" + self.view + ".html"
 
     def render(self, context):
-        print self.params
+        print(self.params)
         for k, v in self.params.items():
-            print "Resolve " + str(v)
+            print("Resolve " + str(v))
             # self.params[k] = resolve_variable(v, context)
             self.params[k] = v
         context.update(self.params)
@@ -40,7 +40,7 @@ def render_partial(parser, token):
         k, v = item.split(":")
         params[k] = v
     for k in ["controller", "view"]:
-        if k not in params.keys():
+        if k not in params:
             raise TemplateSyntaxError(
                 'Parameters "controller" and "view" are required.'
             )
@@ -57,7 +57,7 @@ def truncate(value, arg):
         length = int(arg)
     except ValueError:
         return value
-    if not isinstance(value, basestring):
+    if not isinstance(value, str):
         value = str(value)
     if len(value) > length:
         return value[:length] + "..."

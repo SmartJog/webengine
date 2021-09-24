@@ -73,11 +73,11 @@ class _CheckRenderMode(object):
         else:
             self.input = settings.DEFAULT_INPUT_MODE
         # Check forced input by decorator.
-        if "input" in self.decorator_opts.keys():
+        if "input" in self.decorator_opts:
             self.input = self.decorator_opts["input"]
         # Decode input
         if (
-            request.META.has_key("HTTP_WEBENGINE_OUTPUT")
+            "HTTP_WEBENGINE_OUTPUT" in request.META
             and request.META["HTTP_WEBENGINE_OUTPUT"] == "pickle"
         ):
             self.input = "pickle"
@@ -92,7 +92,7 @@ class _CheckRenderMode(object):
         self.output = settings.DEFAULT_OUTPUT_MODE
         self.output = kwds_urldispatcher.pop("output", self.output)
         # Check forced output by decorator.
-        if "output" in self.decorator_opts.keys():
+        if "output" in self.decorator_opts:
             self.output = self.decorator_opts["output"]
         # Lookup the right view.
         # Passed by the urldispatcher
@@ -115,16 +115,16 @@ class _CheckRenderMode(object):
         self.view = self.decorator_opts.get("view", self.view)
         if isinstance(self.view_ctx, dict):
             # Check for view into the returned dictionary.
-            if "view" in self.view_ctx.keys():
+            if "view" in self.view_ctx:
                 self.view = self.view_ctx.pop("view")
             # Output from returned dictionary.
-            if "output" in self.view_ctx.keys():
+            if "output" in self.view_ctx:
                 self.output = self.view_ctx.pop("output")
         # Header (override everything)
         if self.request.META.get("HTTP_WEBENGINE_OUTPUT"):
             self.output = request.META["HTTP_WEBENGINE_OUTPUT"]
         # Check output validity, otherwise raise 500.
-        if self.output not in settings.ACCEPTABLE_OUTPUT_MODES.keys():
+        if self.output not in settings.ACCEPTABLE_OUTPUT_MODES:
             return HttpResponse(status=500)
         return self._createResponse()
 
@@ -162,7 +162,7 @@ class _CheckRenderMode(object):
                 status=self.status,
             )
             return resp
-        except TemplateDoesNotExist, _error:
+        except TemplateDoesNotExist as _error:
             # TODO: Fallback to a "raw" output.
             # return HttpResponse('Template does not exist', status = 500)
             raise

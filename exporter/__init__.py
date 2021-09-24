@@ -33,7 +33,7 @@ def dispatch(request, *args, **kw):
     if request.method == "GET":
         try:
             return (200, imp.get(mod, met))
-        except ImporterError, e:
+        except ImporterError as e:
             logger.debug("Exporter: Catched: " + e.traceback)
             return (500, {"msg": e.msg, "traceback": e.traceback})
     # POST ?
@@ -59,10 +59,10 @@ def dispatch(request, *args, **kw):
             elif t == "instantiate":
                 ret = imp.instantiate(kw.pop("variable"), mod, met, *args, **kw)
             return (200, ret)
-        except ImporterError, e:
+        except ImporterError as e:
             logger.debug("Exporter: ImporterError catched: " + str(e))
             return (500, {"msg": e.msg, "traceback": e.traceback})
-        except Exception, e:
+        except Exception as e:
             import traceback
 
             logger.debug("Exporter: Catched: " + str(e))

@@ -5,13 +5,13 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 import logging
-import log
+from . import log
 import traceback
 
 
 class UserSettingMiddleware(object):
     def process_request(self, request):
-        from models import UserSetting
+        from .models import UserSetting
 
         assert hasattr(
             request, "user"

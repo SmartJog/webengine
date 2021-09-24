@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.backends import ModelBackend
-from models import UserSetting
+from .models import UserSetting
 import os
 
 import settings

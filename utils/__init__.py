@@ -22,7 +22,7 @@ def get_valid_plugins():
         mod = None
         try:
             mod = __import__("webengine." + mod_name, {}, {}, [""])
-        except Exception, _error:
+        except Exception as _error:
             return []
         try:
             __import__("webengine." + mod_name + ".urls", {}, {}, [""])
@@ -80,5 +80,5 @@ def default_view(request):
             return HttpResponseRedirect(reverse(request.settings["default_url"]))
         if settings.DEFAULT_URL != "":
             return HttpResponseRedirect(reverse(settings.DEFAULT_URL))
-    except NoReverseMatch, _error:
+    except NoReverseMatch as _error:
         return HttpResponse("<h1>It works!</h1>")
