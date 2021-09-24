@@ -64,9 +64,9 @@ class PickleDecoder(Decoder):
 
     def decode(self, obj):
         super(PickleDecoder, self).decode(obj)
-        import cPickle
+        import pickle
 
-        return cPickle.loads(obj)
+        return pickle.loads(obj)
 
 
 class MsgpackDecoder(Decoder):
@@ -78,7 +78,7 @@ class MsgpackDecoder(Decoder):
         super(MsgpackDecoder, self).decode(obj)
         import msgpack
 
-        return msgpack.unpackb(obj)
+        return msgpack.unpackb(obj, encoding="utf-8")
 
 
 class DecoderFactory(object):

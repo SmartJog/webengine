@@ -1,6 +1,6 @@
 [uwsgi]
 
-plugins = python
+plugins = python3
 http-socket = /var/run/uwsgi/app/webengine/socket
 uid = sjuser
 gid = sjgroup
@@ -11,4 +11,5 @@ env = DJANGO_SETTINGS_MODULE=webengine.settings
 wsgi-file= @webengineappdir@/webengine.wsgi
 module = wsgi
 master= True
+enable-threads = False
 processes = 5

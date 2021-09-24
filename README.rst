@@ -39,7 +39,7 @@ To generate them, simply run::
 Building
 --------
 
-python-toolbox2 builds like your typical autotools-based project::
+Web Engine builds like your typical autotools-based project::
 
     $ ./configure && make && make install
 

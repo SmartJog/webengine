@@ -254,7 +254,7 @@ def webengine_pgconn(conf_file):
     information stored on conf_file"""
 
     def __nested__(func):
-        from ConfigParser import RawConfigParser
+        from configparser import RawConfigParser
 
         conf = RawConfigParser()
         conf.read(conf_file)

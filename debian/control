@@ -3,25 +3,25 @@ Section: misc
 Priority: optional
 Maintainer: Nicolas Delvaux <nicolas.delvaux@cji.paris>
 Build-Depends: debhelper (>= 9),
-               python-all,
+               python3-all,
+               dh-python,
                txt2tags
 Standards-Version: 3.9.6
 
 Package: webengine
 Architecture: all
 Depends: ${misc:Depends},
-         ${python:Depends},
-         python-django (>= 1.6.0),
-         python-simplejson,
-         importer,
-         python-imaging,
-         python-sjutils (>= 1.15),
+         ${python3:Depends},
+         python3-django (>= 1.6.0),
+         python3-sjutils,
+         python3-simplejson,
+         python3-importer,
          wwwconfig-common (>= 0.2.1),
-         msgpack-python
+         python3-msgpack
 Recommends: apache2 | httpd,
+            uwsgi,
+            uwsgi-plugin-python3,
             sjconf-webengine
-Suggests: libapache2-mod-wsgi,
-          python-django-auth-ldap
 Description: Django application for smartjog
  This is an empty box.
  Install webengine-* to add functionality to the webengine.
@@ -37,7 +37,7 @@ Package: sjconf-webengine
 Architecture: all
 Pre-Depends: sjconf1 (>= 1.13.0)
 Depends: ${misc:Depends},
-         ${python:Depends},
+         ${python3:Depends},
          webengine (= ${binary:Version}),
 Description: Sjconf plugin for WebEngine
  This SJConf plugin handles configuration for the Webengine

@@ -11,7 +11,7 @@ import string
 import random
 
 # Get configuration file
-from ConfigParser import RawConfigParser
+from configparser import RawConfigParser
 
 conf = RawConfigParser()
 conf.read(

@@ -55,11 +55,11 @@ class PickleGenerator(Generator):
 
     def generate(self, obj):
         super(PickleGenerator, self).generate(obj)
-        import cPickle
+        import pickle
 
         try:
-            return cPickle.dumps(obj)
-        except cPickle.PickleError as _error:
+            return pickle.dumps(obj)
+        except pickle.PickleError as _error:
             # cPickle failed, try pickle
             import pickle
 

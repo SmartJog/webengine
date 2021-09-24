@@ -1,6 +1,7 @@
 Version 1.0.8~dev
 
 	* Format the code with Black
+	* Port to Python3
 
 Version 1.0.7 Released on 2017/10/12
 

@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/python3
 
 """
     A tool to list and modify webengine's user accounts.
@@ -145,9 +144,9 @@ def main():
         user = User()
         user.username = options.add
         try:
-            user.first_name = raw_input("First name: ")
-            user.last_name = raw_input("Last name: ")
-            user.email = raw_input("Email: ")
+            user.first_name = input("First name: ")
+            user.last_name = input("Last name: ")
+            user.email = input("Email: ")
             user.date_joined = datetime.datetime.now()
             passwd = getpass.getpass()
             passwd2 = getpass.getpass("Type your password again: ")
