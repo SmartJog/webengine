@@ -60,22 +60,23 @@ Authors
 
 Web Engine was created at SmartJog by :
 
-* Anthony Mavic <anthony.mavic@smartjog.com>
-* Bastien Abadie <bastien.abadie@smartjog.com>
-* Benoit Mauduit <benoit.mauduit@smartjog.com>
-* Bryann Lamour <bryann.lamour@smartjog.com>
-* Clément Bœsch <clement.boesch@smartjog.com>
-* Gilles Dartiguelongue <gilles.dartiguelongue@smartjog.com>
-* Guillaume Camera <guillaume.camera@smartjog.com>
-* Mathieu Dupuy <mathieu.dupuy@smartjog.com>
-* Matthieu Bouron <matthieu.bouron@smartjog.com>
-* Maxime Mouial <maxime.mouial@smartjog.com>
-* Nicolas Noirbent <nicolas.noirbent@smartjog.com>
-* Philippe Bridant <philippe.bridant@smartjog.com>
-* Rémi Cardona <remi.cardona@smartjog.com>
-* Stéphane Kanschine <stephane.kanschine@smartjog.com>
-* Thomas Meson <thomas.meson@smartjog.com>
-* Thomas Souvignet <thomas.souvignet@smartjog.com>
-* Victor Goya <victor.goya@smartjog.com>
+* Anthony Mavic
+* Bastien Abadie
+* Benoit Mauduit
+* Bryann Lamour
+* Clément Bœsch
+* Gilles Dartiguelongue
+* Guillaume Camera
+* Mathieu Dupuy
+* Matthieu Bouron
+* Maxime Mouial
+* Nicolas Delvaux <nicolas.delvaux@cji.paris>
+* Nicolas Noirbent
+* Philippe Bridant
+* Rémi Cardona
+* Stéphane Kanschine
+* Thomas Meson
+* Thomas Souvignet
+* Victor Goya
 
 
