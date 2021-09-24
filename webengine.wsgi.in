@@ -1,16 +1,19 @@
 #!/usr/bin/python
 
 import os, sys
+
 sys.path.insert(0, "@webengineappdir@")
 sys.path.insert(0, "@webenginedir@/app")
 os.chdir("@webengineappdir@")
-os.environ['DJANGO_SETTINGS_MODULE'] = "webengine.settings"
+os.environ["DJANGO_SETTINGS_MODULE"] = "webengine.settings"
 
 from django.core.wsgi import get_wsgi_application
+
 _application = get_wsgi_application()
+
 
 def application(environ, start_response):
     for env in environ:
-        if env.startswith('SSL'):
+        if env.startswith("SSL"):
             os.environ[env] = environ[env]
     return _application(environ, start_response)

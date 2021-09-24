@@ -1,4 +1,4 @@
-'''
+"""
 A smarter {% if %} tag for django templates.
 
 While retaining current Django functionality, it also handles equality,
@@ -6,14 +6,15 @@ greater than and less than operators. Some common case examples::
 
     {% if articles|length >= 5 %}...{% endif %}
     {% if "ifnotequal tag" != "beautiful" %}...{% endif %}
-'''
+"""
 from django import template
 
 register = template.Library()
 
-#===============================================================================
+# ===============================================================================
 # Calculation objects
-#===============================================================================
+# ===============================================================================
+
 
 class BaseCalc(object):
     def __init__(self, var1, var2=None, negate=False):
@@ -38,42 +39,50 @@ class BaseCalc(object):
     def calculate(self, var1, var2):
         raise NotImplementedError()
 
+
 class Or(BaseCalc):
     def calculate(self, var1, var2):
         return var1 or var2
+
 
 class And(BaseCalc):
     def calculate(self, var1, var2):
         return var1 and var2
 
+
 class Equals(BaseCalc):
     def calculate(self, var1, var2):
         return var1 == var2
+
 
 class Greater(BaseCalc):
     def calculate(self, var1, var2):
         return var1 > var2
 
+
 class GreaterOrEqual(BaseCalc):
     def calculate(self, var1, var2):
         return var1 >= var2
+
 
 class In(BaseCalc):
     def calculate(self, var1, var2):
         return var1 in var2
 
+
 OPERATORS = {
-    '=': (Equals, True),
-    '==': (Equals, True),
-    '!=': (Equals, False),
-    '>': (Greater, True),
-    '>=': (GreaterOrEqual, True),
-    '<=': (Greater, False),
-    '<': (GreaterOrEqual, False),
-    'or': (Or, True),
-    'and': (And, True),
-    'in': (In, True),
+    "=": (Equals, True),
+    "==": (Equals, True),
+    "!=": (Equals, False),
+    ">": (Greater, True),
+    ">=": (GreaterOrEqual, True),
+    "<=": (Greater, False),
+    "<": (GreaterOrEqual, False),
+    "or": (Or, True),
+    "and": (And, True),
+    "in": (In, True),
 }
+
 
 class IfParser(object):
     error_class = ValueError
@@ -93,11 +102,11 @@ class IfParser(object):
 
     def parse(self):
         if self.at_end():
-            raise self.error_class('No variables provided.')
+            raise self.error_class("No variables provided.")
         var1 = self.get_var()
         while not self.at_end():
             token = self.get_token()
-            if token == 'not':
+            if token == "not":
                 if self.at_end():
                     raise self.error_class('No variable provided after "not".')
                 token = self.get_token()
@@ -105,7 +114,7 @@ class IfParser(object):
             else:
                 negate = False
             if token not in OPERATORS:
-                raise self.error_class('%s is not a valid operator.' % token)
+                raise self.error_class("%s is not a valid operator." % token)
             if self.at_end():
                 raise self.error_class('No variable provided after "%s"' % token)
             op, true = OPERATORS[token]
@@ -128,16 +137,18 @@ class IfParser(object):
 
     def get_var(self):
         token = self.get_token()
-        if token == 'not':
+        if token == "not":
             if self.at_end():
                 raise self.error_class('No variable provided after "not".')
             token = self.get_token()
             return Or(self.create_var(token), negate=True)
         return self.create_var(token)
 
-#===============================================================================
+
+# ===============================================================================
 # Actual templatetag code.
-#===============================================================================
+# ===============================================================================
+
 
 class TemplateIfParser(IfParser):
     error_class = template.TemplateSyntaxError
@@ -149,6 +160,7 @@ class TemplateIfParser(IfParser):
     def create_var(self, value):
         return self.template_parser.compile_filter(value)
 
+
 class SmartIfNode(template.Node):
     def __init__(self, var, nodelist_true, nodelist_false=None):
         self.nodelist_true, self.nodelist_false = nodelist_true, nodelist_false
@@ -159,7 +171,7 @@ class SmartIfNode(template.Node):
             return self.nodelist_true.render(context)
         if self.nodelist_false:
             return self.nodelist_false.render(context)
-        return ''
+        return ""
 
     def __repr__(self):
         return "<Smart If node>"
@@ -180,9 +192,10 @@ class SmartIfNode(template.Node):
             nodes.extend(self.nodelist_false.get_nodes_by_type(nodetype))
         return nodes
 
-@register.tag('if')
+
+@register.tag("if")
 def smart_if(parser, token):
-    '''
+    """
     A smarter {% if %} tag for django templates.
 
     While retaining current Django functionality, it also handles equality,
@@ -196,13 +209,13 @@ def smart_if(parser, token):
 
     All supported operators are: ``or``, ``and``, ``in``, ``=`` (or ``==``),
     ``!=``, ``>``, ``>=``, ``<`` and ``<=``.
-    '''
+    """
     bits = token.split_contents()[1:]
     var = TemplateIfParser(parser, bits).parse()
-    nodelist_true = parser.parse(('else', 'endif'))
+    nodelist_true = parser.parse(("else", "endif"))
     token = parser.next_token()
-    if token.contents == 'else':
-        nodelist_false = parser.parse(('endif',))
+    if token.contents == "else":
+        nodelist_false = parser.parse(("endif",))
         parser.delete_first_token()
     else:
         nodelist_false = None

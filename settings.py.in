@@ -1,10 +1,8 @@
 # Django settings for rxtxmanager project.
 
-TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+TEST_RUNNER = "django.test.runner.DiscoverRunner"
 
-ADMINS = (
-        ('Nicolas Delvaux', 'nicolas.delvaux@arkena.com'),
-)
+ADMINS = (("Nicolas Delvaux", "nicolas.delvaux@arkena.com"),)
 
 MANAGERS = ADMINS
 
@@ -14,137 +12,153 @@ import random
 
 # Get configuration file
 from ConfigParser import RawConfigParser
-conf = RawConfigParser()
-conf.read(os.getenv('WEBENGINE_SETTINGS_FILE', '@webenginesysconfdir@/webengine-conf.conf'))
 
-items = dict(conf.items('webengine'))
+conf = RawConfigParser()
+conf.read(
+    os.getenv("WEBENGINE_SETTINGS_FILE", "@webenginesysconfdir@/webengine-conf.conf")
+)
+
+items = dict(conf.items("webengine"))
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = items['time_zone']
+TIME_ZONE = items["time_zone"]
 
 SITE_ID = 1
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["*"]
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = ""
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = ""
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = "/media/"
 
 # Secret key
 try:
-    with open('/var/lib/webengine/secret.txt') as secret:
+    with open("/var/lib/webengine/secret.txt") as secret:
         SECRET_KEY = secret.read().strip()
 except IOError:
     # Generate the secret key
-    SECRET_KEY = ''.join([random.SystemRandom().choice(string.digits + string.letters + string.punctuation) for i in range(100)])
+    SECRET_KEY = "".join(
+        [
+            random.SystemRandom().choice(
+                string.digits + string.letters + string.punctuation
+            )
+            for i in range(100)
+        ]
+    )
     # Save it in a file
-    with open('/var/lib/webengine/secret.txt', 'w') as secret:
+    with open("/var/lib/webengine/secret.txt", "w") as secret:
         secret.write(SECRET_KEY)
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
+    "django.template.loaders.filesystem.Loader",
     # DO NOT use the following loader, it does not make what we want.
     #'django.template.loaders.app_directories.load_template_source',
 )
 
-MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-)
+MIDDLEWARE_CLASSES = ("django.middleware.common.CommonMiddleware",)
 
 AUTHENTICATION_BACKENDS = ()
 
 # Default django session handling
 # It is needed for working with the importer
-MIDDLEWARE_CLASSES += ('django.contrib.sessions.middleware.SessionMiddleware', )
+MIDDLEWARE_CLASSES += ("django.contrib.sessions.middleware.SessionMiddleware",)
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 # It must be loaded after session middleware.
-if conf.getboolean('webengine', 'enable_i18n'):
-    MIDDLEWARE_CLASSES += ('django.middleware.locale.LocaleMiddleware', )
+if conf.getboolean("webengine", "enable_i18n"):
+    MIDDLEWARE_CLASSES += ("django.middleware.locale.LocaleMiddleware",)
     USE_I18N = True
 else:
     USE_I18N = False
 
-SESSION_ENGINE = conf.get('session', 'engine')
+SESSION_ENGINE = conf.get("session", "engine")
 
-if conf.getboolean('webengine', 'enable_auth'):
+if conf.getboolean("webengine", "enable_auth"):
     MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + (
-        'webengine.utils.middleware.SSLAuthMiddleware',
-        'webengine.utils.middleware.RemoteUserMiddleware',
-        'django.contrib.auth.middleware.AuthenticationMiddleware',
-        'webengine.utils.middleware.UserSettingMiddleware',
+        "webengine.utils.middleware.SSLAuthMiddleware",
+        "webengine.utils.middleware.RemoteUserMiddleware",
+        "django.contrib.auth.middleware.AuthenticationMiddleware",
+        "webengine.utils.middleware.UserSettingMiddleware",
     )
 
     AUTHENTICATION_BACKENDS = (
-        'webengine.utils.backends.SSLAuthBackend',
-        'django.contrib.auth.backends.ModelBackend',
-        'webengine.utils.backends.RemoteUserBackend',
+        "webengine.utils.backends.SSLAuthBackend",
+        "django.contrib.auth.backends.ModelBackend",
+        "webengine.utils.backends.RemoteUserBackend",
     )
 
-    if conf.getboolean('webengine', 'enable_generic_ssl_auth'):
+    if conf.getboolean("webengine", "enable_generic_ssl_auth"):
 
-        AUTHENTICATION_BACKENDS = ('webengine.utils.backends.GenericSSLAuthBackend', ) + AUTHENTICATION_BACKENDS
+        AUTHENTICATION_BACKENDS = (
+            "webengine.utils.backends.GenericSSLAuthBackend",
+        ) + AUTHENTICATION_BACKENDS
 
-        GENERIC_SSL_AUTH_MODULE         = items['generic_ssl_auth_module']
-        GENERIC_SSL_AUTH_MODEL          = items['generic_ssl_auth_model']
-        GENERIC_SSL_AUTH_SERIAL_COLUMN  = items['generic_ssl_auth_serial_column']
-        GENERIC_SSL_AUTH_USER_COLUMN    = items['generic_ssl_auth_user_column']
+        GENERIC_SSL_AUTH_MODULE = items["generic_ssl_auth_module"]
+        GENERIC_SSL_AUTH_MODEL = items["generic_ssl_auth_model"]
+        GENERIC_SSL_AUTH_SERIAL_COLUMN = items["generic_ssl_auth_serial_column"]
+        GENERIC_SSL_AUTH_USER_COLUMN = items["generic_ssl_auth_user_column"]
 
-    if conf.getboolean('webengine', 'enable_ldap'):
+    if conf.getboolean("webengine", "enable_ldap"):
 
         import ldap
         from django_auth_ldap.config import LDAPSearch
 
-        AUTHENTICATION_BACKENDS = ('django_auth_ldap.backend.LDAPBackend',) + AUTHENTICATION_BACKENDS
+        AUTHENTICATION_BACKENDS = (
+            "django_auth_ldap.backend.LDAPBackend",
+        ) + AUTHENTICATION_BACKENDS
 
-        AUTH_LDAP_SERVER_URI    = items['ldap_uri']
-        AUTH_LDAP_BIND_DN       = items.get('ldap_bind_dn', '')
-        AUTH_LDAP_BIND_PASSWORD = items.get('ldap_bind_password', '')
-        AUTH_LDAP_USER_SEARCH   = LDAPSearch(items['ldap_search'], ldap.SCOPE_SUBTREE, items.get('ldap_scope_subtree', "(uid=%(user)s)"))
+        AUTH_LDAP_SERVER_URI = items["ldap_uri"]
+        AUTH_LDAP_BIND_DN = items.get("ldap_bind_dn", "")
+        AUTH_LDAP_BIND_PASSWORD = items.get("ldap_bind_password", "")
+        AUTH_LDAP_USER_SEARCH = LDAPSearch(
+            items["ldap_search"],
+            ldap.SCOPE_SUBTREE,
+            items.get("ldap_scope_subtree", "(uid=%(user)s)"),
+        )
 
 # Enable exception logging
-MIDDLEWARE_CLASSES += ('webengine.utils.middleware.ExceptionHandlingMiddleware', )
+MIDDLEWARE_CLASSES += ("webengine.utils.middleware.ExceptionHandlingMiddleware",)
 
-ROOT_URLCONF = 'webengine.urls'
+ROOT_URLCONF = "webengine.urls"
 
 TEMPLATE_DIRS = [
-    '/usr/share/webengine/templates',
+    "/usr/share/webengine/templates",
 ]
 
 INSTALLED_APPS = [
-    'django.contrib.contenttypes',
+    "django.contrib.contenttypes",
 ]
 
-if conf.getboolean('webengine', 'enable_auth'):
-    INSTALLED_APPS.append('django.contrib.auth')
+if conf.getboolean("webengine", "enable_auth"):
+    INSTALLED_APPS.append("django.contrib.auth")
 
 INSTALLED_APPS += [
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'webengine.utils',
+    "django.contrib.sessions",
+    "django.contrib.sites",
+    "webengine.utils",
 ]
 
 # The login url.
-LOGIN_URL = items['login_url']
+LOGIN_URL = items["login_url"]
 
 # If 'next' isn't provided, always redirect to site root.
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = "/"
 
 # Default Input mode.
 # Choose the default mode in which submitted data will be decoded.
@@ -155,15 +169,15 @@ LOGIN_REDIRECT_URL = '/'
 #  - soap
 #  - msgpack
 # Default is html
-DEFAULT_INPUT_MODE = 'text/html'
+DEFAULT_INPUT_MODE = "text/html"
 # The given input mode must be contained into ACCEPTABLE_INPUT_MODES
 ACCEPTABLE_INPUT_MODES = {
-    'text/html'            : 'html',
-    'text/xml'             : 'xml',
-    'application/json'     : 'json',
-    'application/soap+xml' : 'soap',
-    'application/pickle'   : 'pickle',
-    'application/x-msgpack': 'msgpack',
+    "text/html": "html",
+    "text/xml": "xml",
+    "application/json": "json",
+    "application/soap+xml": "soap",
+    "application/pickle": "pickle",
+    "application/x-msgpack": "msgpack",
 }
 
 # Default Output mode.
@@ -175,69 +189,72 @@ ACCEPTABLE_INPUT_MODES = {
 #  - soap
 #  - msgpack
 # Default is html
-DEFAULT_OUTPUT_MODE = 'html'
+DEFAULT_OUTPUT_MODE = "html"
 # The given output mode must be contained into ACCEPTABLE_OUTPUT_MODES
 ACCEPTABLE_OUTPUT_MODES = {
-        'html'  : 'text/html',
-        'xml'   : 'text/xml',
-        'json'  : 'application/json',
-        'soap'  : 'application/soap+xml',
-        'pickle': 'application/octet-stream',
-        'msgpack': 'application/x-msgpack',
+    "html": "text/html",
+    "xml": "text/xml",
+    "json": "application/json",
+    "soap": "application/soap+xml",
+    "pickle": "application/octet-stream",
+    "msgpack": "application/x-msgpack",
 }
 
 # Logging infos.
-LOG_FILENAME = '/var/log/webengine/webengine.log'
+LOG_FILENAME = "/var/log/webengine/webengine.log"
 LOG_FORMAT = "%(asctime)s:%(levelname)s:%(name)s: %(message)s"
 
 
-DEBUG               = conf.getboolean("webengine", "debug")
-PROFILE             = items['profile']
-SKIN                = items['skin']
-LANGUAGE_CODE       = items['language_code']
-DEFAULT_URL         = items['default_url']
-AUTHORIZED_MODS     = [_amod.strip() for _amod in items['authorized_mods'].split(',') if _amod.strip()]
+DEBUG = conf.getboolean("webengine", "debug")
+PROFILE = items["profile"]
+SKIN = items["skin"]
+LANGUAGE_CODE = items["language_code"]
+DEFAULT_URL = items["default_url"]
+AUTHORIZED_MODS = [
+    _amod.strip() for _amod in items["authorized_mods"].split(",") if _amod.strip()
+]
 
 # Try to parse the DB password from a global configuration file
-DATABASE_PASSWORD = items['database_password']
+DATABASE_PASSWORD = items["database_password"]
 dbconfig = RawConfigParser()
-dbconfig.read('/etc/db.ini')
+dbconfig.read("/etc/db.ini")
 try:
-    DATABASE_PASSWORD = dbconfig.get('db', items['database_user'])
+    DATABASE_PASSWORD = dbconfig.get("db", items["database_user"])
 except:
     pass
 
 DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': items['database_name'],
-            'USER': items['database_user'],
-            'PASSWORD': DATABASE_PASSWORD,
-            'HOST': items['database_host'],
-            'PORT': items['database_port'],
-        }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": items["database_name"],
+        "USER": items["database_user"],
+        "PASSWORD": DATABASE_PASSWORD,
+        "HOST": items["database_host"],
+        "PORT": items["database_port"],
+    }
 }
 
 import utils
+
 mods = utils.get_valid_plugins()
 for mod in mods:
-    INSTALLED_APPS.append('webengine.' + mod[0])
+    INSTALLED_APPS.append("webengine." + mod[0])
 
-if conf.getboolean('webengine', 'enable_admin'):
+if conf.getboolean("webengine", "enable_admin"):
     ENABLE_ADMIN = True
-    INSTALLED_APPS.append('django.contrib.admin')
-    TEMPLATE_DIRS.append('/usr/share/pyshared/django/contrib/admin/templates')
+    INSTALLED_APPS.append("django.contrib.admin")
+    TEMPLATE_DIRS.append("/usr/share/pyshared/django/contrib/admin/templates")
 else:
     ENABLE_ADMIN = False
 
 TEMPLATE_DEBUG = DEBUG
 
-CACHE_BACKEND = 'file:///tmp/webengine_cache'
+CACHE_BACKEND = "file:///tmp/webengine_cache"
 
 # Little trick for setting the HttpOnly parameter into all of our HTTP cookies
 # For further information, see: https://groups.google.com/forum/#!topic/django-users/vX9WLVuTgFQ
-SESSION_COOKIE_PATH = '/;HttpOnly'
+SESSION_COOKIE_PATH = "/;HttpOnly"
 
 # Enabling CSRF middleware for mitigating CSRF attacks, ref: RXTX-184
 # For further information, see: https://docs.djangoproject.com/en/1.2/ref/contrib/csrf/
-MIDDLEWARE_CLASSES += ('django.middleware.csrf.CsrfViewMiddleware',)
+MIDDLEWARE_CLASSES += ("django.middleware.csrf.CsrfViewMiddleware",)
