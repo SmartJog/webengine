@@ -1,8 +1,8 @@
-webengine (1.0.8~dev-1) UNRELEASED; urgency=medium
+webengine (1.1.0-1) unstable; urgency=medium
 
   * New upstream version
 
- -- Nicolas Delvaux <nicolas.delvaux@cji.paris>  Fri, 24 Sep 2021 15:07:46 +0200
+ -- Nicolas Delvaux <nicolas.delvaux@cji.paris>  Tue, 16 Nov 2021 16:46:31 +0100
 
 webengine (1.0.7-1) unstable; urgency=medium
 
