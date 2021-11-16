@@ -4,7 +4,7 @@ import logging
 import logging.handlers
 from django.conf import settings
 
-logger = logging.getLogger('webengine')
+logger = logging.getLogger("webengine")
 logger.setLevel(logging.DEBUG)
 handler = logging.FileHandler(settings.LOG_FILENAME)
 FORMAT = settings.LOG_FORMAT

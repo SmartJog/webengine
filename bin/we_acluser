@@ -1,5 +1,4 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+#!/usr/bin/python3
 
 """
     A tool to list and modify webengine's user access control list.
@@ -9,10 +8,10 @@ import os
 import sys
 import optparse
 
-sys.path.append('/usr/share/webengine/app/')
-sys.path.append('/usr/share/webengine/app/webengine/')
+sys.path.append("/usr/share/webengine/app/")
+sys.path.append("/usr/share/webengine/app/webengine/")
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'webengine.settings'
+os.environ["DJANGO_SETTINGS_MODULE"] = "webengine.settings"
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -21,56 +20,98 @@ VERSION = "0.2.0"
 
 
 def main():
-    """ Main function. """
+    """Main function."""
 
     parser = optparse.OptionParser(
-        version="%prog " + VERSION, option_list=[
-            optparse.Option("-a", "--add",    dest="add",
-                help="add permissions for the given user",    action="store_true",
-                default=False),
-            optparse.Option("-r", "--remove", dest="remove",
-                help="remove permissions for the given user", action="store_true",
-                default=False),
-            optparse.Option("-l", "--list",   dest="list",
-                help="list permissions for the given user",   action="store_true",
-                default=False),
-            ])
+        version="%prog " + VERSION,
+        option_list=[
+            optparse.Option(
+                "-a",
+                "--add",
+                dest="add",
+                help="add permissions for the given user",
+                action="store_true",
+                default=False,
+            ),
+            optparse.Option(
+                "-r",
+                "--remove",
+                dest="remove",
+                help="remove permissions for the given user",
+                action="store_true",
+                default=False,
+            ),
+            optparse.Option(
+                "-l",
+                "--list",
+                dest="list",
+                help="list permissions for the given user",
+                action="store_true",
+                default=False,
+            ),
+        ],
+    )
 
-    db_group = optparse.OptionGroup(parser, "WebEngine Database Options",
+    db_group = optparse.OptionGroup(
+        parser,
+        "WebEngine Database Options",
         "Note: *ALL* these options must be used together if you wish to "
-        "change the default database connection settings.")
-    db_group.add_option("-N", "--db-name", dest="db_name",
-        help="database name", default=None)
-    db_group.add_option("-U", "--db-user", dest="db_user",
-        help="database user", default=None)
-    db_group.add_option("-W", "--db-password", dest="db_password",
-        help="database password", default=None)
-    db_group.add_option("-H", "--db-host", dest="db_host",
-        help="database host", default=None)
-    db_group.add_option("-P", "--db-port", dest="db_port",
-        help="database port", default=None)
+        "change the default database connection settings.",
+    )
+    db_group.add_option(
+        "-N", "--db-name", dest="db_name", help="database name", default=None
+    )
+    db_group.add_option(
+        "-U", "--db-user", dest="db_user", help="database user", default=None
+    )
+    db_group.add_option(
+        "-W",
+        "--db-password",
+        dest="db_password",
+        help="database password",
+        default=None,
+    )
+    db_group.add_option(
+        "-H", "--db-host", dest="db_host", help="database host", default=None
+    )
+    db_group.add_option(
+        "-P", "--db-port", dest="db_port", help="database port", default=None
+    )
     parser.add_option_group(db_group)
 
     (options, args) = parser.parse_args()
 
-    if options.db_name and options.db_user and options.db_password and options.db_host and options.db_port:
+    if (
+        options.db_name
+        and options.db_user
+        and options.db_password
+        and options.db_host
+        and options.db_port
+    ):
         settings.configure(
             DATABASE_ENGINE="postgresql_psycopg2",
             DATABASE_NAME=options.db_name,
             DATABASE_USER=options.db_user,
             DATABASE_PASSWORD=options.db_password,
             DATABASE_HOST=options.db_host,
-            DATABASE_PORT=options.db_port)
-    elif options.db_name or options.db_user or options.db_password or options.db_host or options.db_port:
-        print "Must set *ALL* database-related options. See --help for more info."
+            DATABASE_PORT=options.db_port,
+        )
+    elif (
+        options.db_name
+        or options.db_user
+        or options.db_password
+        or options.db_host
+        or options.db_port
+    ):
+        print("Must set *ALL* database-related options. See --help for more info.")
         sys.exit(2)
 
     if not len(args):
-        print "Not enough arguments"
+        print("Not enough arguments")
         sys.exit(2)
 
     if options.add and options.remove:
-        print "Only one permission modifier at a time"
+        print("Only one permission modifier at a time")
         sys.exit(2)
 
     # Uses django settings, must be imported after eventual call to
@@ -80,35 +121,50 @@ def main():
     try:
         user = User.objects.get(username=args[0])
     except ObjectDoesNotExist:
-        print "User", args[0], "does not exist"
+        print("User", args[0], "does not exist")
         sys.exit(1)
 
     if options.list:
-        # List all rxtx related permissions
-        all_perms = [_perm for _perm in Permission.objects.values() if _perm['content_type_id'] == 10]
+        # List all rxtx related permissions
+        all_perms = [
+            _perm
+            for _perm in Permission.objects.values()
+            if _perm["content_type_id"] == 10
+        ]
 
         user_perms = [_perm[5:] for _perm in user.get_all_permissions()]
-        print "List of permissions for user %s (+ means enabled):" % args[0]
+        print("List of permissions for user %s (+ means enabled):" % args[0])
         for perm in all_perms:
-            print '  %s%s - %s' % (perm['codename'] in user_perms and '+' or ' ', perm['codename'], perm['name'])
+            print(
+                "  %s%s - %s"
+                % (
+                    perm["codename"] in user_perms and "+" or " ",
+                    perm["codename"],
+                    perm["name"],
+                )
+            )
 
     if options.remove or options.add:
-        # List all rxtx related permissions
-        all_perms = [_perm['codename'] for _perm in Permission.objects.values() if _perm['content_type_id'] == 10]
+        # List all rxtx related permissions
+        all_perms = [
+            _perm["codename"]
+            for _perm in Permission.objects.values()
+            if _perm["content_type_id"] == 10
+        ]
 
         for perm in args[1:]:
             if perm in all_perms:
-                perm_obj = Permission.objects.get(codename = perm)
+                perm_obj = Permission.objects.get(codename=perm)
 
                 if options.remove:
                     user.user_permissions.remove(perm_obj)
                 elif options.add:
                     user.user_permissions.add(perm_obj)
             else:
-                print "Permission %s does not exist" % perm
+                print("Permission %s does not exist" % perm)
 
         user.save()
 
+
 if __name__ == "__main__":
     main()
-

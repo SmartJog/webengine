@@ -5,21 +5,30 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 import logging
-import log
+from . import log
 import traceback
+
 
 class UserSettingMiddleware(object):
     def process_request(self, request):
-        from models import UserSetting
-        assert hasattr(request, 'user'), "UserSettingMiddleware require to have the AuthenticationMiddleware before."
-        if request.user.is_anonymous(): request.__class__.settings = {}
-        else: request.__class__.settings = dict(request.user.usersetting_set.all().values_list('key', 'value'))
+        from .models import UserSetting
+
+        assert hasattr(
+            request, "user"
+        ), "UserSettingMiddleware require to have the AuthenticationMiddleware before."
+        if request.user.is_anonymous():
+            request.__class__.settings = {}
+        else:
+            request.__class__.settings = dict(
+                request.user.usersetting_set.all().values_list("key", "value")
+            )
         return None
+
 
 class SSLAuthMiddleware(object):
     def process_request(self, request):
-        """ Try to authenticate a user based on SSL certificate. """
-        if not hasattr(request, 'user'):
+        """Try to authenticate a user based on SSL certificate."""
+        if not hasattr(request, "user"):
             request.user = get_user(request)
             if request.user.is_authenticated():
                 return
@@ -29,31 +38,37 @@ class SSLAuthMiddleware(object):
             request.user = user
             login(request, user)
 
+
 class BasicAuthMiddleware(object):
     def process_request(self, request):
-        """ Try to authenticate user based on Authorization header. """
+        """Try to authenticate user based on Authorization header."""
         import base64
 
-        if not hasattr(request, 'user'):
+        if not hasattr(request, "user"):
             request.user = get_user(request)
             if request.user.is_authenticated():
                 return
 
-        if 'HTTP_AUTHORIZATION' in request.META:
-            authmeth, hash = request.META['HTTP_AUTHORIZATION'].split(' ', 1)
-            if authmeth.lower() == 'basic':
-                auth_string = hash.strip().decode('base64')
-                username, password = auth_string.split(':', 1)
-                user = authenticate(username=username, password=password) or AnonymousUser()
+        if "HTTP_AUTHORIZATION" in request.META:
+            authmeth, hash = request.META["HTTP_AUTHORIZATION"].split(" ", 1)
+            if authmeth.lower() == "basic":
+                auth_string = hash.strip().decode("base64")
+                username, password = auth_string.split(":", 1)
+                user = (
+                    authenticate(username=username, password=password)
+                    or AnonymousUser()
+                )
                 if user.is_authenticated():
                     request.user = user
                     login(request, user)
 
+
 class ExceptionHandlingMiddleware(object):
     def process_exception(self, request, exception):
-        logger = logging.getLogger('webengine.utils.exceptions')
+        logger = logging.getLogger("webengine.utils.exceptions")
         logger.error(traceback.format_exc())
         return None
+
 
 class RemoteUserMiddleware(object):
     """
@@ -76,13 +91,14 @@ class RemoteUserMiddleware(object):
 
     def process_request(self, request):
         # AuthenticationMiddleware is required so that request.user exists.
-        if not hasattr(request, 'user'):
+        if not hasattr(request, "user"):
             raise ImproperlyConfigured(
                 "The Django remote user auth middleware requires the"
                 " authentication middleware to be installed.  Edit your"
                 " MIDDLEWARE_CLASSES setting to insert"
                 " 'django.contrib.auth.middleware.AuthenticationMiddleware'"
-                " before the RemoteUserMiddleware class.")
+                " before the RemoteUserMiddleware class."
+            )
         try:
             username = request.META[self.header]
         except KeyError:
@@ -114,6 +130,6 @@ class RemoteUserMiddleware(object):
         backend = auth.load_backend(backend_str)
         try:
             username = backend.clean_username(username)
-        except AttributeError: # Backend has no clean_username method.
+        except AttributeError:  # Backend has no clean_username method.
             pass
         return username
