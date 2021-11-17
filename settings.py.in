@@ -2,7 +2,7 @@
 
 TEST_RUNNER = "django.test.runner.DiscoverRunner"
 
-ADMINS = (("Nicolas Delvaux", "nicolas.delvaux@arkena.com"),)
+ADMINS = (("Nicolas Delvaux", "nicolas.delvaux@cji.paris"),)
 
 MANAGERS = ADMINS
 
@@ -54,7 +54,7 @@ except IOError:
     SECRET_KEY = "".join(
         [
             random.SystemRandom().choice(
-                string.digits + string.letters + string.punctuation
+                string.digits + string.ascii_letters + string.punctuation
             )
             for i in range(100)
         ]
