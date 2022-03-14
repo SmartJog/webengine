@@ -8,29 +8,7 @@ set -e
 # wwwconfig-common variables
 servers="apache2"
 
-if [ "$1" = "configure" ]; then
-	#FIXME: Utiliser debconf.
-
-	# always remove symlinks, assume they belong to us
-	conflink="/etc/apache2/conf.d/webengine.conf"
-	[ -h "$conflink" ] && rm "$conflink"
-
-	# Install the configuration.
-	if [ ! -e "$conflink" ]; then
-		linkname="webengine.conf"
-		linkdestination_apache="/etc/webengine/webengine.conf"
-		. /usr/share/wwwconfig-common/confd-link.sh
-		[ "$status" = "error" ] && echo $error
-	else
-		echo "cannot link $conflink, file already exists"
-	fi
-
-	# Reload the webserver.
-	restart="apache2"
-	. /usr/share/wwwconfig-common/restart.sh
-	[ "$status" = "error" ] && echo $error
-
-elif [ "$1" = "triggered" ]; then
+if [ "$1" = "triggered" ]; then
 	for triggername in $2; do
 		case "$triggername" in
 		"/usr/share/webengine")
