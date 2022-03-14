@@ -2,6 +2,7 @@ webengine (1.1.2~dev-1) UNRELEASED; urgency=medium
 
   * New upstream version
   * Update the Apache2 configuration installation path
+  * Modernize the packaging
 
  -- Nicolas Delvaux <nicolas.delvaux@cji.paris>  Mon, 14 Mar 2022 17:08:44 +0100
 
