@@ -1,6 +1,7 @@
 Version 1.1.2~dev
 
 	* Update the Apache2 configuration installation path
+	* Use /run instead of /var/run
 
 Version 1.1.1 Released on 2021/11/17
 

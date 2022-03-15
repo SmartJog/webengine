@@ -69,7 +69,7 @@ Database user to connect with.
 : **db_password** = //webengine//
 Database password to connect with.
 
-: **db_host** = ///var/run/postgresql//
+: **db_host** = ///run/postgresql//
 Database host to connect to.
 
 : **db_port** = //5432//
