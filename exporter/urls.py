@@ -1,3 +1,7 @@
-from django.conf.urls import patterns, url
+from django.urls import re_path
 
-urlpatterns = patterns("", url("^(?P<base>.+)/(?P<modules>.+)/$", "exporter.dispatch"))
+import webengine.exporter
+
+app_name = "exporter"
+
+urlpatterns = [re_path(r"^(?P<base>.+)/(?P<modules>.+)/$", webengine.exporter.dispatch)]

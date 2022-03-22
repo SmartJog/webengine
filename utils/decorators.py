@@ -14,7 +14,7 @@ import psycopg2
 import sys
 
 
-class _CheckRenderMode(object):
+class _CheckRenderMode:
     """
     Callable object that will act like a decorator.
     Wraps calls to view methods.
@@ -33,12 +33,17 @@ class _CheckRenderMode(object):
         self.func = func
         # Extract func's module name
         mod = inspect.getmodule(self.func).__name__
+
+        # Remove the leading module, as we already are in this path
+        if mod.startswith("webengine."):
+            mod = mod[10:]
         i = mod.rfind(".")
         if i == -1:
             self.func_mod_name = mod
         else:
             self.func_mod_name, _attr = mod[:i], mod[i + 1 :]
         self.__name__ = "_CheckRenderMode"
+        self.__qualname__ = self.__name__
         # Default values
         self.input = settings.DEFAULT_INPUT_MODE
         self.output = settings.DEFAULT_OUTPUT_MODE
@@ -153,11 +158,9 @@ class _CheckRenderMode(object):
             from webengine.utils import webengine_template_processor
 
             template = loader.get_template(self.view)
-            ctx = RequestContext(
-                self.request, self.view_ctx, [webengine_template_processor]
-            )
+            self.view_ctx.update(webengine_template_processor())
             resp = HttpResponse(
-                template.render(ctx),
+                template.render(self.view_ctx, self.request),
                 content_type=settings.ACCEPTABLE_OUTPUT_MODES[self.output],
                 status=self.status,
             )
@@ -168,7 +171,7 @@ class _CheckRenderMode(object):
             raise
 
 
-class _Export(object):
+class _Export:
     """Set a member "__exportable__" which will be checked
     by Importer, to decide if "request" parameter must be given."""
 
@@ -185,7 +188,7 @@ class _Export(object):
         return self.func(request, *args, **kw)
 
 
-class _Proxy(object):
+class _Proxy:
     """Set a member "__exportable__" which will be checked
     by Importer, to decide if "request" parameter must be given."""
 
