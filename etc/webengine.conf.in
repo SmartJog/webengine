@@ -8,5 +8,5 @@ Alias /medias @webenginemediasdir@
         SetHandler None
 </Directory>
 
-ProxyPass "/webengine" "unix:/run/uwsgi/app/webengine/socket|http://uwsgi-webengine"
+ProxyPass "/webengine" "unix:/run/uwsgi/app/webengine/socket|uwsgi://uwsgi-webengine"
 ProxyPreserveHost On
