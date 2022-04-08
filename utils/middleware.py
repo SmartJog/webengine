@@ -9,44 +9,64 @@ from . import log
 import traceback
 
 
-class UserSettingMiddleware(object):
+class UserSettingMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        self.process_request(request)
+        return self.get_response(request)
+
     def process_request(self, request):
         from .models import UserSetting
 
         assert hasattr(
             request, "user"
         ), "UserSettingMiddleware require to have the AuthenticationMiddleware before."
-        if request.user.is_anonymous():
+        if request.user.is_anonymous:
             request.__class__.settings = {}
         else:
             request.__class__.settings = dict(
                 request.user.usersetting_set.all().values_list("key", "value")
             )
-        return None
 
 
-class SSLAuthMiddleware(object):
+class SSLAuthMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        self.process_request(request)
+        return self.get_response(request)
+
     def process_request(self, request):
         """Try to authenticate a user based on SSL certificate."""
         if not hasattr(request, "user"):
             request.user = get_user(request)
-            if request.user.is_authenticated():
+            if request.user.is_authenticated:
                 return
 
         user = authenticate() or AnonymousUser()
-        if user.is_authenticated():
+        if user.is_authenticated:
             request.user = user
             login(request, user)
 
 
-class BasicAuthMiddleware(object):
+class BasicAuthMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        self.process_request(request)
+        return self.get_response(request)
+
     def process_request(self, request):
         """Try to authenticate user based on Authorization header."""
         import base64
 
         if not hasattr(request, "user"):
             request.user = get_user(request)
-            if request.user.is_authenticated():
+            if request.user.is_authenticated:
                 return
 
         if "HTTP_AUTHORIZATION" in request.META:
@@ -58,19 +78,25 @@ class BasicAuthMiddleware(object):
                     authenticate(username=username, password=password)
                     or AnonymousUser()
                 )
-                if user.is_authenticated():
+                if user.is_authenticated:
                     request.user = user
                     login(request, user)
 
 
-class ExceptionHandlingMiddleware(object):
+class ExceptionHandlingMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        return self.get_response(request)
+
     def process_exception(self, request, exception):
         logger = logging.getLogger("webengine.utils.exceptions")
         logger.error(traceback.format_exc())
         return None
 
 
-class RemoteUserMiddleware(object):
+class RemoteUserMiddleware:
     """
     Middleware for utilizing web-server-provided authentication.
 
@@ -88,6 +114,13 @@ class RemoteUserMiddleware(object):
     # used in the request.META dictionary, i.e. the normalization of headers to
     # all uppercase and the addition of "HTTP_" prefix apply.
     header = "REMOTE_USER"
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        self.process_request(request)
+        return self.get_response(request)
 
     def process_request(self, request):
         # AuthenticationMiddleware is required so that request.user exists.
@@ -109,7 +142,7 @@ class RemoteUserMiddleware(object):
         # If the user is already authenticated and that user is the user we are
         # getting passed in the headers, then the correct user is already
         # persisted in the session and we don't need to continue.
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             if request.user.username == self.clean_username(username, request):
                 return
         # We are seeing this user for the first time in this session, attempt

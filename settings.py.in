@@ -63,26 +63,32 @@ except IOError:
     with open("/var/lib/webengine/secret.txt", "w") as secret:
         secret.write(SECRET_KEY)
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    "django.template.loaders.filesystem.Loader",
-    # DO NOT use the following loader, it does not make what we want.
-    #'django.template.loaders.app_directories.load_template_source',
-)
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": ["/usr/share/webengine/templates"],
+    }
+]
 
-MIDDLEWARE_CLASSES = ("django.middleware.common.CommonMiddleware",)
+MIDDLEWARE = [
+    "django.middleware.common.CommonMiddleware",
+]
 
 AUTHENTICATION_BACKENDS = ()
 
 # Default django session handling
 # It is needed for working with the importer
-MIDDLEWARE_CLASSES += ("django.contrib.sessions.middleware.SessionMiddleware",)
+MIDDLEWARE += [
+    "django.contrib.sessions.middleware.SessionMiddleware",
+]
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 # It must be loaded after session middleware.
 if conf.getboolean("webengine", "enable_i18n"):
-    MIDDLEWARE_CLASSES += ("django.middleware.locale.LocaleMiddleware",)
+    MIDDLEWARE += [
+        "django.middleware.locale.LocaleMiddleware",
+    ]
     USE_I18N = True
 else:
     USE_I18N = False
@@ -90,12 +96,12 @@ else:
 SESSION_ENGINE = conf.get("session", "engine")
 
 if conf.getboolean("webengine", "enable_auth"):
-    MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + (
+    MIDDLEWARE += [
         "webengine.utils.middleware.SSLAuthMiddleware",
         "webengine.utils.middleware.RemoteUserMiddleware",
         "django.contrib.auth.middleware.AuthenticationMiddleware",
         "webengine.utils.middleware.UserSettingMiddleware",
-    )
+    ]
 
     AUTHENTICATION_BACKENDS = (
         "webengine.utils.backends.SSLAuthBackend",
@@ -133,13 +139,11 @@ if conf.getboolean("webengine", "enable_auth"):
         )
 
 # Enable exception logging
-MIDDLEWARE_CLASSES += ("webengine.utils.middleware.ExceptionHandlingMiddleware",)
+MIDDLEWARE += [
+    "webengine.utils.middleware.ExceptionHandlingMiddleware",
+]
 
 ROOT_URLCONF = "webengine.urls"
-
-TEMPLATE_DIRS = [
-    "/usr/share/webengine/templates",
-]
 
 INSTALLED_APPS = [
     "django.contrib.contenttypes",
@@ -257,4 +261,6 @@ SESSION_COOKIE_PATH = "/;HttpOnly"
 
 # Enabling CSRF middleware for mitigating CSRF attacks, ref: RXTX-184
 # For further information, see: https://docs.djangoproject.com/en/1.2/ref/contrib/csrf/
-MIDDLEWARE_CLASSES += ("django.middleware.csrf.CsrfViewMiddleware",)
+MIDDLEWARE += [
+    "django.middleware.csrf.CsrfViewMiddleware",
+]

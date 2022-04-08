@@ -3,7 +3,7 @@ import logging
 
 from django.http import HttpResponse, HttpResponseRedirect
 from django.conf import settings
-from django.core.urlresolvers import reverse, NoReverseMatch
+from django.urls import reverse, NoReverseMatch
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -42,7 +42,7 @@ def get_valid_plugins():
     ]
 
 
-def webengine_template_processor(request):
+def webengine_template_processor():
     """
     This method is called by the RequestContext() object.
     It adds to the template variables the profile, etc..

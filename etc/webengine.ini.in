@@ -1,7 +1,7 @@
 [uwsgi]
 
 plugins = python3
-http-socket = /var/run/uwsgi/app/webengine/socket
+http-socket = /run/uwsgi/app/webengine/socket
 uid = sjuser
 gid = sjgroup
 chdir = /usr/share/webengine/app

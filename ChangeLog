@@ -1,3 +1,10 @@
+Version 2.0.0 Released on 2022/04/08
+
+	* Update the Apache2 configuration installation path
+	* Use /run instead of /var/run
+	* Use mod_proxy_uwsgi
+	* Port to Django >= 2
+
 Version 1.1.1 Released on 2021/11/17
 
 	* Add missing Python3 syntax migration

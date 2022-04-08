@@ -3,34 +3,43 @@
 
 set -e
 
+USER="sjuser"
+GROUP="sjgroup"
+
+if [ "$1" = "configure" ]; then
+
+	# Create the "sjgroup" group
+	if ! getent group "$GROUP" > /dev/null; then
+		addgroup --quiet --system --group "$GROUP"
+	fi
+
+	# Create the "sjuser" user
+	if ! getent passwd "$USER" > /dev/null; then
+		adduser --quiet --system  \
+            --ingroup "$GROUP"    \
+            --disabled-login      \
+            --disabled-password   \
+            --home /var/lib/sjfs  \
+			--no-create-home      \
+			--gecos "SJFS management user" \
+			"$USER"
+	fi
+
+	if ! dpkg-statoverride --list /var/lib/sjfs >/dev/null 2>&1; then
+		dpkg-statoverride --update --add "$USER" "$GROUP" 0770 /var/lib/sjfs
+	fi
+
+	chown "$USER":"$GROUP" /var/lib/webengine
+	chown "$USER":"$GROUP" /var/log/webengine
+fi
+
+
 #DEBHELPER#
 
 # wwwconfig-common variables
 servers="apache2"
 
-if [ "$1" = "configure" ]; then
-	#FIXME: Utiliser debconf.
-
-	# always remove symlinks, assume they belong to us
-	conflink="/etc/apache2/conf.d/webengine.conf"
-	[ -h "$conflink" ] && rm "$conflink"
-
-	# Install the configuration.
-	if [ ! -e "$conflink" ]; then
-		linkname="webengine.conf"
-		linkdestination_apache="/etc/webengine/webengine.conf"
-		. /usr/share/wwwconfig-common/confd-link.sh
-		[ "$status" = "error" ] && echo $error
-	else
-		echo "cannot link $conflink, file already exists"
-	fi
-
-	# Reload the webserver.
-	restart="apache2"
-	. /usr/share/wwwconfig-common/restart.sh
-	[ "$status" = "error" ] && echo $error
-
-elif [ "$1" = "triggered" ]; then
+if [ "$1" = "triggered" ]; then
 	for triggername in $2; do
 		case "$triggername" in
 		"/usr/share/webengine")

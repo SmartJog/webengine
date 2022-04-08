@@ -1,4 +1,4 @@
-from django.template import Library, Node, loader, TemplateSyntaxError, resolve_variable
+from django.template import Library, Node, loader, TemplateSyntaxError
 from django.template.context import Context
 
 register = Library()
@@ -15,7 +15,6 @@ class RenderPartialNode(Node):
         print(self.params)
         for k, v in self.params.items():
             print("Resolve " + str(v))
-            # self.params[k] = resolve_variable(v, context)
             self.params[k] = v
         context.update(self.params)
         template = loader.get_template(self.name)

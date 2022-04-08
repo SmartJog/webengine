@@ -6,49 +6,47 @@
 # API is retarded, but whatever.
 # See http://docs.djangoproject.com/en/dev/topics/http/views/#the-404-page-not-found-view
 
-from django.conf.urls import patterns, url, include
-from webengine.utils import get_valid_plugins
+from django.urls import path, re_path, include
 from django.contrib import admin
 from django.conf import settings
+from django.views.i18n import JavaScriptCatalog
+import django.views.static
+
+import webengine
+from webengine.utils import get_valid_plugins
 
 # List of patterns to apply, default view is webengine.index
-urlpatterns = patterns(
-    "",
-    url(r"^$", "webengine.utils.default_view"),
-)
+urlpatterns = [
+    path("", webengine.utils.default_view),
+]
 
 if hasattr(settings, "ENABLE_ADMIN") and settings.ENABLE_ADMIN:
     admin.autodiscover()
-    # List of patterns to apply, default view is webengine.index
-    urlpatterns += patterns("", (r"^admin/(.*)$", admin.site.root))
+    urlpatterns.append(re_path(r"^admin/(.*)$", admin.site.root))
 
 plugs = get_valid_plugins()
 
 for name, mod in plugs:
     # Append patterns of each plugins
     # Let each plugin define their urlpatterns, just concat them here.
-    urlpatterns += patterns("", (r"^" + name + "/", include(name + ".urls")))
+    urlpatterns.append(path(name + "/", include(name + ".urls")))
     # JS translations. We have to prepend 'webengine.' to the package
     # name since it is the way it is spelled in
     # settings.INSTALLED_APPS; see also #2306.
-    urlpatterns += patterns(
-        "",
-        url(
-            r"^jsi18n/" + name + "/$",
-            "django.views.i18n.javascript_catalog",
-            {"packages": ["webengine." + name]},
+    urlpatterns.append(
+        path(
+            "jsi18n/" + name + "/",
+            JavaScriptCatalog.as_view(packages=["webengine." + name]),
+            name=name + "javascript-catalog",
         ),
     )
 
 # JUST FOR DEBUG PURPOSE, STATIC PAGES WILL BE SERVED BY APACHE.
-
-
 if settings.DEBUG:
-    urlpatterns += patterns(
-        "",
-        (
+    urlpatterns.append(
+        re_path(
             r"^medias/(?P<path>.*)$",
-            "django.views.static.serve",
+            django.views.static.serve,
             {"document_root": "/usr/share/webengine/medias/"},
         ),
     )
