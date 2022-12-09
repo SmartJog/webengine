@@ -7,6 +7,7 @@ ADMINS = (("Nicolas Delvaux", "nicolas.delvaux@cji.paris"),)
 MANAGERS = ADMINS
 
 import os
+import stat
 import string
 import random
 
@@ -62,6 +63,7 @@ except IOError:
     # Save it in a file
     with open("/var/lib/webengine/secret.txt", "w") as secret:
         secret.write(SECRET_KEY)
+    os.chmod("/var/lib/webengine/secret.txt", stat.S_IRUSR)
 
 TEMPLATES = [
     {
