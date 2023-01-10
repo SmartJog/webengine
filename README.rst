@@ -58,7 +58,7 @@ version 1.10.0 is more up to date than 1.10.0~dev).
 Authors
 ======
 
-Web Engine was created at SmartJog by :
+Web Engine was created at SmartJog by:
 
 * Anthony Mavic
 * Bastien Abadie
