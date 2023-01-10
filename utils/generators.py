@@ -1,7 +1,7 @@
 # Generator
 
 
-class Generator(object):
+class Generator:
     def __init__(self):
         self._obj = None
         self._output = "None"
@@ -17,31 +17,31 @@ class Generator(object):
 
 class XmlGenerator(Generator):
     def __init__(self):
-        super(XmlGenerator, self).__init__()
+        super().__init__()
         self._output = "xml"
 
     def generate(self, obj):
-        super(XmlGenerator, self).generate(obj)
+        super().generate(obj)
         # TODO
 
 
 class SoapGenerator(Generator):
     def __init__(self):
-        super(SoapGenerator, self).__init__()
+        super().__init__()
         self._output = "soap"
 
     def generate(self, obj):
-        super(SoapGenerator, self).generate(obj)
+        super().generate(obj)
         # TODO
 
 
 class JSONGenerator(Generator):
     def __init__(self):
-        super(JSONGenerator, self).__init__()
+        super().__init__()
         self._output = "json"
 
     def generate(self, obj):
-        super(JSONGenerator, self).generate(obj)
+        super().generate(obj)
         import json
         from django.core.serializers.json import DjangoJSONEncoder
 
@@ -50,11 +50,11 @@ class JSONGenerator(Generator):
 
 class PickleGenerator(Generator):
     def __init__(self):
-        super(PickleGenerator, self).__init__()
+        super().__init__()
         self._output = "pickle"
 
     def generate(self, obj):
-        super(PickleGenerator, self).generate(obj)
+        super().generate(obj)
         import pickle
 
         try:
@@ -68,11 +68,11 @@ class PickleGenerator(Generator):
 
 class MsgpackGenerator(Generator):
     def __init__(self):
-        super(MsgpackGenerator, self).__init__()
+        super().__init__()
         self._output = "msgpack"
 
     def generate(self, obj):
-        super(MsgpackGenerator, self).generate(obj)
+        super().generate(obj)
         import msgpack
 
         return msgpack.packb(obj, default=str)
@@ -80,15 +80,15 @@ class MsgpackGenerator(Generator):
 
 class DefaultGenerator(Generator):
     def __init__(self):
-        super(DefaultGenerator, self).__init__()
+        super().__init__()
         self._output = "default"
 
     def generate(self, obj):
-        super(DefaultGenerator, self).generate(obj)
+        super().generate(obj)
         return str(obj)
 
 
-class GeneratorFactory(object):
+class GeneratorFactory:
     """GeneratorFactory handles Generator instances for the right output mode."""
 
     _output = {

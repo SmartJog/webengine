@@ -1,6 +1,7 @@
 Version 2.0.3~dev
 
 	* Fix Json deserialization
+	* A bit of code modernization
 
 Version 2.0.2 Released on 2022/12/09
 

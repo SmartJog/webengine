@@ -16,7 +16,7 @@ register = template.Library()
 # ===============================================================================
 
 
-class BaseCalc(object):
+class BaseCalc:
     def __init__(self, var1, var2=None, negate=False):
         self.var1 = var1
         self.var2 = var2
@@ -84,7 +84,7 @@ OPERATORS = {
 }
 
 
-class IfParser(object):
+class IfParser:
     error_class = ValueError
 
     def __init__(self, tokens):
@@ -155,7 +155,7 @@ class TemplateIfParser(IfParser):
 
     def __init__(self, parser, *args, **kwargs):
         self.template_parser = parser
-        return super(TemplateIfParser, self).__init__(*args, **kwargs)
+        return super().__init__(*args, **kwargs)
 
     def create_var(self, value):
         return self.template_parser.compile_filter(value)

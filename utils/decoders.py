@@ -1,7 +1,7 @@
 # Decoders
 
 
-class Decoder(object):
+class Decoder:
     def __init__(self):
         self._obj = None
         self._input = "None"
@@ -17,31 +17,31 @@ class Decoder(object):
 
 class XmlDecoder(Decoder):
     def __init__(self):
-        super(XmlDecoder, self).__init__()
+        super().__init__()
         self._input = "xml"
 
     def decode(self, obj):
-        super(XmlDecoder, self).decode(obj)
+        super().decode(obj)
         # TODO
 
 
 class SoapDecoder(Decoder):
     def __init__(self):
-        super(SoapDecoder, self).__init__()
+        super().__init__()
         self._input = "soap"
 
     def decode(self, obj):
-        super(SoapDecoder, self).decode(obj)
+        super().decode(obj)
         # TODO
 
 
 class JSONDecoder(Decoder):
     def __init__(self):
-        super(JSONDecoder, self).__init__()
+        super().__init__()
         self._input = "json"
 
     def decode(self, obj):
-        super(JSONDecoder, self).decode(obj)
+        super().decode(obj)
         import json
 
         return json.JSONDecoder().decode(obj.decode())
@@ -49,21 +49,21 @@ class JSONDecoder(Decoder):
 
 class DefaultDecoder(Decoder):
     def __init__(self):
-        super(DefaultDecoder, self).__init__()
+        super().__init__()
         self._input = "default"
 
     def decode(self, obj):
-        super(DefaultDecoder, self).decode(obj)
+        super().decode(obj)
         return str(obj)
 
 
 class PickleDecoder(Decoder):
     def __init__(self):
-        super(PickleDecoder, self).__init__()
+        super().__init__()
         self._input = "pickle"
 
     def decode(self, obj):
-        super(PickleDecoder, self).decode(obj)
+        super().decode(obj)
         import pickle
 
         return pickle.loads(obj)
@@ -71,17 +71,17 @@ class PickleDecoder(Decoder):
 
 class MsgpackDecoder(Decoder):
     def __init__(self):
-        super(MsgpackDecoder, self).__init__()
+        super().__init__()
         self._input = "msgpack"
 
     def decode(self, obj):
-        super(MsgpackDecoder, self).decode(obj)
+        super().decode(obj)
         import msgpack
 
         return msgpack.unpackb(obj, raw=False, strict_map_key=False)
 
 
-class DecoderFactory(object):
+class DecoderFactory:
     """DecoderFactory handles Decoder instances for the right input mode."""
 
     _input = {

@@ -8,7 +8,7 @@ import settings
 from webengine.utils.log import logger
 
 
-class SSLAuthBackend(object):
+class SSLAuthBackend:
     """Authenticate using SSL certificate."""
 
     def authenticate(self):
