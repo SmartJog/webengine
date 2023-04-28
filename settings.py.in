@@ -209,6 +209,7 @@ ACCEPTABLE_OUTPUT_MODES = {
 # Logging infos.
 LOG_FILENAME = "/var/log/webengine/webengine.log"
 LOG_FORMAT = "%(asctime)s:%(levelname)s:%(name)s: %(message)s"
+LOG_TO_OUTPUT = conf.getboolean("webengine", "log_to_output", fallback=False)
 
 
 DEBUG = conf.getboolean("webengine", "debug")
