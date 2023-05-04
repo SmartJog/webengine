@@ -1,3 +1,7 @@
+Version 2.0.4 Released on 2023/05/04
+
+	* Allow to log to output instead of inside a file
+
 Version 2.0.3 Released on 2023/01/10
 
 	* Fix Json deserialization
