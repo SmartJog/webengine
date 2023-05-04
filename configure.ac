@@ -1,5 +1,5 @@
 AC_PREREQ([2.67])
-AC_INIT([webengine],[2.0.3],[opensource@cji.paris])
+AC_INIT([webengine],[2.0.4],[opensource@cji.paris])
 
 AM_INIT_AUTOMAKE([foreign -Wall 1.11])
 AM_SILENT_RULES([yes])
