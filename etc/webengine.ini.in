@@ -2,6 +2,7 @@
 plugins = python3
 uid = sjuser
 gid = sjgroup
+umask = 002
 socket = /run/uwsgi/app/webengine/socket
 chown-socket = sjuser:sjgroup
 chdir = /usr/share/webengine/app
