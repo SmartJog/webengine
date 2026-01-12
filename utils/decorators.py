@@ -3,15 +3,11 @@
 
 from django.http import HttpResponse
 from django.conf import settings
-from django import http
 
 from webengine.utils.exceptions import *
 from webengine import settings
-from psycopg2.pool import ThreadedConnectionPool
 
 import importer
-import psycopg2
-import sys
 
 
 class _CheckRenderMode:
@@ -134,7 +130,7 @@ class _CheckRenderMode:
         return self._createResponse()
 
     def _createResponse(self):
-        from django.template import loader, RequestContext, TemplateDoesNotExist
+        from django.template import loader, TemplateDoesNotExist
 
         # View is None, check for a Factory for this output mode.
         if self.view is None:
@@ -184,7 +180,6 @@ class _Export:
         self.func = func
 
     def __call__(self, request, *args, **kw):
-
         return self.func(request, *args, **kw)
 
 

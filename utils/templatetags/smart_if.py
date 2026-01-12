@@ -7,6 +7,7 @@ greater than and less than operators. Some common case examples::
     {% if articles|length >= 5 %}...{% endif %}
     {% if "ifnotequal tag" != "beautiful" %}...{% endif %}
 """
+
 from django import template
 
 register = template.Library()

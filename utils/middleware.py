@@ -5,7 +5,6 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 import logging
-from . import log
 import traceback
 
 
@@ -18,11 +17,10 @@ class UserSettingMiddleware:
         return self.get_response(request)
 
     def process_request(self, request):
-        from .models import UserSetting
 
-        assert hasattr(
-            request, "user"
-        ), "UserSettingMiddleware require to have the AuthenticationMiddleware before."
+        assert hasattr(request, "user"), (
+            "UserSettingMiddleware require to have the AuthenticationMiddleware before."
+        )
         if request.user.is_anonymous:
             request.__class__.settings = {}
         else:
@@ -62,7 +60,6 @@ class BasicAuthMiddleware:
 
     def process_request(self, request):
         """Try to authenticate user based on Authorization header."""
-        import base64
 
         if not hasattr(request, "user"):
             request.user = get_user(request)

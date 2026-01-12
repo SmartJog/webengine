@@ -5,7 +5,6 @@ import os
 
 import settings
 
-from webengine.utils.log import logger
 
 
 class SSLAuthBackend:

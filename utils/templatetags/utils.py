@@ -1,5 +1,4 @@
 from django.template import Library, Node, loader, TemplateSyntaxError
-from django.template.context import Context
 
 register = Library()
 
