@@ -17,7 +17,6 @@ class UserSettingMiddleware:
         return self.get_response(request)
 
     def process_request(self, request):
-
         assert hasattr(request, "user"), (
             "UserSettingMiddleware require to have the AuthenticationMiddleware before."
         )

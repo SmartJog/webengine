@@ -6,7 +6,6 @@ import os
 import settings
 
 
-
 class SSLAuthBackend:
     """Authenticate using SSL certificate."""
 
